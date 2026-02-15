@@ -8,55 +8,124 @@
 **Storage:** 512GB SSD  
 **Original OS:** Windows 11 Pro (replaced with Linux for server usage)
 
-Reason for hardware choice:
-- Low power consumption
-- Always-on capable
-- Sufficient CPU & RAM for container workloads
+### Hardware Decision Rationale
+
+- Low power consumption (always-on capable)
+- Sufficient performance for containerized workloads
+- Upgradeable RAM & storage
 - Cost-efficient homelab foundation
+- Suitable for virtualization & Docker-based services
 
 ---
 
 ## Operating System
 
-Ubuntu Server (minimal installation)
+**Ubuntu Server 24.04 LTS**
 
-Why Ubuntu Server:
-- Stable LTS base
-- Lightweight footprint
-- Large community support
-- Container-friendly ecosystem
+### Installation Decisions
 
----
+- Full disk usage with LVM
+- No disk encryption (LUKS disabled)
+- OpenSSH installed during setup
+- Minimal package footprint
+- No GUI environment
 
-## Network
+### Why Ubuntu Server
 
-- Connected via LAN
-- Router-managed IP (static IP planned)
-- SSH remote access enabled
-
----
-
-## Access & Security
-
-- SSH enabled
-- Firewall (UFW) activated
-- System fully updated
-- Remote access tested
+- Long-Term Support (5 years security updates)
+- Stable and widely adopted in production environments
+- Strong Docker and cloud ecosystem compatibility
+- Large documentation base
 
 ---
 
-## Current Limitations
+## Network Configuration
 
-- No Docker containers deployed yet
-- No public services exposed
-- No database configured
+- Wired LAN connection (no WiFi usage)
+- DHCP assigned IP: 192.168.178.47
+- Router-managed static IP planned
+- No public ports exposed
+- No port forwarding configured
+
+### Rationale
+
+- LAN-only exposure reduces attack surface
+- Router-level static IP preferred over OS-level static config
+- Server remains private within internal network
+
+---
+
+## Access & Security Model
+
+### SSH Configuration
+
+- ED25519 key pair generated on client machine
+- Public key added to `~/.ssh/authorized_keys`
+- Key-based authentication verified
+- PasswordAuthentication disabled
+- PermitRootLogin disabled
+- PubkeyAuthentication enforced
+
+### Firewall
+
+- UFW enabled
+- Only OpenSSH allowed
+- Default deny policy for incoming connections
+
+### System Hardening
+
+- System fully updated (`apt update && apt upgrade`)
+- Timezone configured
+- Power button configured for clean shutdown
+- No unnecessary services installed
+
+### Security Philosophy
+
+- Principle of minimal exposure
+- No public services at baseline stage
+- Access restricted to key-based SSH only
+- Physical access retained as emergency fallback
+
+---
+
+## Current System State
+
+- Headless operation confirmed
+- Remote access fully functional
+- Stable uptime
+- No containers deployed yet
+- No external dependencies configured
+
+---
+
+## Known Limitations
+
+- No static IP enforced yet
+- No container runtime installed
+- No database layer
+- No monitoring / logging stack
 - No Azure integration
+
+---
+
+## Architectural Direction
+
+The goal is to evolve this baseline into:
+
+- Containerized application platform
+- API service layer
+- PostgreSQL database backend
+- Public read-only web dashboard
+- Secure hybrid cloud connectivity
+- CI/CD-driven deployment workflow
 
 ---
 
 ## Next Steps
 
-- Install Docker & Docker Compose
-- Define service architecture
-- Plan database layer
-- Design hybrid cloud integration concept
+- Enforce static IP at router level
+- Install Docker Engine
+- Install Docker Compose
+- Deploy first test container
+- Document container lifecycle management
+
