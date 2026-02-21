@@ -14,7 +14,7 @@
 - Sufficient performance for containerized workloads
 - Upgradeable RAM & storage
 - Cost-efficient homelab foundation
-- Suitable for virtualization & Docker-based services
+- Suitable for Docker-based services
 
 ---
 
@@ -66,18 +66,39 @@
 - PermitRootLogin disabled
 - PubkeyAuthentication enforced
 
-### Firewall
+### Firewall (UFW)
 
 - UFW enabled
-- Only OpenSSH allowed
-- Default deny policy for incoming connections
+- Default policy: deny incoming / allow outgoing
+- SSH (22/tcp) allowed **only from 192.168.178.0/24**
+- Port 8080 allowed from 192.168.178.0/24
+- Logging enabled (low level)
 
-### System Hardening
+#### Security Adjustment
+
+Removed default OpenSSH profile rule and restricted SSH access to local subnet only.
+
+**Impact:**
+- SSH no longer broadly allowed
+- Reduced internal attack surface
+- No external exposure possible
+
+### Fail2ban
+
+- Installed and enabled
+- SSH jail active with default configuration
+
+Objective:
+Mitigate brute-force attempts even within internal network scenarios.
+
+---
+
+## System Hardening
 
 - System fully updated (`apt update && apt upgrade`)
 - Timezone configured
-- Power button configured for clean shutdown
 - No unnecessary services installed
+- Headless operation enforced
 
 ### Security Philosophy
 
@@ -88,23 +109,48 @@
 
 ---
 
+## Container Runtime Status
+
+### Docker
+
+- Docker Engine installed
+- Service active and enabled
+- Running without errors
+
+### Docker Compose
+
+- Compose installed
+- Test stack deployed successfully
+
+### Port Mapping Verification
+
+- Container port mapping tested
+- Access confirmed from LAN
+- No external exposure configured
+
+---
+
 ## Current System State
 
 - Headless operation confirmed
 - Remote access fully functional
-- Stable uptime
-- No containers deployed yet
-- No external dependencies configured
+- Firewall hardened
+- Fail2ban active
+- Docker operational
+- Compose operational
+- LAN access validated
+- No public exposure
 
 ---
 
 ## Known Limitations
 
-- No static IP enforced yet
-- No container runtime installed
-- No database layer
+- Static IP not yet enforced at router level
+- No production container stack deployed
+- No database layer configured
 - No monitoring / logging stack
 - No Azure integration
+- No CI/CD pipeline
 
 ---
 
@@ -118,14 +164,14 @@ The goal is to evolve this baseline into:
 - Public read-only web dashboard
 - Secure hybrid cloud connectivity
 - CI/CD-driven deployment workflow
+- Structured observability layer
 
 ---
 
 ## Next Steps
 
 - Enforce static IP at router level
-- Install Docker Engine
-- Install Docker Compose
-- Deploy first test container
-- Document container lifecycle management
-
+- Deploy PostgreSQL container
+- Define API service structure
+- Introduce basic logging strategy
+- Prepare architecture diagram draft
