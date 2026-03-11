@@ -38,7 +38,7 @@ end
 
 %% ----------- ACCESS -----------
 Admin -->|SSH Key Auth| UFW
-User -->|HTTPS| Web
+User -->|HTTPS| UFW
 
 Fail2Ban -.->|Protects SSH| UFW
 UFW --> Server
