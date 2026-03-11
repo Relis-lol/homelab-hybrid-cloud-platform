@@ -2,54 +2,83 @@
 
 ## Objective
 
-Introduce a structured database backend to support application logic and data persistence.
+Provide a persistent relational data store for application services.
+
+The database layer is responsible for storing structured market data and historical records used by the application.
 
 ---
 
-## Planned Stack
+## Technology Stack
 
-- PostgreSQL (Docker container)
-- Dedicated Docker volume for persistent storage
-- Internal network exposure only
+- PostgreSQL 16
+- Docker container deployment
+- Named Docker volume for persistence
 
 ---
 
 ## Architecture Concept
 
-- Database runs inside isolated Docker network
-- No direct public exposure
-- API layer acts as single access point
+The database runs as an internal container service inside the Docker stack.
 
----
+Access model:
 
-## Security Considerations
+API container → PostgreSQL container → persistent volume
 
-- Strong password enforcement
-- Environment variables via `.env`
-- No hardcoded credentials
-- No external port exposure
+Key design decisions:
+
+- database remains internal to Docker network
+- no direct LAN or public access
+- application layer controls all data access
 
 ---
 
 ## Data Scope
 
-Planned data usage:
+The database is designed to store structured market data.
 
-- EVE Online market history
-- Structured pricing data
-- Timestamped historical records
+Primary use cases:
+
+- EVE Online market price history
+- item type metadata
+- timestamped price records
+- import run tracking
+
+---
+
+## Initial Schema
+
+Current core tables:
+
+- `item_types`
+- `market_prices`
+- `price_import_runs`
+
+Indexes added to optimize historical queries.
+
+---
+
+## Security Considerations
+
+- database not exposed via host port
+- access restricted to Docker network
+- credentials provided through container environment variables
+- API layer acts as controlled access interface
 
 ---
 
 ## Current Status
 
-Not yet deployed.
+- PostgreSQL container deployed
+- Named volume active for persistence
+- Initial schema created
+- Database verified via container connection
+- Internal service communication functional
 
 ---
 
 ## Next Steps
 
-- Deploy PostgreSQL container
-- Create initial schema
-- Validate persistence
-- Test internal connectivity from API container
+- Connect API service to PostgreSQL
+- Implement database queries in API layer
+- Define import workflow for market data
+- Expand schema for additional data sources
