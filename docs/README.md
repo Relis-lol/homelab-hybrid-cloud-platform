@@ -1,3 +1,5 @@
+## High-Level Architecture
+
 ```mermaid
 
 graph TD
