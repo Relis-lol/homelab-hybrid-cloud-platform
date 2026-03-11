@@ -2,46 +2,81 @@
 
 ## Objective
 
-Create a controlled application layer between frontend and database.
+Provide a controlled application layer between the database and external consumers.
+
+The API handles data access, request validation and structured responses.
 
 ---
 
-## Planned Architecture
+## Technology Stack
 
-- Backend service (Python FastAPI or Node.js)
-- Containerized deployment
-- Internal communication with database
-- Reverse proxy for routing
+- Python FastAPI
+- Docker container deployment
+- Uvicorn ASGI server
+
+---
+
+## Architecture Concept
+
+The API runs as a container inside the Docker Compose stack.
+
+Communication flow:
+
+Client → API → PostgreSQL
+
+Key characteristics:
+
+- database access only through API
+- internal container communication via Docker network
+- external access limited to defined API endpoints
 
 ---
 
 ## Responsibilities
 
-- Handle data queries
-- Provide structured JSON responses
-- Abstract database logic
-- Enforce read-only public access
+The API layer is responsible for:
+
+- processing incoming requests
+- retrieving structured data from the database
+- returning JSON responses
+- abstracting database logic from clients
+
+Future responsibilities:
+
+- market data queries
+- price history retrieval
+- controlled read-only endpoints
 
 ---
 
 ## Security Model
 
-- No direct DB exposure
-- Input validation
-- Rate limiting (planned)
-- Log request metadata
+- no direct database exposure
+- API acts as controlled access gateway
+- input validation handled by FastAPI
+- firewall restricts access to local network
+- request logging planned
 
 ---
 
 ## Current Status
 
-Concept defined. No deployment yet.
+- FastAPI service container deployed
+- Container integrated into Docker Compose stack
+- Health endpoint implemented
+
+Available endpoint:
+/health
+
+API reachable via:
+http://<server-ip>:8000/health
+
 
 ---
 
 ## Next Steps
 
-- Choose backend framework
-- Define initial endpoints
-- Connect to PostgreSQL container
-- Implement basic test endpoint
+- implement database connection
+- create initial data query endpoints
+- introduce request logging
+- prepare API structure for future services
