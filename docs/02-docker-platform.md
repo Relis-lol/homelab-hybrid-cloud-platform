@@ -36,7 +36,6 @@ Responsibilities:
 
 Current project structure:
 
-```text
 ~/stack/
 └── eve-stack/
     ├── compose.yml
