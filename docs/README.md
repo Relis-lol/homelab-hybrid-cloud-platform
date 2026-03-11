@@ -1,4 +1,4 @@
-´´´ mermaid
+``` mermaid
 
 graph TD
     Internet((Internet)) ---|Blocked by UFW| Server[NiPoGi Mini PC]
