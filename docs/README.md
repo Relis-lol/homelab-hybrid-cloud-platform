@@ -1,41 +1,50 @@
 ``` mermaid
+graph LR
 
-graph TD
+%% ---------- USERS ----------
+User["Public User / Browser"]
+Admin["Admin Laptop"]
+EVE["EVE Online Market API"]
 
-    User["Public User / Browser"]
-    Admin["Admin Laptop"]
+%% ---------- SERVER ----------
+subgraph Server["NiPoGi Mini Server (Ubuntu)"]
 
-    subgraph LAN["Home LAN / Secure Admin Access"]
-        Server["NiPoGi Mini Server"]
-        Fail2Ban["Fail2Ban"]
+    subgraph Security["Security Layer"]
         UFW["UFW Firewall"]
+        Fail2Ban["Fail2Ban"]
     end
 
-    Admin -->|SSH Key Auth| Server
-    UFW --> Server
-    Fail2Ban -.->|protects SSH| Server
-
-    subgraph Docker["Docker Compose Stack on Server"]
+    subgraph Docker["Docker Compose Stack"]
         Web["EVE Market Website"]
         API["FastAPI Service"]
-        Worker["EVE Data Import Worker"]
+        Worker["Market Import Worker"]
         DB[(PostgreSQL History Database)]
     end
 
-    User -->|HTTPS / Web Access| Web
-    Web -->|API Requests| API
-    API -->|Read / Query| DB
-    Worker -->|Import / Update Market Data| DB
+end
 
-    EVE["EVE Online Market Data"] -->|Fetch Data| Worker
+%% ---------- AZURE ----------
+subgraph Azure["Azure Cloud"]
+    CI["CI/CD Automation"]
+    Storage["Cloud Storage / Backup"]
+end
 
-    Server --> Docker
 
-    subgraph Azure["Azure Integration"]
-        Blob["Storage / Backup / Future Services"]
-        CI["CI/CD / Automation"]
-    end
+%% ---------- ACCESS ----------
+User -->|HTTPS| UFW
+Admin -->|SSH Key Auth| UFW
+UFW --> Web
 
-    Docker --> Azure
-    CI --> Docker
-    DB -.->|backup / sync| Blob
+Fail2Ban -.->|protects SSH| UFW
+
+%% ---------- APPLICATION FLOW ----------
+Web --> API
+API --> DB
+
+%% ---------- DATA PIPELINE ----------
+EVE -->|market data| Worker
+Worker -->|store history| DB
+
+%% ---------- CLOUD INTEGRATION ----------
+CI -->|deploy / update| Web
+DB -.->|backup / sync| Storage
