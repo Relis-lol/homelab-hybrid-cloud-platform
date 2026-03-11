@@ -36,6 +36,7 @@ Responsibilities:
 
 Current project structure:
 
+```Text
 ~/stack/
 └── eve-stack/
     ├── compose.yml
@@ -45,6 +46,7 @@ Current project structure:
     │   └── Dockerfile
     ├── database/
     └── frontend/
+```
 
 ### Rationale
 
