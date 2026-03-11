@@ -1,10 +1,24 @@
 ``` mermaid
 
 graph TD
-    Internet((Internet)) ---|Blocked by UFW| Server[NiPoGi Mini PC]
-    subgraph Local_Network [Home LAN 192.168.178.0/24]
-        Client[Dein Laptop] -->|SSH + Key| Server
-        Server -->|Docker| API[API Container]
-        API -->|Internal| DB[(PostgreSQL)]
+
+    Internet((Internet))
+
+    subgraph LAN["Home LAN 192.168.178.0/24"]
+        Client["Admin Laptop"]
+        Server["NiPoGi Mini Server"]
     end
-    Server -.->|Fail2Ban| Jail[Block Brute Force]
+
+    Internet -- blocked by firewall --> Server
+    Client -->|SSH Key Auth| Server
+
+    subgraph Docker["Docker Compose Stack"]
+        API["FastAPI Container"]
+        DB[(PostgreSQL Container)]
+    end
+
+    Server --> Docker
+    API -->|internal docker network| DB
+
+    Server -.->|log monitoring| Fail2Ban["Fail2Ban"]
+    Fail2Ban -.->|ban brute force IPs| Block["IP Block"]
