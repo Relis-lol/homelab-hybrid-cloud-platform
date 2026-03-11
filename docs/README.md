@@ -1,50 +1,52 @@
 ``` mermaid
-graph LR
 
-%% ---------- USERS ----------
+graph TD
+
+%% ---------- INTERNET ----------
 User["Public User / Browser"]
 Admin["Admin Laptop"]
 EVE["EVE Online Market API"]
 
+%% ---------- SECURITY ----------
+subgraph Security["Server Security"]
+    UFW["UFW Firewall"]
+    Fail2Ban["Fail2Ban"]
+end
+
 %% ---------- SERVER ----------
-subgraph Server["NiPoGi Mini Server (Ubuntu)"]
+Server["NiPoGi Mini Server (Ubuntu + Docker)"]
 
-    subgraph Security["Security Layer"]
-        UFW["UFW Firewall"]
-        Fail2Ban["Fail2Ban"]
-    end
-
-    subgraph Docker["Docker Compose Stack"]
-        Web["EVE Market Website"]
-        API["FastAPI Service"]
-        Worker["Market Import Worker"]
-        DB[(PostgreSQL History Database)]
-    end
-
+%% ---------- APPLICATION ----------
+subgraph Application["Docker Compose Stack"]
+    Web["EVE Market Website"]
+    API["FastAPI Service"]
+    Worker["Market Import Worker"]
 end
 
-%% ---------- AZURE ----------
-subgraph Azure["Azure Cloud"]
+%% ---------- DATA ----------
+DB[(PostgreSQL History Database)]
+
+%% ---------- CLOUD ----------
+subgraph Azure["Azure Cloud Integration"]
     CI["CI/CD Automation"]
-    Storage["Cloud Storage / Backup"]
+    Storage["Cloud Backup / Storage"]
 end
-
 
 %% ---------- ACCESS ----------
 User -->|HTTPS| UFW
 Admin -->|SSH Key Auth| UFW
-UFW --> Web
+UFW --> Server
+Fail2Ban -.->|Protects SSH| UFW
 
-Fail2Ban -.->|protects SSH| UFW
-
-%% ---------- APPLICATION FLOW ----------
+%% ---------- SERVICES ----------
+Server --> Web
 Web --> API
 API --> DB
 
-%% ---------- DATA PIPELINE ----------
-EVE -->|market data| Worker
-Worker -->|store history| DB
+%% ---------- DATA IMPORT ----------
+EVE -->|Market Data| Worker
+Worker -->|Store History| DB
 
-%% ---------- CLOUD INTEGRATION ----------
-CI -->|deploy / update| Web
-DB -.->|backup / sync| Storage
+%% ---------- CLOUD ----------
+CI -->|Deploy / Update| Server
+DB -.->|Backup / Sync| Storage
