@@ -1,4 +1,4 @@
-## High-Level Architecture
+## System Architecture Overview
 
 ```mermaid
 
