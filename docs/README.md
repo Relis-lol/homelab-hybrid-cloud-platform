@@ -1,3 +1,5 @@
+´´´ mermaid
+
 graph TD
     Internet((Internet)) ---|Blocked by UFW| Server[NiPoGi Mini PC]
     subgraph Local_Network [Home LAN 192.168.178.0/24]
