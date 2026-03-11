@@ -72,6 +72,7 @@
 - Default policy: deny incoming / allow outgoing
 - SSH (22/tcp) allowed **only from 192.168.178.0/24**
 - Port 8080 allowed from 192.168.178.0/24
+- Port 8000 allowed from 192.168.178.0/24
 - Logging enabled (low level)
 
 #### Security Adjustment
@@ -80,7 +81,7 @@ Removed default OpenSSH profile rule and restricted SSH access to local subnet o
 
 **Impact:**
 - SSH no longer broadly allowed
-- Reduced internal attack surface
+- Reduced attack surface
 - No external exposure possible
 
 ### Fail2ban
@@ -88,7 +89,7 @@ Removed default OpenSSH profile rule and restricted SSH access to local subnet o
 - Installed and enabled
 - SSH jail active with default configuration
 
-Objective:
+Objective:  
 Mitigate brute-force attempts even within internal network scenarios.
 
 ---
@@ -120,12 +121,13 @@ Mitigate brute-force attempts even within internal network scenarios.
 ### Docker Compose
 
 - Compose installed
-- Test stack deployed successfully
+- Multi-service stack deployment validated
 
 ### Port Mapping Verification
 
-- Container port mapping tested
-- Access confirmed from LAN
+- Port mapping tested from LAN
+- API reachable through port 8000
+- Database no longer exposed to LAN
 - No external exposure configured
 
 ---
@@ -138,6 +140,8 @@ Mitigate brute-force attempts even within internal network scenarios.
 - Fail2ban active
 - Docker operational
 - Compose operational
+- PostgreSQL container running
+- API container running
 - LAN access validated
 - No public exposure
 
@@ -146,11 +150,11 @@ Mitigate brute-force attempts even within internal network scenarios.
 ## Known Limitations
 
 - Static IP not yet enforced at router level
-- No production container stack deployed
-- No database layer configured
+- No reverse proxy configured
 - No monitoring / logging stack
 - No Azure integration
 - No CI/CD pipeline
+- No public web dashboard yet
 
 ---
 
@@ -171,7 +175,7 @@ The goal is to evolve this baseline into:
 ## Next Steps
 
 - Enforce static IP at router level
-- Deploy PostgreSQL container
-- Define API service structure
+- Extend database schema
+- Connect API to PostgreSQL
 - Introduce basic logging strategy
 - Prepare architecture diagram draft
