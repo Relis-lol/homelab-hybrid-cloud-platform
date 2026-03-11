@@ -2,26 +2,40 @@
 
 graph TD
 
-    Internet((Internet))
+    User["Public User / Browser"]
+    Admin["Admin Laptop"]
 
-    subgraph LAN["Home LAN 192.168.178.0/24"]
-        Client["Admin Laptop"]
+    subgraph LAN["Home LAN / Secure Admin Access"]
         Server["NiPoGi Mini Server"]
+        Fail2Ban["Fail2Ban"]
+        UFW["UFW Firewall"]
     end
 
-    Internet -->|blocked by UFW| Server
-    Client -->|SSH Key Auth| Server
+    Admin -->|SSH Key Auth| Server
+    UFW --> Server
+    Fail2Ban -.->|protects SSH| Server
 
-    subgraph Docker["Docker Compose Stack"]
-        API["FastAPI Container"]
-        DB[(PostgreSQL Container)]
+    subgraph Docker["Docker Compose Stack on Server"]
+        Web["EVE Market Website"]
+        API["FastAPI Service"]
+        Worker["EVE Data Import Worker"]
+        DB[(PostgreSQL History Database)]
     end
+
+    User -->|HTTPS / Web Access| Web
+    Web -->|API Requests| API
+    API -->|Read / Query| DB
+    Worker -->|Import / Update Market Data| DB
+
+    EVE["EVE Online Market Data"] -->|Fetch Data| Worker
 
     Server --> Docker
-    API -->|internal docker network| DB
 
-    Browser["Future Web Dashboard"]
-    Browser -->|HTTP API| API
+    subgraph Azure["Azure Integration"]
+        Blob["Storage / Backup / Future Services"]
+        CI["CI/CD / Automation"]
+    end
 
-    Server -.->|log monitoring| Fail2Ban["Fail2Ban"]
-    Fail2Ban -.->|ban brute force IPs| Block["IP Ban"]
+    Docker --> Azure
+    CI --> Docker
+    DB -.->|backup / sync| Blob
