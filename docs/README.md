@@ -3,8 +3,8 @@
 graph TD
 
 %% ----------- ADMIN / USER -----------
-Admin["Admin Laptop"]
-User["Public User / Browser"]
+Admin["💻 Admin Laptop"]
+User["👤 Public User / Browser"]
 EVE["EVE Online Market API"]
 
 %% ----------- SECURITY -----------
@@ -14,26 +14,26 @@ subgraph Security["Server Security"]
 end
 
 %% ----------- SERVER -----------
-Server["NiPoGi Mini Server (Ubuntu + Docker)"]
+Server["🖥️ NiPoGi Mini Server (Ubuntu + Docker)"]
 
 %% ----------- APPLICATION -----------
 subgraph Docker["Docker Compose Stack"]
 
     Web["🌐 EVE Market Website (Public Interface)"]
 
-    API["FastAPI Service"]
+    API["⚙️ FastAPI Service"]
 
-    Worker["Market Import Worker"]
+    Worker["🔄 Market Import Worker"]
 
 end
 
 %% ----------- DATABASE -----------
-DB[(PostgreSQL History Database)]
+DB[(🗄️ PostgreSQL History Database)]
 
 %% ----------- AZURE -----------
-subgraph Azure["Azure Cloud"]
-    CI["CI/CD Automation"]
-    Storage["Backup / Storage"]
+subgraph Azure["☁️ Azure Cloud"]
+    CI["🧠 CI/CD Automation"]
+    Storage["💾  Backup / Storage"]
 end
 
 %% ----------- ACCESS -----------
