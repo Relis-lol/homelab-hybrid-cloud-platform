@@ -1,52 +1,57 @@
-``` mermaid
+```mermaid
 
 graph TD
 
-%% ---------- INTERNET ----------
-User["Public User / Browser"]
+%% ----------- ADMIN / USER -----------
 Admin["Admin Laptop"]
+User["Public User / Browser"]
 EVE["EVE Online Market API"]
 
-%% ---------- SECURITY ----------
+%% ----------- SECURITY -----------
 subgraph Security["Server Security"]
     UFW["UFW Firewall"]
     Fail2Ban["Fail2Ban"]
 end
 
-%% ---------- SERVER ----------
+%% ----------- SERVER -----------
 Server["NiPoGi Mini Server (Ubuntu + Docker)"]
 
-%% ---------- APPLICATION ----------
-subgraph Application["Docker Compose Stack"]
-    Web["EVE Market Website"]
+%% ----------- APPLICATION -----------
+subgraph Docker["Docker Compose Stack"]
+
+    Web["🌐 EVE Market Website (Public Interface)"]
+
     API["FastAPI Service"]
+
     Worker["Market Import Worker"]
+
 end
 
-%% ---------- DATA ----------
+%% ----------- DATABASE -----------
 DB[(PostgreSQL History Database)]
 
-%% ---------- CLOUD ----------
-subgraph Azure["Azure Cloud Integration"]
+%% ----------- AZURE -----------
+subgraph Azure["Azure Cloud"]
     CI["CI/CD Automation"]
-    Storage["Cloud Backup / Storage"]
+    Storage["Backup / Storage"]
 end
 
-%% ---------- ACCESS ----------
-User -->|HTTPS| UFW
+%% ----------- ACCESS -----------
 Admin -->|SSH Key Auth| UFW
-UFW --> Server
-Fail2Ban -.->|Protects SSH| UFW
+User -->|HTTPS| Web
 
-%% ---------- SERVICES ----------
+Fail2Ban -.->|Protects SSH| UFW
+UFW --> Server
+
+%% ----------- SERVER FLOW -----------
 Server --> Web
 Web --> API
 API --> DB
 
-%% ---------- DATA IMPORT ----------
+%% ----------- DATA IMPORT -----------
 EVE -->|Market Data| Worker
 Worker -->|Store History| DB
 
-%% ---------- CLOUD ----------
+%% ----------- CLOUD -----------
 CI -->|Deploy / Update| Server
 DB -.->|Backup / Sync| Storage
