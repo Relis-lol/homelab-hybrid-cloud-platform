@@ -4,7 +4,7 @@
 
 Provide a persistent relational data store for application services.
 
-The database layer is responsible for storing structured market data, import metadata, and historical records used by the application.
+The database layer stores structured market data, import metadata, and historical records used by the application and worker services.
 
 ---
 
@@ -18,24 +18,24 @@ The database layer is responsible for storing structured market data, import met
 
 ## Architecture Concept
 
-The database runs as an internal container service inside the Docker stack.
+The database runs as an internal container service inside the Docker Compose stack.
 
 ### Access Model
 
-**API container → PostgreSQL container → persistent volume**  
-**Worker container → PostgreSQL container → persistent volume**
+API container → PostgreSQL container → persistent volume  
+Worker container → PostgreSQL container → persistent volume
 
 ### Key Design Decisions
 
 - Database remains internal to the Docker network
 - No direct LAN or public access
-- Application and worker layers control all data access
+- Application and worker services control all data access
 
 ---
 
 ## Data Scope
 
-The database is designed to store structured market data.
+The database stores structured market data related to EVE Online market analysis.
 
 ### Primary Use Cases
 
@@ -58,47 +58,57 @@ Current core tables:
 
 #### `item_types`
 
-Stores item reference data used by the application.
+Stores item reference metadata used by the application.
+
+Typical contents:
+
+- Item identifier (`type_id`)
+- Item name (`type_name`)
+
+This table acts as a lookup reference for market data.
+
+---
+
+#### `market_prices`
+
+Stores timestamped historical market data.
 
 Typical contents:
 
 - Item identifier
-- Item name
-
-#### `market_prices`
-
-Stores timestamped market history records.
-
-Typical contents:
-
-- Item reference
 - Region identifier
 - Price timestamp
 - Average price
-- Low price
-- High price
+- Lowest price
+- Highest price
 - Traded volume
+
+This table is designed for time-series style queries.
+
+Indexes were added to support efficient queries by item, region, and timestamp.
+
+---
 
 #### `price_import_runs`
 
-Tracks background import execution.
+Tracks execution of background import processes.
 
 Typical contents:
 
-- Run identifier
+- Import run identifier
 - Import source
 - Start timestamp
 - Finish timestamp
-- Status
-- Notes
+- Execution status
+- Optional notes
 
-Indexes were added to support historical query performance.
+This table provides traceability and debugging visibility for data import jobs.
 
 ---
 
 ## Security Considerations
 
-- Database not exposed via host port
+- Database not exposed via host ports
 - Access restricted to the Docker network
 - Credentials provided through container environment variables
 - API layer acts as the controlled read interface
@@ -109,7 +119,7 @@ Indexes were added to support historical query performance.
 ## Current Status
 
 - PostgreSQL container deployed
-- Named volume active for persistence
+- Named Docker volume active for persistence
 - Initial schema created
 - Database verified through direct container access
 - Database verified through API connection testing
@@ -123,20 +133,20 @@ Indexes were added to support historical query performance.
 
 The following database-related checks were successfully completed:
 
-- Connection check through `/db-check`
-- Insert test data through `/seed-test-data`
-- Read item data through `/items`
-- Read price data through `/prices`
-- Read import run history through `/import-runs`
+- Database connectivity verified through `/db-check`
+- Test data insertion via `/seed-test-data`
+- Item retrieval via `/items`
+- Price retrieval via `/prices`
+- Import history retrieval via `/import-runs`
 
-This confirms that both application-level reads and worker-related writes already function correctly.
+These tests confirm that both application-level read operations and worker-driven write operations function correctly.
 
 ---
 
 ## Next Steps
 
 - Define stricter schema conventions for future imports
-- Add a migration strategy for schema evolution
-- Prepare larger item catalog ingestion
-- Store real EVE market data instead of test records
-- Extend indexing strategy once query patterns grow
+- Introduce a migration strategy for schema evolution
+- Prepare ingestion of a larger item catalog
+- Replace test data with real EVE market data
+- Extend indexing strategy once query patterns are known
