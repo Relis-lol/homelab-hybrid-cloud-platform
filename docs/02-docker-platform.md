@@ -4,7 +4,7 @@
 
 Use Docker as the runtime platform for all application services.
 
-Docker enables isolated services, reproducible deployments and a clear separation between the host system and application layer.
+Docker enables isolated services, reproducible deployments, and a clear separation between the host system and the application layer.
 
 ---
 
@@ -21,14 +21,14 @@ Docker enables isolated services, reproducible deployments and a clear separatio
 
 Docker acts as the execution layer for all services.
 
-Ubuntu Host → Docker Engine → Compose Stack → Containers (Database / API / Future Services)
+**Ubuntu Host → Docker Engine → Compose Stack → Containers (Database / API / Worker / Future Services)**
 
-Responsibilities:
+### Responsibilities
 
-- run application services
-- isolate workloads
-- manage internal networking
-- handle persistent storage through volumes
+- Run application services
+- Isolate workloads
+- Manage internal networking
+- Handle persistent storage through volumes
 
 ---
 
@@ -36,12 +36,16 @@ Responsibilities:
 
 Current project structure:
 
-```Text
+```text
 ~/stack/
 └── eve-stack/
     ├── compose.yml
     ├── api/
     │   ├── app.py
+    │   ├── requirements.txt
+    │   └── Dockerfile
+    ├── worker/
+    │   ├── worker.py
     │   ├── requirements.txt
     │   └── Dockerfile
     ├── database/
@@ -63,6 +67,7 @@ Active services:
 
 - postgres → PostgreSQL 16 container
 - api → FastAPI container
+- worker → background import container
 
 Validated results:
 
@@ -71,6 +76,8 @@ Validated results:
 - PostgreSQL persists data through a named volume
 - API is reachable from the local network
 - Internal container communication works via service names
+- Worker can execute write operations against PostgreSQL
+- Worker lifecycle behaves as expected for batch-style execution
 
 ---
 
@@ -82,6 +89,7 @@ Service communication uses container names:
 
 - postgres → database service
 - api → application service
+- worker → import service
 
 Database traffic remains internal to the Docker network.
 
@@ -124,11 +132,13 @@ Firewall rules restrict API access to the local subnet.
 ## Current Status
 
 - Docker operational
-- Compose stack operational
+- Docker Compose stack operational
 - PostgreSQL container running
 - FastAPI container running
+- Worker container validated
 - API reachable through port 8000
 - Database accessible internally via Docker network
+- Batch import execution confirmed through worker logs
 
 ---
 
@@ -136,14 +146,18 @@ Firewall rules restrict API access to the local subnet.
 
 - No reverse proxy configured yet
 - No monitoring stack deployed
-- No environment file separation yet
+- No .env separation yet
 - No automated container update workflow
+- Worker not yet scheduled for recurring imports
+- External data source integration not yet implemented
+
 
 ---
 
 ## Next Steps
 
-- Connect API service to PostgreSQL
-- Move credentials into environment variables
+- Move credentials into environment variables or .env handling
 - Introduce reverse proxy layer
 - Add logging and monitoring services
+- Convert the worker from test execution to real EVE market import logic
+- Prepare a scheduled or triggered import execution model
