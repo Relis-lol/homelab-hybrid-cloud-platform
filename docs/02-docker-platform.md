@@ -10,9 +10,9 @@ Docker enables isolated services, reproducible deployments, and a clear separati
 
 ## Installation Overview
 
-- Docker Engine installed via official repository
+- Docker Engine installed via official Docker repository
 - Docker service enabled and running
-- Docker Compose installed and operational
+- Docker Compose plugin installed (`docker compose`)
 - Initial container tests successful
 
 ---
@@ -27,7 +27,7 @@ Docker acts as the execution layer for all services.
 
 - Run application services
 - Isolate workloads
-- Manage internal networking
+- Manage internal container networking
 - Handle persistent storage through volumes
 
 ---
@@ -48,8 +48,8 @@ Current project structure:
     │   ├── worker.py
     │   ├── requirements.txt
     │   └── Dockerfile
-    ├── database/
-    └── frontend/
+    ├── database/      # planned for schema / migrations
+    └── frontend/      # planned for future dashboard
 ```
 
 ### Rationale
@@ -85,11 +85,13 @@ Validated results:
 
 Docker Compose creates an internal network for the stack.
 
-Service communication uses container names:
+Service-to-service communication uses Docker's internal DNS.
 
+Example:
 - postgres → database service
 - api → application service
 - worker → import service
+Containers communicate using these service names instead of IP addresses.
 
 Database traffic remains internal to the Docker network.
 
@@ -99,10 +101,12 @@ Database traffic remains internal to the Docker network.
 
 PostgreSQL uses a named Docker volume:
 
+```text
 postgres-data
-
+```
 
 This ensures database persistence even if containers are recreated.
+The volume is managed by Docker and stored on the host filesystem.
 
 ---
 
@@ -111,9 +115,12 @@ This ensures database persistence even if containers are recreated.
 Currently exposed ports:
 
 - 8000/tcp → API service (LAN access only)
-- 5432/tcp → not exposed externally
 
-The database port was intentionally removed to keep the database internal to the container network.
+Not exposed:
+
+- 5432/tcp → PostgreSQL (internal container access only)
+
+The database port was intentionally removed from host exposure to keep the database internal to the container network.
 
 Firewall rules restrict API access to the local subnet.
 
