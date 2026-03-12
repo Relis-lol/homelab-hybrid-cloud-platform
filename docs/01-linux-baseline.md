@@ -43,14 +43,14 @@
 
 - Wired LAN connection only
 - DHCP assigned IP: `192.168.178.47`
-- Router-managed static IP planned
+- Router-level DHCP reservation configured
 - No public ports exposed
 - No port forwarding configured
 
 ### Rationale
 
 - LAN-only exposure reduces attack surface
-- Router-level static IP is preferred over OS-level static configuration for this setup
+- DHCP reservation ensures stable addressing without OS-level static configuration
 - Server remains private within the internal network
 
 ---
@@ -78,34 +78,35 @@
 
 The default OpenSSH profile rule was removed and replaced with a subnet-restricted SSH rule.
 
-**Impact:**
+**Impact**
 
-- SSH is no longer broadly allowed
-- Attack surface is reduced
-- No external SSH exposure is possible through current network configuration
+- SSH access restricted to the internal network
+- Reduced attack surface
+- No external SSH exposure through current network configuration
 
 ### Fail2ban
 
 - Installed and enabled
 - SSH jail active with default configuration
 
-**Objective:**  
-Mitigate brute-force attempts even in internal network scenarios.
+**Objective**
+
+Mitigate brute-force attempts even within internal network environments.
 
 ---
 
 ## System Hardening
 
-- System fully updated with `apt update && apt upgrade`
-- Timezone configured
-- No unnecessary services installed
-- Headless operation enforced
+- System fully updated using `apt update && apt upgrade`
+- Headless server operation
+- No unnecessary packages installed
+- SSH key-based access enforced
 
 ### Security Philosophy
 
 - Principle of minimal exposure
-- No public services at baseline stage
-- Access restricted to key-based SSH only
+- No public services during baseline stage
+- Access restricted to internal network
 - Physical access retained as emergency fallback
 
 ---
@@ -120,7 +121,7 @@ Mitigate brute-force attempts even in internal network scenarios.
 
 ### Docker Compose
 
-- Docker Compose installed
+- Docker Compose plugin installed (`docker compose`)
 - Multi-service stack deployment validated
 
 ### Port Mapping Verification
@@ -134,39 +135,38 @@ Mitigate brute-force attempts even in internal network scenarios.
 
 ## Current System State
 
-- Headless operation confirmed
-- Remote access fully functional
+- Headless server operational
+- Remote SSH access functional
 - Firewall hardened
 - Fail2ban active
-- Docker operational
-- Docker Compose operational
+- Docker runtime operational
+- Docker Compose stack validated
 - PostgreSQL container running
 - FastAPI container running
 - Worker container validated
-- LAN access validated
-- No public exposure
+- LAN access confirmed
+- No public service exposure
 
 ---
 
 ## Known Limitations
 
-- Static IP not yet enforced at router level
-- No reverse proxy configured
-- No monitoring or logging stack
-- No Azure integration
-- No CI/CD pipeline
-- No public web dashboard yet
+- No reverse proxy configured yet
+- No monitoring or logging stack implemented
+- No Azure integration yet
+- No CI/CD pipeline configured
+- No public web dashboard implemented
 
 ---
 
 ## Architectural Direction
 
-The goal is to evolve this baseline into:
+The goal is to evolve this baseline into a modular container platform including:
 
-- Containerized application platform
-- API service layer
+- Containerized application services
+- FastAPI service layer
 - PostgreSQL database backend
-- Background worker for scheduled imports
+- Background worker for data imports
 - Public read-only web dashboard
 - Secure hybrid cloud connectivity
 - CI/CD-driven deployment workflow
@@ -176,8 +176,8 @@ The goal is to evolve this baseline into:
 
 ## Next Steps
 
-- Enforce static IP at router level
 - Prepare web dashboard layer
 - Introduce basic logging strategy
 - Extend import workflow beyond test data
+- Integrate external data sources (EVE Online ESI)
 - Update architecture diagrams to reflect the current platform state
