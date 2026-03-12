@@ -4,7 +4,7 @@
 
 Provide a controlled application layer between the database and external consumers.
 
-The API handles data access, request validation, and structured responses.
+The API handles data access, request validation, and structured responses while abstracting direct database interaction from clients.
 
 ---
 
@@ -23,14 +23,14 @@ The API runs as a container inside the Docker Compose stack.
 
 ### Communication Flow
 
-**Client → API → PostgreSQL**
+Client → API → PostgreSQL
 
 ### Key Characteristics
 
-- Database access only through API
-- Internal container communication via Docker network
+- Database access occurs only through the API
+- Internal service communication uses Docker networking
 - External access limited to defined API endpoints
-- JSON used as the current response format
+- JSON used as the response format
 
 ---
 
@@ -50,7 +50,7 @@ The API layer is responsible for:
 - Database connectivity check
 - Item retrieval
 - Market price retrieval
-- Item search
+- Item search functionality
 - Import run history retrieval
 - Test data seeding for validation
 
@@ -58,8 +58,8 @@ The API layer is responsible for:
 
 - Market data queries by item and region
 - Historical filtering
-- Read-only portfolio dashboard support
-- Stricter response models
+- Read-only dashboard support
+- Structured response models
 - Authentication or access control if public exposure is introduced later
 
 ---
@@ -67,10 +67,10 @@ The API layer is responsible for:
 ## Security Model
 
 - No direct database exposure
-- API acts as controlled access gateway
+- API acts as the controlled access gateway
 - Input validation handled by FastAPI
-- Firewall restricts access to the local network
-- Database credentials injected through environment variables
+- Firewall restricts access to the internal network
+- Database credentials injected through container environment variables
 - Request logging planned but not yet implemented
 
 ---
@@ -82,7 +82,7 @@ The API layer is responsible for:
 - Database connection established
 - Internal Docker networking validated
 - API reachable from the local network
-- Read and write validation endpoints working
+- Read and write validation endpoints operational
 
 ---
 
@@ -92,7 +92,7 @@ The API layer is responsible for:
 
 Basic service health check.
 
-**Purpose:**
+**Purpose**
 
 - Confirm that the API container is running
 - Verify that the service is reachable
@@ -103,7 +103,7 @@ Basic service health check.
 
 Database connectivity validation endpoint.
 
-**Purpose:**
+**Purpose**
 
 - Confirm API-to-database communication
 - Verify active database and user context
@@ -114,7 +114,7 @@ Database connectivity validation endpoint.
 
 Inserts controlled test records into the database.
 
-**Purpose:**
+**Purpose**
 
 - Validate write access
 - Seed sample item and market data for testing
@@ -125,10 +125,10 @@ Inserts controlled test records into the database.
 
 Returns stored item reference records.
 
-**Purpose:**
+**Purpose**
 
 - Verify item retrieval logic
-- Expose current contents of `item_types`
+- Expose current contents of the `item_types` table
 
 ---
 
@@ -136,10 +136,10 @@ Returns stored item reference records.
 
 Returns recent market price records.
 
-**Purpose:**
+**Purpose**
 
 - Verify historical data retrieval
-- Expose current contents of `market_prices`
+- Expose current contents of the `market_prices` table
 
 ---
 
@@ -147,7 +147,7 @@ Returns recent market price records.
 
 Performs case-insensitive search against item names.
 
-**Purpose:**
+**Purpose**
 
 - Validate query parameter handling
 - Support item lookup by partial name
@@ -158,10 +158,10 @@ Performs case-insensitive search against item names.
 
 Returns recent worker import executions.
 
-**Purpose:**
+**Purpose**
 
 - Expose batch import history
-- Validate worker-to-database-to-API flow
+- Validate worker → database → API data flow
 
 ---
 
@@ -176,18 +176,17 @@ The API layer has already been validated through live tests:
 - `/items/search` returned filtered results correctly
 - `/import-runs` returned worker execution history correctly
 
-This proves that the API is no longer only a placeholder service.  
-It already acts as a functioning application layer on top of PostgreSQL.
+These results confirm that the API is already functioning as a real application layer on top of PostgreSQL.
 
 ---
 
 ## Access Pattern
 
-Current access example:
+Example endpoint access:
 
 `http://<server-ip>:8000/health`
 
-Equivalent endpoint patterns apply to the other routes, for example:
+Equivalent endpoint patterns apply to other routes, for example:
 
 - `http://<server-ip>:8000/db-check`
 - `http://<server-ip>:8000/items`
@@ -200,12 +199,12 @@ Equivalent endpoint patterns apply to the other routes, for example:
 ## Known Limitations
 
 - No response schemas defined yet
-- No pagination yet
+- No pagination implemented
 - No authentication layer
-- No request logging yet
+- No request logging implemented
 - No rate limiting
 - No public-ready API documentation strategy yet
-- Current write endpoint exists only for controlled testing, not production workflow
+- Current write endpoint exists only for controlled testing
 
 ---
 
@@ -213,6 +212,6 @@ Equivalent endpoint patterns apply to the other routes, for example:
 
 - Add structured response models
 - Introduce filtering for market queries
-- Split test-only endpoints from production-facing endpoints
+- Separate test-only endpoints from production-facing endpoints
 - Prepare API design for frontend consumption
 - Integrate real EVE market import output from worker processes
