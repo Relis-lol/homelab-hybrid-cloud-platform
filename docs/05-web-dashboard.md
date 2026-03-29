@@ -2,51 +2,55 @@
 
 ## Objective
 
-Provide a minimal public-facing interface for market data visualization.
+Provide a public-facing interface for market analytics and tools.
 
 ---
 
-## Core Features
+## Core Features (Defined)
 
-- Read-only market data access
-- Graph-based visualization
-- Search / copy box functionality
-
----
-
-## Visual Layer
-
-Planned integration:
-
-- Lightweight 3D sci-fi background (Spline)
-- Isolated visual layer (no backend coupling)
-- Lazy loading strategy
-- Performance fallback for low-end devices
+- Cargo value calculator (copy/paste input)
+- Item search with autocomplete
+- Market history graphs
+- Read-only access to market data
 
 ---
 
 ## Architecture Model
 
-User → Reverse Proxy → API → Database
+User → Reverse Proxy → Frontend → API → Database
 
 ---
 
-## Performance Considerations
+## UI Concept
 
-- Frontend must not block API
-- No heavy client-side computation
-- Monitor load impact
+- Lightweight frontend (React or similar)
+- Optional 3D background layer (visual only)
+- Fast loading, minimal dependencies
+- Mobile-compatible layout
+
+---
+
+## Data Flow
+
+- Frontend queries API endpoints
+- No direct database access
+- API handles all transformations
 
 ---
 
 ## Current Status
 
-Not yet implemented.
+Backend fully prepared.
+
+- API endpoints available
+- Data pipeline operational
+- Ready for frontend integration
 
 ---
 
 ## Next Steps
 
-- Define frontend framework
-- Create layout mockup
-- Integrate test API endpoint
+- Choose frontend framework
+- Build cargo calculator UI
+- Implement graph visualization
+- Connect to API endpoints
