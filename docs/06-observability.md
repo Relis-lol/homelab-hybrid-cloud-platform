@@ -2,45 +2,48 @@
 
 ## Objective
 
-Ensure visibility into system behavior and performance.
+Ensure visibility into system behavior, performance, and failures.
+
+---
+
+## Current Observability (Already Exists)
+
+- Worker execution tracking via `price_import_runs`
+- Basic UFW logging
+- Fail2ban active for SSH protection
+- Docker container logs accessible
 
 ---
 
 ## Monitoring Scope
 
-- Container health status
-- CPU / RAM utilization
-- API request logs
-- Authentication attempts (SSH)
+- Import job success/failure
+- API request behavior
+- Container health
+- Resource usage (CPU / RAM)
 
 ---
 
 ## Planned Components
 
-- Docker logs aggregation
-- Basic metrics tracking
-- Log rotation strategy
-- Uptime validation
-
----
-
-## Security Monitoring
-
-- Fail2ban monitoring
-- Firewall log review
-- SSH access verification
+- Centralized log aggregation
+- Structured API request logging
+- Basic metrics dashboard
+- Log rotation and retention strategy
 
 ---
 
 ## Current Status
 
-Basic UFW logging enabled.
-Fail2ban active.
+Partial observability implemented.
+
+- Import tracking already functional
+- System-level security monitoring active
 
 ---
 
 ## Next Steps
 
-- Define logging structure
-- Centralize container logs
-- Introduce basic monitoring dashboard
+- Introduce structured logging in API
+- Aggregate Docker logs
+- Add lightweight monitoring (e.g. Netdata or Prometheus later)
