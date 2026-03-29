@@ -48,59 +48,43 @@ The API has moved beyond test endpoints and now exposes real application functio
 
 ## Available Endpoints
 
-### `GET /health`
-
+### GET /health
 Service health check.
 
 ---
 
-### `GET /db-check`
-
+### GET /db-check
 Database connectivity validation.
 
 ---
 
-### `GET /items`
-
+### GET /items
 Returns item metadata.
 
 ---
 
-### `GET /items/search?q=...`
-
+### GET /items/search?q=...
 Case-insensitive item search.
 
 ---
 
-### `GET /esi/global-prices`
-
+### GET /esi/global-prices
 Returns current global price data.
 
 ---
 
-### `GET /market-history?type_id=...&region_id=...`
-
+### GET /market-history?type_id=...&region_id=...
 Returns historical market data.
 
 ---
 
-### `POST /cargo/value`
-
-Calculates total cargo value.
-
-**Input**
-
-- List of item IDs and quantities
-
-**Output**
-
-- Total estimated value based on current prices
+### POST /cargo/value
+Calculates total cargo value based on item list input.
 
 ---
 
-### `GET /import-runs`
-
-Returns import execution history.
+### GET /import-runs
+Returns import execution history. 
 
 ---
 
