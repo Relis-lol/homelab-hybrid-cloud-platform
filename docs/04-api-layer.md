@@ -1,21 +1,31 @@
 # 04 – API Layer
 
 ## Objective
-Provide a controlled application layer between the database and external consumers.
+Provide a controlled application layer between the database and external consumers.  
 The API handles structured data access, query logic, and business-level transformations.
 
 ---
 
 ## Technology Stack
-- **Language:** Python FastAPI
+- **Language:** Python
+- **Framework:** FastAPI
 - **Deployment:** Docker container
-- **Server:** Uvicorn ASGI
-- **Database:** PostgreSQL via `psycopg`
+- **Server:** Uvicorn (ASGI)
+- **Database Access:** psycopg (PostgreSQL)
 
 ---
 
 ## Architecture Concept
-`Client` → `API` → `PostgreSQL`
+
+The API acts as the central access layer between clients and the database.
+
+**Flow:**
+Client → API → PostgreSQL
+
+**Key Principles:**
+- No direct database access from clients
+- All queries are controlled and validated by the API
+- Business logic is centralized in the API layer
 
 ---
 
@@ -28,6 +38,7 @@ The API handles structured data access, query logic, and business-level transfor
 ---
 
 ## Current Capabilities
+
 The API has moved beyond test endpoints and now exposes real application functionality.
 
 ### Core Features
@@ -41,56 +52,58 @@ The API has moved beyond test endpoints and now exposes real application functio
 
 ## Available Endpoints
 
-
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `GET` | `/health` | Service health check. |
-| `GET` | `/db-check` | Database connectivity validation. |
-| `GET` | `/items` | Returns item metadata. |
-| `GET` | `/items/search?q=...` | Case-insensitive item search. |
-| `GET` | `/esi/global-prices` | Returns current global price data. |
-| `GET` | `/market-history?type_id=...&region_id=...` | Returns historical market data. |
-| `POST` | `/cargo/value` | Calculates total cargo value based on item list input. |
-| `GET` | `/import-runs` | Returns import execution history. |
+| `GET` | `/health` | Service health check |
+| `GET` | `/db-check` | Database connectivity validation |
+| `GET` | `/items` | Returns item metadata |
+| `GET` | `/items/search?q=...` | Case-insensitive item search |
+| `GET` | `/esi/global-prices` | Returns current global price data |
+| `GET` | `/market-history?type_id=...&region_id=...` | Returns historical market data |
+| `POST` | `/cargo/value` | Calculates total cargo value |
+| `GET` | `/import-runs` | Returns import execution history |
 
 ---
 
 ## Business Logic Layer
-Die API übernimmt komplexe Aufgaben wie:
-- **JOIN-Operationen** zwischen Item-Metadaten und Preistabellen.
-- **Aggregation** von Multi-Item-Frachtwerten.
-- **Filterung** historischer Marktdaten nach Region und Typ.
+
+The API performs core data processing tasks:
+
+- JOIN operations between item metadata and price tables
+- Aggregation of multi-item cargo values
+- Filtering of historical market data by region and item type
 
 ---
 
 ## Security Model
-- Keine direkte Datenbank-Exposition nach außen.
-- Kontrollierte Abfrage-Oberfläche (Query Surface).
-- Input-Validierung durch FastAPI.
-- Zugriffsbeschränkung über Firewall (LAN-restricted).
+
+- No direct database exposure
+- Controlled query surface via API endpoints
+- Input validation handled by FastAPI
+- Access restricted to internal network (firewall)
 
 ---
 
 ## Current Status
--  Voll einsatzbereiter Application Layer.
--  An echte Marktdaten angebunden.
--  Multi-Endpoint-Struktur aktiv.
--  Integration der Worker-Prozesse bestätigt.
+
+- Fully operational application layer
+- Connected to real market data
+- Multi-endpoint API structure active
+- Worker integration confirmed
 
 ---
 
 ## Known Limitations & Next Steps
 
 ### Limitations
-- Keine Authentifizierung oder Rate Limiting.
-- Fehlende Paginierung bei großen Datenmengen.
-- Pydantic-Modelle (Response Schemas) noch unvollständig.
-- Kein Caching-Layer (z. B. Redis).
+- No authentication or rate limiting
+- No pagination for large datasets
+- Response schemas (Pydantic models) incomplete
+- No caching layer (e.g. Redis)
 
 ### Next Steps
--  Response-Modelle vervollständigen.
--  Paginierung und Filterung für Markt-Queries einführen.
--  Caching-Layer implementieren.
--  Trennung von Test- und Produktions-Endpunkten.
--  API-Design für Frontend-Konsum optimieren.
-
+- Implement response models
+- Add pagination and filtering
+- Introduce caching layer
+- Separate test and production endpoints
+- Optimize API design for frontend consumption
