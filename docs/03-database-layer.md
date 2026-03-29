@@ -4,7 +4,7 @@
 
 Provide a persistent relational data store for application services.
 
-The database layer stores structured market data, import metadata, and historical records used by the application and worker services.
+The database layer stores structured market data, item metadata, and import execution logs used by the API and worker services.
 
 ---
 
@@ -22,131 +22,167 @@ The database runs as an internal container service inside the Docker Compose sta
 
 ### Access Model
 
-API container → PostgreSQL container → persistent volume  
-Worker container → PostgreSQL container → persistent volume
+API container → PostgreSQL → persistent volume  
+Worker container → PostgreSQL → persistent volume
 
 ### Key Design Decisions
 
-- Database remains internal to the Docker network
-- No direct LAN or public access
-- Application and worker services control all data access
+- Database is not exposed to LAN or public networks
+- All access is routed through controlled services (API / Worker)
+- Optimized for read-heavy analytical queries
 
 ---
 
 ## Data Scope
 
-The database stores structured market data related to EVE Online market analysis.
+The database stores structured EVE Online market data.
 
-### Primary Use Cases
+### Core Data Domains
 
-- EVE Online market price history
-- Item type metadata
-- Timestamped price records
-- Import run tracking
+- Item metadata
+- Global market prices (ESI)
+- Regional market history
+- Import execution tracking
 
 ---
 
-## Initial Schema
+## Current Schema
 
-Current core tables:
+### Tables
 
 - `item_types`
-- `market_prices`
+- `esi_market_prices`
+- `region_market_history`
 - `price_import_runs`
 
-### Table Roles
+---
 
-#### `item_types`
+### `item_types`
 
-Stores item reference metadata used by the application.
+Reference table for all known EVE item types.
 
-Typical contents:
+**Purpose**
 
-- Item identifier (`type_id`)
-- Item name (`type_name`)
+- Provide human-readable item names
+- Enable joins with market data
 
-This table acts as a lookup reference for market data.
+**Fields (typical)**
+
+- `type_id` (primary key)
+- `type_name`
 
 ---
 
-#### `market_prices`
+### `esi_market_prices`
 
-Stores timestamped historical market data.
+Stores global price snapshots from the EVE ESI API.
 
-Typical contents:
+**Purpose**
 
-- Item identifier
-- Region identifier
-- Price timestamp
-- Average price
-- Lowest price
-- Highest price
-- Traded volume
+- Fast access to current average prices
+- Used for cargo value calculations
 
-This table is designed for time-series style queries.
+**Fields (typical)**
 
-Indexes were added to support efficient queries by item, region, and timestamp.
+- `type_id`
+- `average_price`
+- `adjusted_price`
 
 ---
 
-#### `price_import_runs`
+### `region_market_history`
 
-Tracks execution of background import processes.
+Stores time-series market data per region.
 
-Typical contents:
+**Purpose**
 
-- Import run identifier
-- Import source
-- Start timestamp
-- Finish timestamp
-- Execution status
-- Optional notes
+- Historical analysis
+- Graph visualization
+- Trend detection
 
-This table provides traceability and debugging visibility for data import jobs.
+**Fields (typical)**
+
+- `type_id`
+- `region_id`
+- `date`
+- `average`
+- `highest`
+- `lowest`
+- `volume`
+
+---
+
+### `price_import_runs`
+
+Tracks execution of worker import processes.
+
+**Purpose**
+
+- Debugging and traceability
+- Performance tracking of imports
+
+**Fields (typical)**
+
+- `id`
+- `source`
+- `started_at`
+- `finished_at`
+- `status`
+- `notes`
+
+---
+
+## Indexing Strategy
+
+Indexes are applied to support:
+
+- Fast lookup by `type_id`
+- Time-based queries on historical data
+- Efficient joins between item and market tables
 
 ---
 
 ## Security Considerations
 
-- Database not exposed via host ports
-- Access restricted to the Docker network
-- Credentials provided through container environment variables
-- API layer acts as the controlled read interface
-- Worker layer acts as the controlled write/import interface
+- No host port exposure
+- Internal Docker network only
+- Credentials injected via environment variables
+- API acts as controlled read layer
+- Worker acts as controlled write layer
 
 ---
 
 ## Current Status
 
-- PostgreSQL container deployed
-- Named Docker volume active for persistence
-- Initial schema created
-- Database verified through direct container access
-- Database verified through API connection testing
-- Read operations confirmed through API endpoints
-- Write operations confirmed through seed endpoint
-- Worker-based import run logging confirmed
+- PostgreSQL container operational
+- Persistent volume active
+- Schema extended beyond test data
+- Real EVE data successfully ingested
+- Read/write operations validated across services
 
 ---
 
 ## Validation Performed
 
-The following database-related checks were successfully completed:
+- API → DB connectivity confirmed
+- Worker → DB write operations confirmed
+- JOIN queries validated (item + price data)
+- Historical data queries tested
 
-- Database connectivity verified through `/db-check`
-- Test data insertion via `/seed-test-data`
-- Item retrieval via `/items`
-- Price retrieval via `/prices`
-- Import history retrieval via `/import-runs`
+---
 
-These tests confirm that both application-level read operations and worker-driven write operations function correctly.
+## Known Limitations
+
+- No migration framework yet
+- No partitioning for large datasets
+- Index tuning still basic
+- Data retention strategy not defined
 
 ---
 
 ## Next Steps
 
-- Define stricter schema conventions for future imports
-- Introduce a migration strategy for schema evolution
-- Prepare ingestion of a larger item catalog
-- Replace test data with real EVE market data
-- Extend indexing strategy once query patterns are known
+- Introduce schema migrations (Alembic or similar)
+- Optimize indexing based on query patterns
+- Evaluate partitioning for large time-series tables
+- Define long-term storage and cleanup strategy
