@@ -72,10 +72,10 @@ Die API übernimmt komplexe Aufgaben wie:
 ---
 
 ## Current Status
-- ✅ Voll einsatzbereiter Application Layer.
-- ✅ An echte Marktdaten angebunden.
-- ✅ Multi-Endpoint-Struktur aktiv.
-- ✅ Integration der Worker-Prozesse bestätigt.
+-  Voll einsatzbereiter Application Layer.
+-  An echte Marktdaten angebunden.
+-  Multi-Endpoint-Struktur aktiv.
+-  Integration der Worker-Prozesse bestätigt.
 
 ---
 
@@ -88,9 +88,9 @@ Die API übernimmt komplexe Aufgaben wie:
 - Kein Caching-Layer (z. B. Redis).
 
 ### Next Steps
-- [ ] Response-Modelle vervollständigen.
-- [ ] Paginierung und Filterung für Markt-Queries einführen.
-- [ ] Caching-Layer implementieren.
-- [ ] Trennung von Test- und Produktions-Endpunkten.
-- [ ] API-Design für Frontend-Konsum optimieren.
+-  Response-Modelle vervollständigen.
+-  Paginierung und Filterung für Markt-Queries einführen.
+-  Caching-Layer implementieren.
+-  Trennung von Test- und Produktions-Endpunkten.
+-  API-Design für Frontend-Konsum optimieren.
 
