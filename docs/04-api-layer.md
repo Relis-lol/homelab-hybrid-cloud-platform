@@ -4,7 +4,7 @@
 
 Provide a controlled application layer between the database and external consumers.
 
-The API handles data access, request validation, and structured responses while abstracting direct database interaction from clients.
+The API handles structured data access, query logic, and business-level transformations.
 
 ---
 
@@ -13,76 +13,36 @@ The API handles data access, request validation, and structured responses while 
 - Python FastAPI
 - Docker container deployment
 - Uvicorn ASGI server
-- PostgreSQL access via `psycopg`
+- PostgreSQL via `psycopg`
 
 ---
 
 ## Architecture Concept
 
-The API runs as a container inside the Docker Compose stack.
-
-### Communication Flow
-
 Client → API → PostgreSQL
-
-### Key Characteristics
-
-- Database access occurs only through the API
-- Internal service communication uses Docker networking
-- External access limited to defined API endpoints
-- JSON used as the response format
 
 ---
 
 ## Responsibilities
 
-The API layer is responsible for:
-
-- Processing incoming requests
-- Validating request parameters
-- Retrieving structured data from the database
-- Returning JSON responses
-- Abstracting database logic from clients
-
-### Current Implemented Responsibilities
-
-- Health verification
-- Database connectivity check
-- Item retrieval
-- Market price retrieval
-- Item search functionality
-- Import run history retrieval
-- Test data seeding for validation
-
-### Future Responsibilities
-
-- Market data queries by item and region
-- Historical filtering
-- Read-only dashboard support
-- Structured response models
-- Authentication or access control if public exposure is introduced later
+- Request validation
+- Data aggregation and transformation
+- Controlled database access
+- JSON response formatting
 
 ---
 
-## Security Model
+## Current Capabilities
 
-- No direct database exposure
-- API acts as the controlled access gateway
-- Input validation handled by FastAPI
-- Firewall restricts access to the internal network
-- Database credentials injected through container environment variables
-- Request logging planned but not yet implemented
+The API has moved beyond test endpoints and now exposes real application functionality.
 
----
+### Core Features
 
-## Current Status
-
-- FastAPI service container deployed
-- Container integrated into Docker Compose stack
-- Database connection established
-- Internal Docker networking validated
-- API reachable from the local network
-- Read and write validation endpoints operational
+- Item lookup and search
+- Global price retrieval (ESI)
+- Regional market history access
+- Cargo value calculation (multi-item input)
+- Import run tracking
 
 ---
 
@@ -90,126 +50,104 @@ The API layer is responsible for:
 
 ### `GET /health`
 
-Basic service health check.
-
-**Purpose**
-
-- Confirm that the API container is running
-- Verify that the service is reachable
+Service health check.
 
 ---
 
 ### `GET /db-check`
 
-Database connectivity validation endpoint.
-
-**Purpose**
-
-- Confirm API-to-database communication
-- Verify active database and user context
-
----
-
-### `POST /seed-test-data`
-
-Inserts controlled test records into the database.
-
-**Purpose**
-
-- Validate write access
-- Seed sample item and market data for testing
+Database connectivity validation.
 
 ---
 
 ### `GET /items`
 
-Returns stored item reference records.
-
-**Purpose**
-
-- Verify item retrieval logic
-- Expose current contents of the `item_types` table
-
----
-
-### `GET /prices`
-
-Returns recent market price records.
-
-**Purpose**
-
-- Verify historical data retrieval
-- Expose current contents of the `market_prices` table
+Returns item metadata.
 
 ---
 
 ### `GET /items/search?q=...`
 
-Performs case-insensitive search against item names.
+Case-insensitive item search.
 
-**Purpose**
+---
 
-- Validate query parameter handling
-- Support item lookup by partial name
+### `GET /esi/global-prices`
+
+Returns current global price data.
+
+---
+
+### `GET /market-history?type_id=...&region_id=...`
+
+Returns historical market data.
+
+---
+
+### `POST /cargo/value`
+
+Calculates total cargo value.
+
+**Input**
+
+- List of item IDs and quantities
+
+**Output**
+
+- Total estimated value based on current prices
 
 ---
 
 ### `GET /import-runs`
 
-Returns recent worker import executions.
-
-**Purpose**
-
-- Expose batch import history
-- Validate worker → database → API data flow
+Returns import execution history.
 
 ---
 
-## Validation Results
+## Business Logic Layer
 
-The API layer has already been validated through live tests:
+The API now performs:
 
-- `/db-check` confirmed successful PostgreSQL connectivity
-- `/seed-test-data` inserted test records successfully
-- `/items` returned stored item metadata
-- `/prices` returned stored market history data
-- `/items/search` returned filtered results correctly
-- `/import-runs` returned worker execution history correctly
-
-These results confirm that the API is already functioning as a real application layer on top of PostgreSQL.
+- JOIN operations between item metadata and price tables
+- Aggregation of multi-item cargo values
+- Filtering of historical data by item and region
 
 ---
 
-## Access Pattern
+## Security Model
 
-Example endpoint access:
+- No direct DB exposure
+- Controlled query surface
+- Input validation via FastAPI
+- LAN-restricted access via firewall
 
-`http://<server-ip>:8000/health`
+---
 
-Equivalent endpoint patterns apply to other routes, for example:
+## Current Status
 
-- `http://<server-ip>:8000/db-check`
-- `http://<server-ip>:8000/items`
-- `http://<server-ip>:8000/prices`
-- `http://<server-ip>:8000/items/search?q=tri`
-- `http://<server-ip>:8000/import-runs`
+- Fully operational application layer
+- Connected to real market data
+- Multi-endpoint API available
+- Worker integration confirmed
 
 ---
 
 ## Known Limitations
 
-- No response schemas defined yet
-- No pagination implemented
-- No authentication layer
-- No request logging implemented
+- No authentication
 - No rate limiting
-- No public-ready API documentation strategy yet
-- Current write endpoint exists only for controlled testing
+- No pagination
+- No response schemas (Pydantic models incomplete)
+- No caching layer
 
 ---
 
 ## Next Steps
 
+- Add response models
+- Introduce pagination and filtering
+- Add caching (Redis or similar)
+- Prepare API for public exposure
 - Add structured response models
 - Introduce filtering for market queries
 - Separate test-only endpoints from production-facing endpoints
