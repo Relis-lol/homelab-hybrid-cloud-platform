@@ -40,6 +40,7 @@ Current project structure:
 ~/stack/
 └── eve-stack/
     ├── compose.yml
+    ├── .env
     ├── api/
     │   ├── app.py
     │   ├── requirements.txt
@@ -51,33 +52,79 @@ Current project structure:
     ├── database/      # planned for schema / migrations
     └── frontend/      # planned for future dashboard
 ```
+---
 
 ### Rationale
 
-- Clear separation of service responsibilities
-- Easier future expansion
-- Better alignment with multi-service architecture
-- More maintainable than a single flat project folder
+* Clear separation of service responsibilities
+* Easier future expansion
+* Better alignment with multi-service architecture
+* Maintainable structure for scaling services
 
 ---
 
-## Compose Stack Status
+## Compose Stack Design
 
-Active services:
+### Long-running services
 
-- postgres → PostgreSQL 16 container
-- api → FastAPI container
-- worker → background import container
+* `postgres` → PostgreSQL 16 container (persistent database)
+* `api` → FastAPI container (application layer)
 
-Validated results:
+### One-shot services
 
-- Compose stack builds successfully
-- Containers start correctly
-- PostgreSQL persists data through a named volume
-- API is reachable from the local network
-- Internal container communication works via service names
-- Worker can execute write operations against PostgreSQL
-- Worker lifecycle behaves as expected for batch-style execution
+* `worker` → batch-style import container
+
+---
+
+## Worker Execution Model
+
+The worker is designed as a **one-shot batch job**, not a continuously running service.
+
+### Execution Methods
+
+Manual execution:
+
+```
+docker compose run --rm worker
+```
+
+With enrichment enabled:
+
+```
+docker compose run --rm -e ENABLE_NAME_ENRICHMENT=true worker
+```
+
+### Behavior
+
+* Container starts → executes import → exits
+* No restart policy (`restart: "no"`)
+* Writes data to PostgreSQL
+* Logs execution results
+* Sends optional Discord notifications
+
+### Rationale
+
+* Prevents uncontrolled background loops
+* Allows explicit scheduling and control
+* Aligns with real-world batch processing patterns
+
+---
+
+## Automation Strategy
+
+Worker execution is automated using system-level scheduling (cron).
+
+### Current Setup
+
+* Periodic execution (e.g. hourly)
+* Optional enrichment runs on demand
+* Centralized control outside Docker
+
+### Benefits
+
+* Clear separation between runtime and scheduling
+* Predictable execution behavior
+* Easy debugging and manual override
 
 ---
 
@@ -88,10 +135,12 @@ Docker Compose creates an internal network for the stack.
 Service-to-service communication uses Docker's internal DNS.
 
 Example:
-- postgres → database service
-- api → application service
-- worker → import service
-Containers communicate using these service names instead of IP addresses.
+
+* `postgres` → database service
+* `api` → application service
+* `worker` → import service
+
+Containers communicate using service names instead of IP addresses.
 
 Database traffic remains internal to the Docker network.
 
@@ -101,12 +150,11 @@ Database traffic remains internal to the Docker network.
 
 PostgreSQL uses a named Docker volume:
 
-```text
+```
 postgres-data
 ```
 
 This ensures database persistence even if containers are recreated.
-The volume is managed by Docker and stored on the host filesystem.
 
 ---
 
@@ -114,57 +162,80 @@ The volume is managed by Docker and stored on the host filesystem.
 
 Currently exposed ports:
 
-- 8000/tcp → API service (LAN access only)
+* `8000/tcp` → API service (LAN access only)
 
 Not exposed:
 
-- 5432/tcp → PostgreSQL (internal container access only)
-
-The database port was intentionally removed from host exposure to keep the database internal to the container network.
+* `5432/tcp` → PostgreSQL (internal only)
 
 Firewall rules restrict API access to the local subnet.
 
 ---
 
+## Environment & Secrets
+
+Environment variables are used for configuration and secrets.
+
+### Examples
+
+* Database credentials
+* Worker configuration flags
+* Discord webhook URL
+
+Stored in:
+
+```
+.env
+```
+
+### Benefits
+
+* Separation of config and code
+* Safer secret handling
+* Easier environment switching
+
+---
+
 ## Security Considerations
 
-- No direct public exposure
-- Database hidden behind container network
-- Firewall controls host-level access
-- SSH restricted to internal subnet
-- Environment variable separation planned for later stages
+* No direct public exposure
+* Database hidden behind container network
+* Firewall restricts access to LAN
+* SSH restricted to internal subnet
+* Secrets externalized via `.env`
 
 ---
 
 ## Current Status
 
-- Docker operational
-- Docker Compose stack operational
-- PostgreSQL container running
-- FastAPI container running
-- Worker container validated
-- API reachable through port 8000
-- Database accessible internally via Docker network
-- Batch import execution confirmed through worker logs
+* Docker operational
+* Compose stack stable
+* PostgreSQL running with persistent storage
+* API container serving requests
+* Worker executing real EVE data imports
+* One-shot worker model validated
+* Cron-based automation in place
+* Discord notifications integrated
+* Internal networking fully functional
 
 ---
 
 ## Known Limitations
 
-- No reverse proxy configured yet
-- No monitoring stack deployed
-- No .env separation yet
-- No automated container update workflow
-- Worker not yet scheduled for recurring imports
-- External data source integration not yet implemented
-
+* No reverse proxy configured yet
+* No centralized logging stack
+* No container health monitoring
+* No auto-redeploy or update strategy
+* No horizontal scaling
 
 ---
 
 ## Next Steps
 
-- Move credentials into environment variables or .env handling
-- Introduce reverse proxy layer
-- Add logging and monitoring services
-- Convert the worker from test execution to real EVE market import logic
-- Prepare a scheduled or triggered import execution model
+* Introduce reverse proxy (Nginx / Traefik)
+* Add centralized logging and monitoring
+* Implement health checks and alerts
+* Prepare container update strategy
+* Integrate with CI/CD pipeline
+
+
