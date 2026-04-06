@@ -1,3 +1,4 @@
+
 # Homelab Hybrid Cloud Platform
 
 This project documents the step-by-step evolution of a private Linux server into a production-style hybrid cloud platform.
@@ -9,6 +10,8 @@ Current baseline:
 - FastAPI application layer
 - Worker-based data ingestion pipeline
 - Internal network-only exposure
+- Cron-based worker automation
+- Discord-based worker status notifications
 
 Goal:
 Transform this system into a fully featured hybrid cloud platform including:
@@ -40,7 +43,9 @@ Transform this system into a fully featured hybrid cloud platform including:
 - Cargo value calculation
 - Graph-based visualization
 
-### Phase 4 – Observability
+### Phase 4 – Observability (Started)
+- Worker run tracking
+- Discord status notifications
 - Access logs
 - Performance monitoring
 - Resource tracking
@@ -50,7 +55,8 @@ Transform this system into a fully featured hybrid cloud platform including:
 - Cloud storage / services
 - Secure connection model
 
-### Phase 6 – CI/CD & Automation
+### Phase 6 – CI/CD & Automation (Started)
+- Cron-based scheduled worker execution
 - GitHub Actions
 - Deployment workflows
 - Infrastructure validation
@@ -61,15 +67,14 @@ Transform this system into a fully featured hybrid cloud platform including:
 
 Production-style backend operational.
 
-- Docker Compose stack running (Postgres, API, Worker)
-- Database populated with real EVE market data
-- API provides structured data access
-- Worker performs external data ingestion
+- Docker Compose stack running with PostgreSQL and API services
+- One-shot worker execution model established for controlled batch imports
+- Database populated with real EVE market data from ESI
+- Item name enrichment pipeline operational
+- Worker scheduling prepared through cron-based automation
+- Discord webhook notifications implemented for worker success/error reporting
 - Internal architecture validated end-to-end
 
-Frontend, observability, and cloud integration are the next major steps.
-## Current Status
+The current platform already supports real data ingestion, structured persistence, controlled background processing, and monitored update execution.
 
-Project initialized.
-Linux server operational.
-Documentation in progress.
+Frontend, extended observability, and cloud integration are the next major steps.
