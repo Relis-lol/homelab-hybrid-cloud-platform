@@ -1,3 +1,6 @@
+## System Architecture Overview
+
+```mermaid
 
 graph TD
 
