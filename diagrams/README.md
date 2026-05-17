@@ -1,9 +1,9 @@
 # Architecture Diagrams
 
-This folder will contain infrastructure diagrams and system architecture visualizations.
+This folder contains Mermaid-based architecture diagrams for the project.
 
-Planned:
-- Local server architecture
-- Hybrid cloud architecture (Azure integration)
-- Service interaction overview
+## Available Diagrams
 
+- current-architecture.md
+- data-flow.md
+- future-hybrid-architecture.md
