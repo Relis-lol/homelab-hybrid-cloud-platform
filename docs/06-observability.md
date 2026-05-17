@@ -2,115 +2,178 @@
 
 ## Objective
 
-Ensure visibility into system behavior, performance, and failures across all components.
+Provide visibility into system behavior, failures, and operational health across the platform.
+
+The observability layer helps monitor the automated data pipeline, detect failures early, and support long-term maintainability of the system.
 
 ---
 
 ## Current Observability (Implemented)
 
+Currently implemented monitoring and logging features:
+
 * Worker execution tracking via `price_import_runs`
-* Discord webhook notifications for worker success and failure
-* Cron-based job execution visibility
-* Basic UFW logging enabled
-* Fail2ban active for SSH protection
-* Docker container logs accessible via `docker compose logs`
+* Discord webhook notifications for worker success/failure
+* Cron-based scheduled execution visibility
+* Docker container logs accessible through Docker Compose
+* Basic UFW firewall logging
+* Fail2ban protection and SSH event logging
 
 ---
 
 ## Monitoring Scope
 
-* Worker job execution (success / failure / duration)
-* Import pipeline consistency
-* API request behavior
-* Container health status
-* Resource usage (CPU / RAM)
+The current monitoring model focuses on operational visibility for the most important platform components.
+
+### Current Monitoring Areas
+
+* Worker execution status
+* Import success/failure tracking
+* API availability
+* Docker container behavior
+* Database write operations
+* Import duration and row counts
+* Basic system-level security activity
 
 ---
 
 ## Worker Monitoring Model
 
-The worker acts as the central observable component of the data pipeline.
+The worker is currently the most observable component in the platform because it represents the core automated data ingestion pipeline.
+
+---
 
 ### Execution Tracking
 
-Each run is recorded in the database:
+Each worker execution stores structured metadata inside the database.
+
+Tracked information includes:
 
 * Start time
 * End time
-* Status (success / failure)
-* Notes (e.g. imported row count)
+* Execution status
+* Imported row count
+* Error notes when failures occur
 
-### External Notification
+This allows historical visibility into import behavior and pipeline reliability.
 
-Worker sends status updates via Discord webhook:
+---
 
-* Successful import → summary message
-* Failed import → error message
+### Discord Notifications
+
+Worker executions send Discord webhook notifications.
+
+Current notification behavior:
+
+* Successful import runs send summary messages
+* Failed imports send error notifications
+* Notifications include execution details and status information
+
+---
 
 ### Benefits
 
-* Immediate visibility of pipeline status
-* No need to manually inspect logs
-* Early detection of failures
+The current setup provides:
+
+* Immediate visibility into worker failures
+* Reduced need for manual log inspection
+* Faster debugging during pipeline issues
+* Basic operational awareness for unattended execution
 
 ---
 
 ## Logging Sources
 
-### Database-level
+### Database-Level Logging
 
-* `price_import_runs` acts as structured execution log
+The `price_import_runs` table acts as a structured execution log for the import pipeline.
 
-### Container-level
+---
 
-* Docker logs for API and worker processes
+### Container-Level Logging
 
-### System-level
+Docker logs provide runtime visibility for:
 
-* UFW firewall logs
-* Fail2ban logs for SSH access protection
+* API container
+* Worker container
+* PostgreSQL container
+
+Typical usage:
+
+```bash
+docker compose logs api
+docker compose logs worker
+```
+
+---
+
+### System-Level Logging
+
+Current system logging includes:
+
+* UFW firewall activity
+* Fail2ban SSH protection events
+* Basic Ubuntu system logs
 
 ---
 
 ## Automation Visibility
 
-Cron-based execution provides predictable scheduling.
+The worker currently runs through cron-based scheduling.
 
-### Current Behavior
+### Current Scheduling Behavior
 
-* Worker runs at defined intervals (e.g. hourly)
-* Failures are surfaced via Discord
-* Manual execution remains possible for debugging
+* Worker executes automatically at defined intervals
+* Manual execution remains possible
+* Failures surface through Discord notifications
+* Worker lifecycle follows a controlled one-shot execution model
+
+This model avoids permanently running background containers and simplifies failure handling.
 
 ---
 
 ## Current Status
 
-Partial but functional observability layer.
+A functional observability foundation is already established.
 
-* Worker execution fully traceable
-* External notifications active
-* Logging available at multiple system layers
-* Basic monitoring foundation established
+Currently operational:
+
+* Worker execution tracking
+* Structured import run history
+* Discord-based notifications
+* Cron execution visibility
+* Docker runtime logs
+* Basic security monitoring
+
+The platform already supports basic operational monitoring and debugging workflows.
 
 ---
 
 ## Known Limitations
 
+Current limitations include:
+
 * No centralized log aggregation
 * No structured API request logging
-* No metrics collection (Prometheus/Grafana)
-* No alerting beyond Discord webhook
-* No uptime or health-check monitoring
+* No metrics collection stack
+* No Grafana/Prometheus integration
+* No advanced alerting system
+* No uptime monitoring
+* No health-check dashboard
 * No log retention or rotation strategy
 
 ---
 
-## Next Steps
+## Planned Improvements
 
-* Introduce structured logging in API (request/response logging)
-* Aggregate Docker logs into a central system
-* Add lightweight monitoring (e.g. Netdata)
-* Introduce metrics collection (Prometheus + Grafana)
-* Implement alerting beyond Discord (optional escalation)
-* Define log retention and rotation strategy
+Planned future improvements include:
+
+* Structured API request logging
+* Centralized log aggregation
+* Lightweight monitoring dashboard (e.g. Netdata)
+* Prometheus metrics collection
+* Grafana dashboards
+* Container health monitoring
+* Extended alerting workflows
+* Log retention and rotation strategy
+* Optional cloud-assisted monitoring through Azure integration
