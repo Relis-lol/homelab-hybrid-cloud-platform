@@ -37,22 +37,6 @@ The tool prioritizes speed and low interaction overhead during active gameplay.
 
 ---
 
-# Supported Number Parsing
-
-The calculator supports simplified EVE-style number formats.
-
-Examples:
-
-```text
-1.5m
-250k
-2b
-````
-
-Localized decimal formats are also supported.
-
----
-
 # Local Persistence
 
 The tool stores settings locally in the browser.
