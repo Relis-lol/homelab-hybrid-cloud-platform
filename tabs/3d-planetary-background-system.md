@@ -1,71 +1,101 @@
-## 3D Planetary Background System
+# 3D Planetary Background System
 
-Lightweight cinematic WebGL background system created for the EVE-inspired homepage environment.
-Built as a fully browser-rendered real-time scene focused on visual immersion, efficient rendering, and low memory usage while maintaining a high-end sci-fi aesthetic.
+Real-time WebGL background system developed for the EVE market dashboard.
 
-## Features
+The system was designed to create a lightweight cinematic sci-fi atmosphere while remaining stable during long browser sessions and low-overhead frontend usage.
 
-* Real-time 3D planetary rendering
-* Dynamic atmospheric glow layers
-* Procedural city-light system
-* Animated volumetric cloud layer
-* Orbital satellite traffic system
-* Cinematic directional lighting
-* Large-scale nebula panorama background
-* Responsive fullscreen rendering
-* Browser-only architecture
-* No backend dependencies
+---
 
-## Optimization Work
+# Core Features
 
-The scene was heavily optimized to reduce browser memory usage while preserving visual quality and realism.
+- Real-time planetary rendering
+- Dynamic atmospheric glow
+- Animated cloud layers
+- Procedural city lights
+- Orbital satellite traffic
+- Nebula background rendering
+- Responsive fullscreen behavior
+- Browser-only architecture
 
-Implemented optimizations included:
+---
 
-* Geometry complexity reduction
-* Shared satellite geometries
-* Reduced texture overhead
-* Smart mipmap management
-* Canvas texture downscaling
-* Selective anisotropic filtering
-* Reduced starfield density
-* Optimized shader texture sampling
-* Controlled texture filtering to prevent flickering artifacts
-* Improved cloud rendering stability during movement
+# Technology Stack
 
-## Result
+- HTML5
+- CSS3
+- Three.js
+- GLSL shaders
+- Vanilla JavaScript
+- WebGL
 
-Memory usage was reduced from roughly:
+---
 
-```text
+# Optimization Focus
+
+A major focus of the project was reducing browser memory usage while maintaining visual quality.
+
+### Implemented Optimizations
+
+- Reduced geometry complexity
+- Shared satellite geometry usage
+- Lower texture overhead
+- Controlled mipmap generation
+- Reduced starfield density
+- Optimized texture filtering
+- Improved cloud rendering stability
+- Reduced rendering artifacts during movement
+
+---
+
+# Memory Optimization Result
+
+Approximate browser memory usage:
+
+```text id="j3nksx"
 ~460 MB → ~186 MB
-```
+````
 
 while maintaining:
 
+* stable rendering
+* smooth animation
 * cinematic atmosphere
-* smooth motion
-* stable lighting
-* high visual fidelity
-* low artifacting during animation
+* responsive interaction
+* low visual artifacting
 
-## Tech Stack
+---
 
-* HTML5
-* CSS3
-* Three.js
-* GLSL Shaders
-* Vanilla JavaScript
-* WebGL
+# Design Goals
 
-## Goal
+The system was designed to combine:
 
-The project was designed as a lightweight cinematic homepage background system combining:
+* lightweight rendering
+* immersive visual presentation
+* stable long-session browser behavior
+* low-overhead frontend performance
+* modular dashboard integration
 
-* real-time rendering
-* shader-based visual effects
-* frontend optimization
-* browser performance engineering
-* immersive sci-fi presentation
+The background acts as a visual layer for the frontend dashboard without requiring backend resources or external rendering services.
 
-The focus was not only visual quality, but also practical optimization for long-running browser sessions and low-overhead rendering on consumer hardware.
+---
+
+# Current Status
+
+Currently operational:
+
+* Integrated into the dashboard frontend
+* Stable WebGL rendering
+* Optimized memory usage
+* Responsive fullscreen behavior
+* Real-time animated environment
+* Modular visual layer architecture
+
+---
+
+# Planned Improvements
+
+* Additional environmental effects
+* Better depth layering
+* Improved lighting transitions
+* Optional quality presets
+* Additional background variations
