@@ -2,187 +2,92 @@
 
 ## Objective
 
-Provide a persistent relational data store for application services.
+PostgreSQL acts as the persistent storage layer for market data, item metadata, and worker execution tracking.
 
-The database layer stores structured market data, item metadata, and import execution logs used by the API and worker services.
+The database is optimized for read-heavy analytics and historical market queries.
 
 ---
 
-## Technology Stack
+## Stack
 
 - PostgreSQL 16
 - Docker container deployment
-- Named Docker volume for persistence
+- Persistent Docker volume
 
 ---
 
-## Architecture Concept
+## Architecture
 
-The database runs as an internal container service inside the Docker Compose stack.
+The database runs as an internal-only Docker service.
 
-### Access Model
+```text
+API → PostgreSQL
+Worker → PostgreSQL
+````
 
-API container → PostgreSQL → persistent volume  
-Worker container → PostgreSQL → persistent volume
-
-### Key Design Decisions
-
-- Database is not exposed to LAN or public networks
-- All access is routed through controlled services (API / Worker)
-- Optimized for read-heavy analytical queries
+Database access is restricted to internal container networking.
+No direct LAN or public database exposure exists.
 
 ---
 
-## Data Scope
+## Core Tables
 
-The database stores structured EVE Online market data.
-
-### Core Data Domains
-
-- Item metadata
-- Global market prices (ESI)
-- Regional market history
-- Import execution tracking
+| Table                   | Purpose                        |
+| ----------------------- | ------------------------------ |
+| `item_types`            | Item metadata and names        |
+| `esi_market_prices`     | Global ESI market prices       |
+| `region_market_history` | Historical regional price data |
+| `price_import_runs`     | Worker execution tracking      |
 
 ---
 
-## Current Schema
+## Current Capabilities
 
-### Tables
-
-- `item_types`
-- `esi_market_prices`
-- `region_market_history`
-- `price_import_runs`
-
----
-
-### `item_types`
-
-Reference table for all known EVE item types.
-
-**Purpose**
-
-- Provide human-readable item names
-- Enable joins with market data
-
-**Fields (typical)**
-
-- `type_id` (primary key)
-- `type_name`
-
----
-
-### `esi_market_prices`
-
-Stores global price snapshots from the EVE ESI API.
-
-**Purpose**
-
-- Fast access to current average prices
-- Used for cargo value calculations
-
-**Fields (typical)**
-
-- `type_id`
-- `average_price`
-- `adjusted_price`
-
----
-
-### `region_market_history`
-
-Stores time-series market data per region.
-
-**Purpose**
-
-- Historical analysis
-- Graph visualization
-- Trend detection
-
-**Fields (typical)**
-
-- `type_id`
-- `region_id`
-- `date`
-- `average`
-- `highest`
-- `lowest`
-- `volume`
-
----
-
-### `price_import_runs`
-
-Tracks execution of worker import processes.
-
-**Purpose**
-
-- Debugging and traceability
-- Performance tracking of imports
-
-**Fields (typical)**
-
-- `id`
-- `source`
-- `started_at`
-- `finished_at`
-- `status`
-- `notes`
-
----
-
-## Indexing Strategy
-
-Indexes are applied to support:
-
-- Fast lookup by `type_id`
-- Time-based queries on historical data
-- Efficient joins between item and market tables
-
----
-
-## Security Considerations
-
-- No host port exposure
-- Internal Docker network only
-- Credentials injected via environment variables
-- API acts as controlled read layer
-- Worker acts as controlled write layer
+* Persistent historical market storage
+* Fast item lookup by `type_id`
+* Historical price tracking
+* JOIN-based market analysis
+* Worker execution traceability
 
 ---
 
 ## Current Status
 
-- PostgreSQL container operational
-- Persistent volume active
-- Schema extended beyond test data
-- Real EVE data successfully ingested
-- Read/write operations validated across services
+* PostgreSQL container operational
+* Persistent storage validated
+* Real EVE market data imported
+* API and worker integration confirmed
+* Historical queries functioning
+
+Current dataset scale:
+
+* ~16,800 indexed item names
+* ~848,000 historical market records
 
 ---
 
-## Validation Performed
+## Security Model
 
-- API → DB connectivity confirmed
-- Worker → DB write operations confirmed
-- JOIN queries validated (item + price data)
-- Historical data queries tested
+* Internal Docker network only
+* No exposed database port
+* Credentials handled via `.env`
+* API handles controlled read access
+* Worker handles controlled write access
 
 ---
 
 ## Known Limitations
 
-- No migration framework yet
-- No partitioning for large datasets
-- Index tuning still basic
-- Data retention strategy not defined
+* No migration framework yet
+* Basic indexing only
+* No partitioning strategy
+* No retention policy defined
 
 ---
 
 ## Next Steps
 
-- Introduce schema migrations (Alembic or similar)
-- Optimize indexing based on query patterns
-- Evaluate partitioning for large time-series tables
-- Define long-term storage and cleanup strategy
+* Add migration tooling
+* Improve indexing strategy
+* Evaluate time-series partitioning
+* Define retention and cleanup workflows
