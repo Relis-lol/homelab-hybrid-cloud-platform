@@ -1,8 +1,15 @@
-# Infrastructure as Code
+# Infrastructure
 
-This folder will contain future Infrastructure as Code definitions.
+This directory is reserved for infrastructure-related configuration, deployment helpers, and future Infrastructure-as-Code components.
 
-Planned:
+Planned areas include:
 - Azure resource definitions
-- Network configuration
-- CI/CD infrastructure validation
+- Backup and deployment scripts
+- Network and security configuration
+- CI/CD integration
+- Infrastructure validation workflows
+
+Future technologies may include:
+- Terraform
+- Bicep
+- GitHub Actions
