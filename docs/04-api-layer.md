@@ -2,117 +2,108 @@
 
 ## Objective
 
-Provide a controlled application layer between the database and external consumers.
-The API handles structured data access, query logic, and business-level transformations.
+The API provides a controlled access layer between clients and the PostgreSQL database.
+
+It handles market data queries, business logic, and frontend-facing responses.
 
 ---
 
-## Technology Stack
+## Stack
 
-* **Language:** Python
-* **Framework:** FastAPI
-* **Deployment:** Docker container
-* **Server:** Uvicorn (ASGI)
-* **Database Access:** psycopg (PostgreSQL)
-
----
-
-## Architecture Concept
-
-The API acts as the central access layer between clients and the database.
-
-**Flow:**
-Client → API → PostgreSQL (internal)
-
-**Key Principles:**
-
-* No direct database access from clients
-* All queries are controlled and validated by the API
-* Business logic is centralized in the API layer
+- Python
+- FastAPI
+- Uvicorn
+- PostgreSQL (psycopg)
+- Docker deployment
 
 ---
 
-## Responsibilities
+## Architecture
 
-* Request validation
-* Data aggregation and transformation
-* Controlled database access
-* JSON response formatting
+```text
+Client → API → PostgreSQL
+```
 
----
+### Core Principles
 
-## Current Capabilities
-
-The API has moved beyond test endpoints and now exposes real application functionality.
-
-### Core Features
-
-* Item lookup and search
-* Global price retrieval (ESI)
-* Regional market history access
-* Cargo value calculation (multi-item input)
-* Import run tracking
+- No direct database access
+- Centralized query handling
+- Controlled and validated responses
+- API-driven frontend communication
 
 ---
 
-## Available Endpoints
+## Current Features
 
-| Method | Endpoint                                      | Description                       |
-| :----- | :-------------------------------------------- | :-------------------------------- |
-| `GET`  | `/health`                                     | Service health check              |
-| `GET`  | `/db-check`                                   | Database connectivity validation  |
-| `GET`  | `/items`                                      | Returns item metadata             |
-| `GET`  | `/items/search?q=<query>`                     | Case-insensitive item search      |
-| `GET`  | `/esi/global-prices`                          | Returns current global price data |
-| `GET`  | `/market-history?type_id=<id>&region_id=<id>` | Returns historical market data    |
-| `POST` | `/cargo/value`                                | Calculates total cargo value      |
-| `GET`  | `/import-runs`                                | Returns import execution history  |
+- Item lookup and search
+- Global ESI price retrieval
+- Historical market data access
+- Cargo value calculation
+- Import run tracking
 
 ---
 
-## Business Logic Layer
+## Main Endpoints
 
-The API performs core data processing tasks:
+| Method | Endpoint | Purpose |
+|---|---|---|
+| `GET` | `/health` | Health check |
+| `GET` | `/db-check` | Database validation |
+| `GET` | `/items` | Item metadata |
+| `GET` | `/items/search?q=` | Item search |
+| `GET` | `/esi/global-prices` | Global market prices |
+| `GET` | `/market-history` | Historical price data |
+| `POST` | `/cargo/value` | Cargo value calculation |
+| `GET` | `/import-runs` | Worker execution history |
 
-* JOIN operations between item metadata and price tables to provide human-readable results
-* Aggregation of multi-item cargo values
-* Filtering of historical market data by region and item type
+---
+
+## Current Processing Logic
+
+The API currently handles:
+
+- JOIN queries between item and market tables
+- Multi-item cargo calculations
+- Historical market filtering
+- Frontend-ready JSON responses
 
 ---
 
 ## Security Model
 
-* No direct database exposure
-* Controlled query surface via API endpoints
-* Input validation handled by FastAPI
-* Access restricted to internal network (firewall)
+- No public database exposure
+- Input validation via FastAPI
+- Firewall-restricted access
+- API acts as controlled read layer
 
 ---
 
 ## Current Status
 
-* Fully operational application layer
-* Connected to real market data
-* Multi-endpoint API structure active
-* Worker integration confirmed
-* Used as the primary data access layer for the upcoming web dashboard
+Currently operational:
+
+- Stable FastAPI application layer
+- Connected to real EVE market data
+- Multi-endpoint structure active
+- Worker integration confirmed
+- Frontend integration functional
 
 ---
 
-## Known Limitations & Next Steps
+## Known Limitations
 
-### Limitations
+- No authentication system
+- No rate limiting
+- No caching layer
+- No pagination for large datasets
+- Response schemas still incomplete
 
-* No authentication or rate limiting
-* No pagination for large datasets
-* Response schemas (Pydantic models) incomplete
-* No caching layer (e.g. Redis)
+---
 
-### Next Steps
+## Next Steps
 
-* Implement response models
-* Add pagination and filtering
-* Introduce caching layer
-* Separate test and production endpoints
-* Optimize API design for frontend consumption
-
+- Add response models
+- Improve filtering and pagination
+- Introduce caching
+- Separate test and production endpoints
+- Optimize API responses for frontend usage
