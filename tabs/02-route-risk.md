@@ -6,6 +6,12 @@ The system is designed to combine route information, cargo value, and contextual
 
 The current implementation focuses on frontend structure, interaction flow, and future API integration preparation.
 
+## Preview
+
+![Route Risk Setup](../assets/route-risk.png)
+
+![Route Risk Analysis](../assets/route-risk2.png)
+
 ---
 
 # Current Features
