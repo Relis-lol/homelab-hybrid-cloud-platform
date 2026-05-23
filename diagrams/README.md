@@ -1,47 +1,29 @@
 # Architecture Diagrams
 
-This directory contains Mermaid graph definitions used to visualize the platform architecture and data flow.
+This directory contains Mermaid-based architecture and data flow diagrams for the project.
 
-The files are intentionally lightweight and focused on diagram rendering rather than long-form documentation.
+The diagrams are kept lightweight and focus on visualizing:
+- platform architecture
+- service relationships
+- data flow
+- security layers
+- future hybrid cloud concepts
 
 ---
 
 ## Available Diagrams
 
-### current-architecture.md
-Current homelab platform structure:
-- Docker services
-- API layer
-- Worker pipeline
-- PostgreSQL database
-- Security components
-- Planned Azure integration
+- `current-architecture.md`  
+  Current homelab platform structure and service layout
+
+- `data-flow.md`  
+  Market data ingestion and frontend delivery flow
+
+- `future-hybrid-architecture.md`  
+  Planned hybrid cloud and public deployment architecture
 
 ---
 
-### data-flow.md
-Market data processing flow:
-- EVE ESI ingestion
-- Worker processing
-- Database persistence
-- API access
-- Frontend visualization
-
----
-
-### future-hybrid-architecture.md
-Planned future deployment and hybrid cloud direction:
-- Azure services
-- Backup workflows
-- Monitoring concepts
-- Public deployment structure
-- Hybrid infrastructure model
-
----
-
-## Notes
-
-- All files contain Mermaid graph definitions only
-- Designed for GitHub-native rendering
+All files contain Mermaid graph definitions intended for GitHub-native rendering.
 - Lightweight and easy to maintain
 - Used as visual support for the documentation in `/docs`
