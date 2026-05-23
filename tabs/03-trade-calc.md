@@ -6,6 +6,10 @@ The tool focuses on practical trade logistics, cargo planning, and profit estima
 
 Unlike the live market dashboard, this calculator is designed around operational trade calculations rather than historical market analysis or API-driven market visualization.
 
+## Preview
+
+![Trade Calculator](../assets/trade-calc.png)
+
 ---
 
 # Core Features
