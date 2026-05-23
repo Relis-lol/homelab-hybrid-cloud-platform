@@ -2,102 +2,99 @@
 
 ## Objective
 
-Implement reproducible deployment, validation, and operational automation workflows.
-
----
-
-## Scope
-
-### CI (Continuous Integration)
-
-* Code validation
-* Docker image build verification
-* Configuration checks
-
-### CD (Continuous Deployment – future)
-
-* Controlled deployment strategy
-* Infrastructure validation
-* Automated rollout processes
-
-### Automation (Already Implemented)
-
-* Cron-based worker execution
-* Batch job scheduling
-* Environment-driven feature control (e.g. enrichment toggle)
-
----
-
-## CI/CD Philosophy
-
-* Infrastructure as reproducible code
-* Version-controlled configurations
-* Minimal manual intervention
-* Separation of build, run, and scheduling responsibilities
-
----
-
-## Pipeline Stages (Planned)
-
-1. Code validation
-2. Container build
-3. Configuration verification
-4. Optional deployment trigger
+Improve reproducibility, deployment reliability, and operational automation across the platform.
 
 ---
 
 ## Current Automation
 
-The platform already includes operational automation components:
+Some operational automation is already implemented.
 
 ### Worker Scheduling
 
-* Worker executed via cron at defined intervals
-* One-shot execution model ensures controlled batch processing
-* Manual execution still possible for debugging
+- Cron-based worker execution
+- Controlled one-shot batch processing
+- Predictable scheduled imports
+- Manual execution still possible for debugging
 
 ### Configuration Control
 
-* Feature toggles via environment variables
+Environment variables are used for runtime configuration.
 
-  * Example: `ENABLE_NAME_ENRICHMENT`
+Example:
 
-### Execution Control
+```text
+ENABLE_NAME_ENRICHMENT=true
+```
 
-* Clear separation between:
+### Separation of Responsibilities
 
-  * Runtime (Docker containers)
-  * Scheduling (cron)
-  * Configuration (.env)
+The platform already separates:
+
+- Runtime → Docker containers
+- Scheduling → cron
+- Configuration → `.env`
+
+This keeps the system easier to debug and maintain.
+
+---
+
+## Planned CI/CD Scope
+
+### CI (Continuous Integration)
+
+Planned areas:
+
+- Code validation
+- Docker build verification
+- Configuration checks
+- Basic API testing
+
+### CD (Continuous Deployment)
+
+Future goals:
+
+- Automated deployment workflows
+- Controlled update process
+- Infrastructure validation
+
+---
+
+## CI/CD Philosophy
+
+The project follows a lightweight automation approach:
+
+- Reproducible container builds
+- Version-controlled configuration
+- Minimal manual deployment work
+- Clear separation between build and runtime
+
+The goal is operational simplicity rather than enterprise-scale orchestration.
 
 ---
 
 ## Current Status
 
-CI/CD not yet implemented, but automation foundation is in place.
+Not yet implemented:
 
-* Worker execution automated via cron
-* Batch processing model established
-* Environment-based configuration active
-* System behavior predictable and reproducible
+- GitHub Actions
+- Automated testing
+- Deployment pipelines
+- Infrastructure-as-Code workflows
 
----
+However, the platform already includes:
 
-## Known Limitations
-
-* No GitHub Actions pipeline
-* No automated build or test validation
-* No automated deployment process
-* No infrastructure-as-code setup
-* No rollback or versioning strategy
+- Automated scheduled imports
+- Controlled worker lifecycle
+- Reproducible Docker builds
+- Environment-based configuration
 
 ---
 
 ## Next Steps
 
-* Implement first GitHub Actions workflow (build + validation)
-* Add Docker image build checks
-* Introduce basic test validation (API endpoints)
-* Define deployment strategy (manual → semi-automated → automated)
-* Prepare infrastructure-as-code approach (Terraform or Bicep)
-
+- Create first GitHub Actions workflow
+- Add Docker build validation
+- Add basic API health testing
+- Define deployment strategy (manual → semi-automated → automated)
+- Prepare infrastructure-as-code approach (Terraform or Bicep)
