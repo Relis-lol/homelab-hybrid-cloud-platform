@@ -1,16 +1,15 @@
 # Documentation
 
-This folder contains the technical documentation for the Homelab Hybrid Cloud Platform project.
+This directory contains the technical documentation for the Homelab Hybrid Cloud Platform project.
 
-The project documents the evolution of a local Linux-based server into a containerized hybrid cloud platform focused on:
-
+The project documents the evolution of a Linux homelab server into a containerized market data and hybrid cloud platform focused on:
 - Docker-based infrastructure
 - API-driven architecture
-- Automated data ingestion
-- Market analytics
-- Observability and monitoring
+- Automated EVE market data ingestion
+- Interactive analytics tools
+- Monitoring and observability
 - Azure hybrid integration
-- CI/CD concepts
+- CI/CD concepts and automation
 
 ---
 
@@ -18,46 +17,44 @@ The project documents the evolution of a local Linux-based server into a contain
 
 | File | Description |
 |---|---|
-| `01-linux-baseline.md` | Linux server setup, SSH hardening, firewall configuration |
+| `01-linux-baseline.md` | Ubuntu server setup, SSH hardening, firewall configuration |
 | `02-docker-platform.md` | Docker and Docker Compose architecture |
-| `03-database-layer.md` | PostgreSQL database design and persistence |
-| `04-api-layer.md` | FastAPI application layer and API structure |
-| `05-web-dashboard.md` | Frontend architecture and dashboard planning |
+| `03-database-layer.md` | PostgreSQL database structure and persistence |
+| `04-api-layer.md` | FastAPI backend and API design |
+| `05-web-dashboard.md` | Frontend structure and dashboard features |
 | `06-observability.md` | Logging, monitoring, worker tracking, notifications |
-| `07-azure-integration.md` | Planned Azure hybrid cloud integration |
+| `07-azure-integration.md` | Planned hybrid cloud integration with Azure |
 | `08-cicd-automation.md` | CI/CD and deployment automation concepts |
 
 ---
 
-# Architecture Diagrams
-
-Additional architecture diagrams are available in:
+# Related Directories
 
 ```text
 /diagrams
+/infra
+/scripts
 ```
 
-These diagrams visualize:
-
-- Current platform architecture
-- Data flow between services
-- Future hybrid cloud architecture
+These directories contain:
+- Mermaid architecture diagrams
+- Infrastructure-related files
+- Automation and helper scripts
 
 ---
 
-# Current Project State
+# Current Platform State
 
-The platform currently includes:
-
+Currently implemented:
 - Hardened Ubuntu server
 - Docker Compose infrastructure
 - PostgreSQL database
-- FastAPI backend
+- FastAPI backend API
 - Worker-based EVE market imports
 - Historical market data storage
-- Cargo calculation tools
+- Cargo and trade analysis tools
 - Interactive market charts
-- Cron-based automation
+- Cron-based worker automation
 - Discord monitoring integration
 
-The project is actively evolving toward a production-style hybrid cloud platform with monitoring, automation, and Azure integration.
+The platform is actively evolving toward a production-style hybrid cloud and analytics environment.
