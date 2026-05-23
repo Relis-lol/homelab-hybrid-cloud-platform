@@ -3,6 +3,10 @@
 Lightweight browser-based wormhole mapping tool for EVE Online.
 Built as a standalone portfolio project focused on clean UI, fast interaction, and zero backend dependency.
 
+## Preview
+
+![WH Mapper](../assets/wh-mapper.png)
+
 ## Features
 
 * Hex-based interactive wormhole map
