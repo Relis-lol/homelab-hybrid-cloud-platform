@@ -24,7 +24,7 @@ The system originally shipped with Windows 11 Pro and was converted into a dedic
 ### Backup Storage
 
 - External SSD-based backup solution
-- SanDisk SATA SSD in USB enclosure
+- SanDisk 128GB  SATA SSD in USB enclosure
 - Dedicated for local backup and recovery workflows
 
 ### Physical Monitoring Screen (Experimental)
