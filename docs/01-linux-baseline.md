@@ -3,18 +3,38 @@
 ## Hardware
 
 **Model:** NiPoGi 4K Mini PC  
-**CPU:** AMD Ryzen 3 4300U (4 cores / 4 threads)  
+**CPU:** AMD Ryzen 3 4300U (4C / 4T)  
 **RAM:** 16GB DDR4  
 **Storage:** 512GB SSD  
-**Original OS:** Windows 11 Pro (replaced with Linux for server usage)
 
-### Hardware Decision Rationale
+The system originally shipped with Windows 11 Pro and was converted into a dedicated Linux server platform.
 
-- Low power consumption (always-on capable)
-- Sufficient performance for containerized workloads
+### Hardware Rationale
+
+- Low power consumption
+- Suitable for 24/7 operation
+- Enough performance for Docker workloads
 - Upgradeable RAM and storage
 - Cost-efficient homelab foundation
-- Suitable for Docker-based services
+
+---
+
+## Additional Hardware
+
+### Backup Storage
+
+- External SSD-based backup solution
+- SanDisk SATA SSD in USB enclosure
+- Dedicated for local backup and recovery workflows
+
+### Physical Monitoring Screen (Experimental)
+
+An older Android smartphone is currently being repurposed into a lightweight physical status display for:
+- system monitoring
+- worker status visibility
+- future dashboard integration
+
+This is intended as a low-cost homelab monitoring experiment.
 
 ---
 
@@ -24,160 +44,107 @@
 
 ### Installation Decisions
 
-- Full disk usage with LVM
-- No disk encryption (LUKS disabled)
+- LVM enabled
+- No GUI installed
 - OpenSSH installed during setup
 - Minimal package footprint
-- No GUI environment
+- No disk encryption
 
 ### Why Ubuntu Server
 
-- Long-Term Support with 5 years of security updates
-- Stable and widely adopted in production environments
-- Strong Docker and cloud ecosystem compatibility
-- Large documentation base and community support
+- Stable long-term support platform
+- Strong Docker ecosystem compatibility
+- Large community and documentation base
+- Commonly used in production environments
 
 ---
 
 ## Network Configuration
 
-- Wired LAN connection only
-- DHCP assigned IP: `192.168.178.47`
-- Router-level DHCP reservation configured
-- No public ports exposed
-- No port forwarding configured
+- Wired LAN connection
+- Router-managed DHCP reservation
+- Internal IP assignment
+- No public port forwarding
+- No public services exposed
 
-### Rationale
+### Network Philosophy
 
-- LAN-only exposure reduces attack surface
-- DHCP reservation ensures stable addressing without OS-level static configuration
-- Server remains private within the internal network
+The server is intentionally kept LAN-only during the current project stage to reduce attack surface and simplify infrastructure management.
 
 ---
 
-## Access and Security Model
+## Access & Security
 
-### SSH Configuration
+### SSH
 
-- ED25519 key pair generated on the client machine
-- Public key added to `~/.ssh/authorized_keys`
-- Key-based authentication verified
-- `PasswordAuthentication` disabled
-- `PermitRootLogin` disabled
-- `PubkeyAuthentication` enforced
+- ED25519 key authentication
+- Password login disabled
+- Root login disabled
+- Subnet-restricted SSH access
 
 ### Firewall (UFW)
 
-- UFW enabled
-- Default policy: deny incoming / allow outgoing
-- SSH (`22/tcp`) allowed **only from `192.168.178.0/24`**
-- API port (`8000/tcp`) allowed **only from `192.168.178.0/24`**
-- Logging enabled at low level
-
-#### Security Adjustment
-
-The default OpenSSH profile rule was removed and replaced with a subnet-restricted SSH rule.
-
-**Impact**
-
-- SSH access restricted to the internal network
-- Reduced attack surface
-- No external SSH exposure through current network configuration
+- Enabled with deny-incoming policy
+- SSH restricted to local subnet
+- API port (`8000/tcp`) restricted to LAN access
+- Logging enabled
 
 ### Fail2ban
 
-- Installed and enabled
-- SSH jail active with default configuration
-
-**Objective**
-
-Mitigate brute-force attempts even within internal network environments.
+- Installed and active
+- SSH protection enabled
 
 ---
 
-## System Hardening
-
-- System fully updated using `apt update && apt upgrade`
-- Headless server operation
-- No unnecessary packages installed
-- SSH key-based access enforced
-
-### Security Philosophy
-
-- Principle of minimal exposure
-- No public services during baseline stage
-- Access restricted to internal network
-- Physical access retained as emergency fallback
-
----
-
-## Container Runtime Status
+## Container Runtime
 
 ### Docker
 
-- Docker Engine installed
-- Service active and enabled
-- Running without errors
+- Docker Engine installed and operational
+- Service enabled on boot
 
 ### Docker Compose
 
-- Docker Compose plugin installed (`docker compose`)
-- Multi-service stack deployment validated
+- Compose plugin installed (`docker compose`)
+- Multi-service stack validated successfully
 
-### Port Mapping Verification
+### Current Services
 
-- Port mapping tested from LAN
-- API reachable through port `8000`
-- Database not exposed to LAN
-- No external exposure configured
+- PostgreSQL container
+- FastAPI container
+- Worker container
 
 ---
 
 ## Current System State
 
-- Headless server operational
-- Remote SSH access functional
-- Firewall hardened
-- Fail2ban active
-- Docker runtime operational
-- Docker Compose stack validated
-- PostgreSQL container running
-- FastAPI container running
-- Worker container validated
-- LAN access confirmed
-- No public service exposure
+Currently operational:
+
+- Headless Linux server
+- Hardened SSH configuration
+- Firewall and Fail2ban protection
+- Docker Compose environment
+- PostgreSQL database
+- FastAPI backend
+- Worker-based import pipeline
+- LAN-only API access
 
 ---
 
 ## Known Limitations
 
-- No reverse proxy configured yet
-- No monitoring or logging stack implemented
+- No reverse proxy yet
+- No public HTTPS setup
+- No centralized monitoring stack
+- No CI/CD pipeline
 - No Azure integration yet
-- No CI/CD pipeline configured
-- No public web dashboard implemented
-
----
-
-## Architectural Direction
-
-The goal is to evolve this baseline into a modular container platform including:
-
-- Containerized application services
-- FastAPI service layer
-- PostgreSQL database backend
-- Background worker for data imports
-- Public read-only web dashboard
-- Secure hybrid cloud connectivity
-- CI/CD-driven deployment workflow
-- Structured observability layer
 
 ---
 
 ## Next Steps
 
-- Prepare web dashboard layer
-- Introduce basic logging strategy
-- Extend import workflow beyond test data
-- Integrate external data sources (EVE Online ESI)
-- Update architecture diagrams to reflect the current platform state
+- Expand frontend/dashboard layer
+- Improve monitoring and logging
+- Extend automated import workflows
+- Integrate additional analytics features
+- Prepare hybrid cloud integration
