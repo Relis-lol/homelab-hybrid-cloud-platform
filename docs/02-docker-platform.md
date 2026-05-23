@@ -4,37 +4,37 @@
 
 Use Docker as the runtime platform for all application services.
 
-Docker enables isolated services, reproducible deployments, and a clear separation between the host system and the application layer.
+The platform uses containerized services for reproducibility, isolation, and simplified deployment management.
 
 ---
 
 ## Installation Overview
 
-- Docker Engine installed via official Docker repository
-- Docker service enabled and running
+- Docker Engine installed via official repository
+- Docker service enabled on boot
 - Docker Compose plugin installed (`docker compose`)
-- Initial container tests successful
+- Multi-container setup validated successfully
 
 ---
 
-## Platform Role in Architecture
+## Platform Role
 
-Docker acts as the execution layer for all services.
+Docker acts as the execution layer for the platform services.
 
-**Ubuntu Host → Docker Engine → Compose Stack → Containers (Database / API / Worker / Future Services)**
+```text
+Ubuntu Host → Docker Engine → Compose Stack → Containers
+```
 
-### Responsibilities
+### Current Service Roles
 
-- Run application services
-- Isolate workloads
-- Manage internal container networking
-- Handle persistent storage through volumes
+- PostgreSQL → persistent database
+- FastAPI → backend API layer
+- Worker → automated import pipeline
+- Frontend → planned public dashboard
 
 ---
 
 ## Project Structure
-
-Current project structure:
 
 ```text
 ~/stack/
@@ -49,193 +49,185 @@ Current project structure:
     │   ├── worker.py
     │   ├── requirements.txt
     │   └── Dockerfile
-    ├── database/      # planned for schema / migrations
-    └── frontend/      # planned for future dashboard
+    ├── database/
+    └── frontend/
 ```
----
 
-### Rationale
+### Structure Philosophy
 
-* Clear separation of service responsibilities
-* Easier future expansion
-* Better alignment with multi-service architecture
-* Maintainable structure for scaling services
+- Clear separation of responsibilities
+- Easier service scaling and maintenance
+- Better long-term organization for multi-service infrastructure
 
 ---
 
 ## Compose Stack Design
 
-### Long-running services
+### Long-running Services
 
-* `postgres` → PostgreSQL 16 container (persistent database)
-* `api` → FastAPI container (application layer)
+- `postgres` → PostgreSQL 16 database container
+- `api` → FastAPI backend container
 
-### One-shot services
+### One-shot Services
 
-* `worker` → batch-style import container
+- `worker` → batch-style import container
 
 ---
 
 ## Worker Execution Model
 
-The worker is designed as a **one-shot batch job**, not a continuously running service.
+The worker is intentionally designed as a one-shot batch process instead of a continuously running background service.
 
-### Execution Methods
+### Manual Execution
 
-Manual execution:
-
-```
+```bash
 docker compose run --rm worker
 ```
 
-With enrichment enabled:
+With optional enrichment:
 
-```
+```bash
 docker compose run --rm -e ENABLE_NAME_ENRICHMENT=true worker
 ```
 
-### Behavior
+### Current Behavior
 
-* Container starts → executes import → exits
-* No restart policy (`restart: "no"`)
-* Writes data to PostgreSQL
-* Logs execution results
-* Sends optional Discord notifications
+- Container starts
+- Imports market data
+- Writes to PostgreSQL
+- Sends optional notifications
+- Exits after completion
 
-### Rationale
+### Design Rationale
 
-* Prevents uncontrolled background loops
-* Allows explicit scheduling and control
-* Aligns with real-world batch processing patterns
+- Prevents uncontrolled loops
+- Simplifies scheduling
+- Easier debugging and recovery
+- Better alignment with batch-processing workflows
 
 ---
 
 ## Automation Strategy
 
-Worker execution is automated using system-level scheduling (cron).
+Worker execution is currently handled through cron-based scheduling outside the container stack.
 
-### Current Setup
+### Current Automation
 
-* Periodic execution (e.g. hourly)
-* Optional enrichment runs on demand
-* Centralized control outside Docker
+- Scheduled periodic imports
+- Optional manual enrichment runs
+- Controlled execution timing
 
 ### Benefits
 
-* Clear separation between runtime and scheduling
-* Predictable execution behavior
-* Easy debugging and manual override
+- Predictable execution behavior
+- Clear separation between runtime and scheduling
+- Easier operational control
 
 ---
 
 ## Networking Model
 
-Docker Compose creates an internal network for the stack.
+Docker Compose provides internal service networking.
 
-Service-to-service communication uses Docker's internal DNS.
+Containers communicate using Docker service names instead of static IP addresses.
 
-Example:
+### Internal Communication
 
-* `postgres` → database service
-* `api` → application service
-* `worker` → import service
-
-Containers communicate using service names instead of IP addresses.
+- `api` ↔ `postgres`
+- `worker` ↔ `postgres`
 
 Database traffic remains internal to the Docker network.
 
 ---
 
-## Volume Strategy
+## Storage Strategy
 
-PostgreSQL uses a named Docker volume:
+PostgreSQL uses a persistent named Docker volume:
 
-```
+```text
 postgres-data
 ```
 
-This ensures database persistence even if containers are recreated.
+This preserves database data independently from container lifecycle operations.
 
 ---
 
 ## Port Management
 
-Currently exposed ports:
+### Exposed
 
-* `8000/tcp` → API service (LAN access only)
+- `8000/tcp` → FastAPI service (LAN only)
 
-Not exposed:
+### Internal Only
 
-* `5432/tcp` → PostgreSQL (internal only)
+- `5432/tcp` → PostgreSQL database
 
-Firewall rules restrict API access to the local subnet.
+Firewall rules additionally restrict access to the local subnet.
 
 ---
 
 ## Environment & Secrets
 
-Environment variables are used for configuration and secrets.
+Configuration values and secrets are handled through environment variables.
 
 ### Examples
 
-* Database credentials
-* Worker configuration flags
-* Discord webhook URL
+- Database credentials
+- Worker flags
+- Discord webhook configuration
 
 Stored in:
 
-```
+```text
 .env
 ```
 
 ### Benefits
 
-* Separation of config and code
-* Safer secret handling
-* Easier environment switching
+- Cleaner configuration management
+- Separation between code and secrets
+- Easier environment migration
 
 ---
 
 ## Security Considerations
 
-* No direct public exposure
-* Database hidden behind container network
-* Firewall restricts access to LAN
-* SSH restricted to internal subnet
-* Secrets externalized via `.env`
+- No direct public exposure
+- Database isolated inside Docker network
+- Firewall-restricted access
+- SSH limited to local subnet
+- Secrets externalized from application code
 
 ---
 
 ## Current Status
 
-* Docker operational
-* Compose stack stable
-* PostgreSQL running with persistent storage
-* API container serving requests
-* Worker executing real EVE data imports
-* One-shot worker model validated
-* Cron-based automation in place
-* Discord notifications integrated
-* Internal networking fully functional
+Currently operational:
+
+- Stable Docker Compose environment
+- Persistent PostgreSQL database
+- FastAPI backend API
+- Automated worker imports
+- Cron-based scheduling
+- Discord notification integration
+- Internal container networking
 
 ---
 
 ## Known Limitations
 
-* No reverse proxy configured yet
-* No centralized logging stack
-* No container health monitoring
-* No auto-redeploy or update strategy
-* No horizontal scaling
+- No reverse proxy yet
+- No centralized monitoring stack
+- No container health monitoring
+- No automated deployment pipeline
+- No scaling strategy implemented
 
 ---
 
 ## Next Steps
 
-* Introduce reverse proxy (Nginx / Traefik)
-* Add centralized logging and monitoring
-* Implement health checks and alerts
-* Prepare container update strategy
-* Integrate with CI/CD pipeline
-
-
+- Introduce reverse proxy layer
+- Add centralized logging and monitoring
+- Implement health checks
+- Prepare deployment automation
+- Integrate CI/CD workflows
