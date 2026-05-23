@@ -2,37 +2,22 @@
 
 ## Objective
 
-Extend the local homelab platform into a lightweight hybrid cloud architecture using selected Azure services.
+The long-term goal is to extend the local platform with selected Azure services.
 
-The goal is not a full cloud migration, but a practical combination of local infrastructure and cloud-based services.
+The project intentionally follows a lightweight hybrid approach instead of fully migrating into the cloud.
 
 ---
 
-## Hybrid Model
+## Planned Azure Usage
 
-The project intentionally keeps core services on the local server while using Azure where it provides practical value.
+Current planned areas:
 
-### Local Infrastructure
+- Blob Storage for backups
+- Optional cloud-assisted monitoring
+- Future CI/CD integration
+- Basic Infrastructure-as-Code experiments
 
-Currently handled locally:
-
-- PostgreSQL database
-- FastAPI backend
-- Worker execution
-- Market data ingestion
-- Frontend hosting
-- Core application logic
-
-### Planned Azure Usage
-
-Azure is planned for:
-
-- Backup and archival storage
-- Cloud-assisted monitoring
-- Optional frontend hosting
-- Future hybrid infrastructure experiments
-
-This keeps costs low while still introducing real Azure integration and hybrid cloud concepts.
+The local server will continue handling the core application stack.
 
 ---
 
@@ -42,147 +27,44 @@ This keeps costs low while still introducing real Azure integration and hybrid c
 Local Server ↔ Azure Services
 ```
 
-Future public model:
+Potential future deployment model:
 
 ```text
-User → Reverse Proxy → Local Platform ↔ Azure Storage / Monitoring
+User → Reverse Proxy → Local Platform ↔ Azure Storage
 ```
-
----
-
-## Planned Azure Components
-
-### Resource Group
-
-Central resource container for all Azure-related services.
-
----
-
-### Azure Blob Storage
-
-Primary planned Azure integration.
-
-Planned usage:
-
-- Database backup storage
-- Exported market data snapshots
-- Long-term archive storage
-- Optional static frontend assets
-
-The goal is to introduce practical cloud storage integration without moving the entire platform into Azure.
-
----
-
-### Virtual Network (Planned)
-
-Future use cases may include:
-
-- Hybrid networking experiments
-- VM isolation
-- Internal Azure networking concepts
-
----
-
-### Optional Azure VM
-
-Potential future usage:
-
-- Reverse proxy hosting
-- Monitoring services
-- Lightweight cloud-side tools
-- Deployment workflow testing
-
-The current project intentionally avoids unnecessary cloud compute costs.
-
----
-
-## Infrastructure as Code (Planned)
-
-Future technologies:
-
-- Terraform
-- Bicep
-
-Planned goals:
-
-- Reproducible Azure infrastructure
-- Automated resource deployment
-- Version-controlled infrastructure setup
-
----
-
-## Security Philosophy
-
-The Azure integration follows the same security approach as the local platform.
-
-### Current Principles
-
-- Minimal public exposure
-- Key-based authentication
-- Restricted network access
-- Separation of local and cloud components
-- Low attack surface
-
-### Planned Improvements
-
-- Secret management
-- Managed identities
-- Secure backup transfer workflows
-- Restricted storage policies
 
 ---
 
 ## Current Status
 
-Azure integration is currently still in planning phase.
+Azure integration has not been implemented yet.
 
-No Azure resources are deployed yet, but the hybrid architecture direction and integration goals are already defined.
+The current focus remains:
+
+- Stable local infrastructure
+- Automated data pipeline
+- Frontend development
+- Monitoring improvements
+
+Azure integration is planned as a later expansion step once the local platform is fully stabilized.
 
 ---
 
 ## Planned First Step
 
-The first planned Azure feature is Blob Storage backup integration.
+The first planned Azure integration is:
 
-Planned workflow:
+- Azure Blob Storage for database backups and archive storage
 
-1. Export database snapshots
-2. Upload backups to Azure Blob Storage
-3. Retain the operational database locally
-4. Use Azure as backup and archival layer
-
-This introduces a practical real-world hybrid cloud use case without requiring full cloud migration.
+This introduces practical hybrid cloud functionality without moving the entire platform into Azure.
 
 ---
 
-## Future Expansion Areas
+## Future Ideas
 
-Potential future additions:
+Possible future additions:
 
-- Azure-hosted static frontend
-- Cloud-assisted monitoring
-- Centralized log storage
-- Scheduled backup workflows
+- Azure-hosted monitoring
+- Infrastructure-as-Code with Terraform or Bicep
+- Cloud-connected CI/CD workflows
 - Hybrid deployment experiments
-- Azure-connected CI/CD workflows
-
----
-
-## Known Limitations
-
-- No Azure resources deployed yet
-- No Infrastructure-as-Code implementation
-- No hybrid networking configured
-- No cloud monitoring stack
-- No automated backup pipeline
-
----
-
-## Next Steps
-
-- Create Azure Resource Group
-- Configure Azure Storage Account
-- Implement Blob Storage backups
-- Document hybrid architecture decisions
-- Evaluate lightweight monitoring integration
-- Prepare Infrastructure-as-Code structure
