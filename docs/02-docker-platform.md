@@ -2,35 +2,24 @@
 
 ## Objective
 
-Use Docker as the runtime platform for all application services.
+Docker is used as the runtime platform for all application services.
 
-The platform uses containerized services for reproducibility, isolation, and simplified deployment management.
-
----
-
-## Installation Overview
-
-- Docker Engine installed via official repository
-- Docker service enabled on boot
-- Docker Compose plugin installed (`docker compose`)
-- Multi-container setup validated successfully
+The platform uses containerized services for isolation, reproducibility, and simplified deployment management.
 
 ---
 
-## Platform Role
-
-Docker acts as the execution layer for the platform services.
+## Platform Overview
 
 ```text
 Ubuntu Host → Docker Engine → Compose Stack → Containers
 ```
 
-### Current Service Roles
+### Current Services
 
 - PostgreSQL → persistent database
-- FastAPI → backend API layer
-- Worker → automated import pipeline
-- Frontend → planned public dashboard
+- FastAPI → backend API
+- Worker → market import pipeline
+- Frontend → planned dashboard
 
 ---
 
@@ -42,41 +31,18 @@ Ubuntu Host → Docker Engine → Compose Stack → Containers
     ├── compose.yml
     ├── .env
     ├── api/
-    │   ├── app.py
-    │   ├── requirements.txt
-    │   └── Dockerfile
     ├── worker/
-    │   ├── worker.py
-    │   ├── requirements.txt
-    │   └── Dockerfile
     ├── database/
     └── frontend/
 ```
 
-### Structure Philosophy
-
-- Clear separation of responsibilities
-- Easier service scaling and maintenance
-- Better long-term organization for multi-service infrastructure
+The structure separates services cleanly and keeps the platform easier to maintain as new components are added.
 
 ---
 
-## Compose Stack Design
+## Worker Design
 
-### Long-running Services
-
-- `postgres` → PostgreSQL 16 database container
-- `api` → FastAPI backend container
-
-### One-shot Services
-
-- `worker` → batch-style import container
-
----
-
-## Worker Execution Model
-
-The worker is intentionally designed as a one-shot batch process instead of a continuously running background service.
+The worker runs as a one-shot batch container instead of a permanent background service.
 
 ### Manual Execution
 
@@ -84,7 +50,7 @@ The worker is intentionally designed as a one-shot batch process instead of a co
 docker compose run --rm worker
 ```
 
-With optional enrichment:
+Optional enrichment mode:
 
 ```bash
 docker compose run --rm -e ENABLE_NAME_ENRICHMENT=true worker
@@ -92,124 +58,91 @@ docker compose run --rm -e ENABLE_NAME_ENRICHMENT=true worker
 
 ### Current Behavior
 
-- Container starts
 - Imports market data
-- Writes to PostgreSQL
-- Sends optional notifications
+- Writes data to PostgreSQL
+- Sends optional Discord notifications
 - Exits after completion
 
-### Design Rationale
+### Why This Model
 
 - Prevents uncontrolled loops
-- Simplifies scheduling
 - Easier debugging and recovery
-- Better alignment with batch-processing workflows
+- Better control over execution timing
+- Closer to real-world batch processing
 
 ---
 
-## Automation Strategy
+## Automation
 
-Worker execution is currently handled through cron-based scheduling outside the container stack.
+Worker execution is currently handled through cron scheduling outside Docker.
 
-### Current Automation
+Current automation includes:
 
-- Scheduled periodic imports
-- Optional manual enrichment runs
+- Scheduled imports
+- Manual enrichment runs
 - Controlled execution timing
 
-### Benefits
-
-- Predictable execution behavior
-- Clear separation between runtime and scheduling
-- Easier operational control
-
 ---
 
-## Networking Model
+## Networking
 
-Docker Compose provides internal service networking.
-
-Containers communicate using Docker service names instead of static IP addresses.
+Docker Compose provides internal networking between services.
 
 ### Internal Communication
 
 - `api` ↔ `postgres`
 - `worker` ↔ `postgres`
 
-Database traffic remains internal to the Docker network.
+Database traffic remains internal to the Docker network and is not exposed publicly.
 
 ---
 
-## Storage Strategy
+## Storage
 
-PostgreSQL uses a persistent named Docker volume:
+PostgreSQL uses a persistent Docker volume:
 
 ```text
 postgres-data
 ```
 
-This preserves database data independently from container lifecycle operations.
+This keeps database data independent from container recreation.
 
 ---
 
-## Port Management
+## Environment & Security
 
-### Exposed
-
-- `8000/tcp` → FastAPI service (LAN only)
-
-### Internal Only
-
-- `5432/tcp` → PostgreSQL database
-
-Firewall rules additionally restrict access to the local subnet.
-
----
-
-## Environment & Secrets
-
-Configuration values and secrets are handled through environment variables.
-
-### Examples
-
-- Database credentials
-- Worker flags
-- Discord webhook configuration
-
-Stored in:
+Configuration and secrets are handled through environment variables stored in:
 
 ```text
 .env
 ```
 
-### Benefits
+Examples include:
 
-- Cleaner configuration management
-- Separation between code and secrets
-- Easier environment migration
+- Database credentials
+- Worker flags
+- Discord webhook configuration
 
----
+### Security Model
 
-## Security Considerations
-
-- No direct public exposure
+- No direct public database exposure
 - Database isolated inside Docker network
-- Firewall-restricted access
+- Firewall restricts LAN access
 - SSH limited to local subnet
-- Secrets externalized from application code
+- Secrets separated from application code
 
 ---
 
 ## Current Status
 
-Currently operational:
+Operational components:
 
-- Stable Docker Compose environment
+- Stable Docker Compose stack
 - Persistent PostgreSQL database
-- FastAPI backend API
+- FastAPI backend
 - Automated worker imports
 - Cron-based scheduling
-- Discord notification integration
+- Discord notifications
 - Internal container networking
 
 ---
@@ -219,15 +152,13 @@ Currently operational:
 - No reverse proxy yet
 - No centralized monitoring stack
 - No container health monitoring
-- No automated deployment pipeline
-- No scaling strategy implemented
+- No deployment automation yet
 
 ---
 
 ## Next Steps
 
-- Introduce reverse proxy layer
-- Add centralized logging and monitoring
+- Add reverse proxy layer
+- Introduce centralized logging
 - Implement health checks
-- Prepare deployment automation
-- Integrate CI/CD workflows
+- Prepare CI/CD integration
