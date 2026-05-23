@@ -1,53 +1,108 @@
 # EVE Trade Cargo Calculator
 
-Lightweight browser-based trading and hauling helper for EVE Online.
-Built as a standalone single-file utility focused on fast calculations, clean UI design, and practical real-world usability for station traders, haulers, and multi-ship cargo setups.
+Standalone browser-based trading and hauling utility for EVE Online.
 
-## Features
+The tool focuses on practical trade logistics, cargo planning, and profit estimation for station trading and hauling workflows.
 
-* Multi-ship cargo management
-* Automatic total cargo aggregation
-* Maximum purchasable unit calculation
-* Buy vs. sell profit estimation
-* Buy order fee + tax simulation
-* Profit-per-unit and profit-per-m³ analysis
-* Manual amount override support
-* Integrated lightweight side calculator
-* Smart number parsing
+Unlike the live market dashboard, this calculator is designed around operational trade calculations rather than historical market analysis or API-driven market visualization.
 
-  * `1.5m`
-  * `250k`
-  * `2b`
-  * localized decimal formats
-* Local browser persistence
+---
 
-  * saved ship count
-  * saved cargo capacities
-  * persistent calculator settings
-* Responsive dark UI inspired by EVE aesthetics
-* Fully client-side
+# Core Features
 
-  * no backend
-  * no accounts
-  * no database
-  * no API dependency
+- Multi-ship cargo management
+- Cargo capacity calculations
+- Buy vs sell profit estimation
+- Buy order fee and tax simulation
+- Profit-per-unit analysis
+- Profit-per-m³ analysis
+- Manual quantity overrides
+- Integrated side calculator
+- Smart market number parsing
+- Local browser persistence
 
-## Tech Stack
+---
+
+# Trading Workflow Focus
+
+The calculator was designed for common hauling and trading scenarios such as:
+
+- Determining maximum purchasable item amounts
+- Estimating hauling profitability
+- Comparing market buy/sell margins
+- Calculating ISK efficiency per cargo run
+- Planning multi-ship transport capacity
+
+The tool prioritizes speed and low interaction overhead during active gameplay.
+
+---
+
+# Supported Number Parsing
+
+The calculator supports simplified EVE-style number formats.
+
+Examples:
+
+```text
+1.5m
+250k
+2b
+````
+
+Localized decimal formats are also supported.
+
+---
+
+# Local Persistence
+
+The tool stores settings locally in the browser.
+
+### Stored Data
+
+* Ship counts
+* Cargo capacities
+* Calculator preferences
+* Previous calculation settings
+
+No account system, backend, or database is required.
+
+---
+
+# Technology Stack
 
 * HTML5
 * CSS3
 * Vanilla JavaScript
 * LocalStorage
 
-## Goal
+---
 
-The project was designed as a lightweight alternative to larger market tools while also serving as a frontend-focused portfolio project.
+# Design Goals
 
-Focus areas included:
+The project focused on:
 
-* clean browser-only architecture
-* efficient calculation logic
-* responsive UI layout
-* local persistence handling
-* lightweight performance optimization
-* practical usability for active EVE traders and haulers
+* Lightweight browser-only architecture
+* Fast calculation workflows
+* Minimal UI overhead
+* Responsive dark UI design
+* Fully client-side execution
+* Practical usability for active traders and haulers
+
+The calculator intentionally avoids unnecessary complexity and external dependencies.
+
+---
+
+# Current Status
+
+Currently functional as a standalone utility.
+
+Implemented systems include:
+
+* Cargo calculations
+* Profit estimation
+* Multi-ship support
+* Local persistence
+* Responsive UI behavior
+* Browser-only execution
+
+The tool remains independent from the live market dashboard and focuses specifically on trading logistics and hauling support workflows.
