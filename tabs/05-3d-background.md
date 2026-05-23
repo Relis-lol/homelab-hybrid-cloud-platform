@@ -4,6 +4,10 @@ Real-time WebGL background system developed for the EVE market dashboard.
 
 The system was designed to create a lightweight cinematic sci-fi atmosphere while remaining stable during long browser sessions and low-overhead frontend usage.
 
+## Preview
+
+![3D Background System](../assets/3d-background.png)
+
 ---
 
 # Core Features
