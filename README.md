@@ -1,153 +1,78 @@
 # Homelab Hybrid Cloud Platform
 
-This project documents the step-by-step evolution of a private Linux server into a production-style hybrid cloud platform.
+Personal infrastructure and data platform project focused on Linux, Docker, automation, backend services, and hybrid cloud concepts.
 
-The platform started as a Linux homelab environment and evolved into a containerized data platform focused on automated EVE Online market data ingestion, API-driven access, and interactive frontend analysis tools.
+The platform evolved from a small Ubuntu homelab into a containerized EVE Online market analysis system with automated data ingestion, API services, interactive frontend tools, and operational monitoring.
 
-Current platform capabilities:
+---
+
+## Current Features
+
 - Hardened Ubuntu Server environment
-- Docker-based multi-service architecture
-- PostgreSQL database with persistent storage
+- Docker Compose multi-service stack
+- PostgreSQL market database
 - FastAPI backend API
-- Automated worker-based ESI import pipeline
+- Automated ESI market imports
 - Historical market data storage
-- Cargo and trade analysis tools
-- Interactive frontend charts
-- Cron-based worker automation
-- Discord-based monitoring notifications
-- Internal network security model
-
----
-
-## Goal
-
-Transform the system into a fully featured hybrid cloud platform including:
-- Real-time and historical EVE market analytics
-- Interactive browser-based analysis tools
-- Observability and monitoring stack
-- Azure hybrid integration
-- CI/CD-driven deployment workflows
-- Architecture and infrastructure documentation
-- Modular expansion for future analytics features
-
----
-
-# Roadmap
-
-## Phase 1 – Linux Baseline (Completed)
-- Ubuntu Server installation
-- SSH hardening
-- UFW firewall configuration
-- Fail2ban protection
-- Internal network security model
-
----
-
-## Phase 2 – Core Services (Completed)
-- PostgreSQL database layer
-- FastAPI application layer
-- Docker Compose architecture
-- Worker-based import pipeline
-- Real ESI integration
-- Historical data persistence
-
----
-
-## Phase 3 – Public Web Dashboard (Major Progress)
-Implemented:
-- Cargo value calculator
-- Trade helper integration
-- Interactive historical price charts
-- Multi-tab frontend system
-- Dynamic chart tabs
-- Responsive dark UI
-- Item search integration
-- Clickable chart interactions
-- Historical price visualization
-- Statistics cards and change tracking
-
-Planned:
-- Regional market analysis
-- Buy/Sell pressure visualization
-- Volatility indicators
-- Moving averages
-- Advanced analytics
-
----
-
-## Phase 4 – Observability (Started)
-Implemented:
-- Worker execution tracking
-- Cron-based automation
-- Discord worker notifications
-- Docker log visibility
-- Import run monitoring
-
-Planned:
-- Structured logging
-- Metrics dashboard
-- Container health monitoring
-- Resource usage tracking
-
----
-
-## Phase 5 – Azure Hybrid Integration (Planned)
-Planned integration areas:
-- Azure Blob Storage backups
-- Hybrid storage architecture
-- Cloud-assisted monitoring
-- Optional Azure-hosted frontend components
-- Secure hybrid connectivity model
-
----
-
-## Phase 6 – CI/CD & Automation (Started)
-Implemented:
-- Automated cron execution
-- Controlled worker lifecycle
-- Reproducible Docker builds
-
-Planned:
-- GitHub Actions workflows
-- Automated validation pipelines
-- Deployment automation
-- Infrastructure verification
-
----
-
-# Current Status
-
-The platform has moved beyond a basic homelab setup and now operates as a functional multi-service data platform.
-
-Currently operational:
-- Docker Compose stack with PostgreSQL, API, and worker services
-- Real EVE Online ESI market data ingestion
-- Historical market data persistence
-- Automated scheduled imports
-- Stable worker execution pipeline
-- Item metadata enrichment system
 - Interactive frontend dashboard
-- Cargo value calculation system
-- Trade helper utilities
+- Cargo and trade analysis tools
 - Multi-chart visualization system
+- Cron-based worker automation
 - Discord monitoring notifications
 
-Current database scale:
+---
+
+## Architecture Overview
+
+Current stack:
+- Ubuntu Server
+- Docker Compose
+- PostgreSQL
+- FastAPI
+- Python worker services
+- Browser-based frontend tools
+
+The platform currently processes real EVE Online market data, stores historical pricing information, and exposes analytics tools through a modular web interface.
+
+Current database size:
 - ~16,800 item names indexed
-- ~848,000 historical market price records stored
+- ~848,000 historical market records stored
 
-The current architecture already demonstrates:
-- Containerized infrastructure
-- Automated data ingestion
-- Persistent structured storage
-- API-driven backend design
-- Interactive frontend visualization
-- Monitoring and operational thinking
-- Modular system architecture
+---
 
-The next major focus areas are:
-- Expanded analytics
-- Azure hybrid integration
-- Improved observability
-- CI/CD workflows
+## Project Goals
+
+- Hybrid cloud architecture with Azure integration
+- Expanded monitoring and observability
+- CI/CD-driven deployment workflows
 - Public deployment hardening
+- Advanced market analytics features
+
+---
+
+## Repository Structure
+
+```text
+docs/       -> architecture and infrastructure documentation
+diagrams/   -> Mermaid architecture diagrams
+tabs/       -> frontend feature modules and experiments
+infra/      -> infrastructure and deployment helpers
+scripts/    -> automation and utility scripts
+````
+
+---
+
+## Documentation
+
+Detailed project documentation is available in the `/docs` directory.
+
+Main topics:
+
+* Linux baseline and hardening
+* Docker platform architecture
+* Database layer
+* API layer
+* Web dashboard architecture
+* Observability and logging
+* Azure hybrid integration
+* CI/CD and automation
