@@ -4,6 +4,12 @@ Interactive browser-based EVE market dashboard connected to a real backend API a
 
 The dashboard combines cargo valuation, historical market analysis, and modular frontend tools into a unified interface powered by live EVE Online market data.
 
+## Preview
+
+![Dashboard Overview](../assets/market-dashboard.png)
+
+![Market Charts](../assets/market-charts.png)
+
 ---
 
 # Current Features
