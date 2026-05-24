@@ -2,7 +2,7 @@
 
 Interactive browser-based EVE market dashboard connected to a real backend API and historical market database.
 
-The dashboard combines cargo valuation, historical market analysis, and modular frontend tools into a unified interface powered by live EVE Online market data.
+The dashboard combines live cargo valuation, historical regional market analysis, and modular frontend tools into a unified interface powered by real EVE Online market data.
 
 ## Preview
 
@@ -15,15 +15,15 @@ The dashboard combines cargo valuation, historical market analysis, and modular 
 # Current Features
 
 - Live cargo value calculation
-- Historical market charts
+- Historical regional market charts
+- Multilingual item support
 - Multi-tab dashboard system
 - Dynamic chart tabs
+- Persistent chart sessions
 - Trade utility integration
+- Route risk foundation
 - Responsive dark UI
 - Real API-connected data flow
-- Clickable item interactions
-- Historical price statistics
-- Browser-based frontend architecture
 
 ---
 
@@ -37,7 +37,7 @@ Current frontend modules:
 - Route Risk
 - WH Mapping
 
-The dashboard uses a shared tab-based interface with modular feature separation.
+The dashboard uses a shared tab-based architecture with modular frontend separation.
 
 ---
 
@@ -54,45 +54,70 @@ CTRL+C from EVE
 → Live market lookup
 → Total value calculation
 → Interactive item results
-````
+→ Open historical charts
+```
 
 ---
 
 # Current Cargo Features
 
-* Multi-item parsing
-* Quantity detection
-* Invalid line handling
-* Missing item detection
-* Real market price calculation
-* ISK formatting
-* Clickable item rows
-* Direct chart integration
+- Multi-item parsing
+- Quantity detection
+- Invalid line handling
+- Missing item detection
+- Real market price calculation
+- ISK formatting
+- Clickable item rows
+- Direct chart integration
+- Multilingual item support
 
 ---
 
 # Historical Chart System
 
-Items inside the Cargo Value results can directly open historical market charts.
+Items inside Cargo Value results can directly open historical regional market charts.
 
-### Current Chart Features
+## Current Chart Features
 
-* Historical average price tracking
-* Adjusted price visualization
-* Multiple open chart tabs
-* Closable chart tabs
-* Automatic focus behavior
-* Time range selection
-* Basic price statistics
+- Historical average price tracking
+- Average and adjusted price visualization
+- Regional market selection
+- Multiple open chart tabs
+- Closable chart tabs
+- Persistent chart sessions
+- Automatic history backfill
+- Time range selection
+- Chart tooltip analytics
 
 ### Statistics
 
 Current chart statistics include:
 
-* Latest price
-* Minimum price
-* Maximum price
-* Percentage change
+- Latest price
+- Minimum price
+- Maximum price
+- Percentage change
+- Daily traded volume
+- Order count
+
+### Interaction Features
+
+- Mouse-wheel zoom
+- Drag-select zoom
+- Reset zoom controls
+- Automatic focus behavior
+
+---
+
+# Regional Market Support
+
+Current historical chart support includes:
+
+- Jita / The Forge
+- Amarr / Domain
+- Dodixie / Sinq Laison
+- Hek / Metropolis
+- Rens / Heimatar
 
 ---
 
@@ -113,10 +138,10 @@ Frontend
 
 ### Design Principles
 
-* No direct database access from frontend
-* Backend handles calculations and validation
-* Frontend focuses on interaction and visualization
-* Modular API-driven architecture
+- No direct database access from frontend
+- Backend handles calculations and validation
+- Frontend focuses on interaction and visualization
+- Modular API-driven architecture
 
 ---
 
@@ -126,12 +151,12 @@ The frontend follows a lightweight EVE-inspired dark UI design.
 
 ### Current Focus Areas
 
-* Fast browser rendering
-* Responsive layout behavior
-* Modular tab architecture
-* Interactive workflow design
-* Minimal dependency approach
-* Expandable frontend structure
+- Fast browser rendering
+- Responsive layout behavior
+- Modular tab architecture
+- Interactive workflow design
+- Minimal dependency approach
+- Expandable frontend systems
 
 ---
 
@@ -139,24 +164,26 @@ The frontend follows a lightweight EVE-inspired dark UI design.
 
 Currently operational:
 
-* Real API-connected dashboard
-* Historical market visualization
-* Live cargo value calculation
-* Interactive chart system
-* Multi-tab frontend architecture
-* Real EVE market data integration
-* Dynamic chart interaction workflow
+- Real API-connected dashboard
+- Historical regional market visualization
+- Live cargo value calculation
+- Interactive multi-chart system
+- Persistent chart sessions
+- Multilingual item support
+- Dynamic chart interaction workflow
+- Real EVE market data integration
+- Route Risk foundation started
 
-The dashboard has evolved from standalone frontend utilities into a connected market analysis platform.
+The dashboard has evolved into a modular market analysis platform with real backend integration and persistent historical analytics.
 
 ---
 
 # Planned Features
 
-* Regional market comparison
-* Moving averages
-* Volatility indicators
-* Buy/Sell pressure analysis
-* AI-assisted market commentary
-* Route risk integration
-* Expanded analytics modules
+- Moving averages
+- Volatility indicators
+- Buy/Sell pressure analysis
+- AI-assisted market commentary
+- Expanded route intelligence
+- Additional analytics modules
+- Public deployment hardening
