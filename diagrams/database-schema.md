@@ -1,3 +1,5 @@
+´´´mermaid
+
 erDiagram
 
     price_import_runs {
