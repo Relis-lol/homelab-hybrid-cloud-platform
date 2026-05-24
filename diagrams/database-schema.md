@@ -1,10 +1,19 @@
-```mermaid
 erDiagram
+
+    price_import_runs {
+        bigint id PK
+        text source
+        text status
+        text notes
+        timestamp started_at
+        timestamp finished_at
+    }
 
     item_types {
         bigint type_id PK
         text type_name
-        timestamp created_at
+        boolean published
+        timestamp updated_at
     }
 
     item_name_translations {
@@ -38,19 +47,9 @@ erDiagram
         bigint import_run_id FK
     }
 
-    price_import_runs {
-        bigint id PK
-        text source
-        text status
-        text notes
-        timestamp started_at
-        timestamp finished_at
-    }
+    item_types ||--o{ item_name_translations : "official localized names"
+    item_types ||--o{ esi_market_prices : "global price snapshots"
+    item_types ||--o{ region_market_history : "regional daily history"
 
-    item_types ||--o{ item_name_translations : localized_names
-    item_types ||--o{ esi_market_prices : live_prices
-    item_types ||--o{ region_market_history : regional_history
-
-    price_import_runs ||--o{ esi_market_prices : imports
-    price_import_runs ||--o{ region_market_history : imports
-```
+    price_import_runs ||--o{ esi_market_prices : "tracks imports"
+    price_import_runs ||--o{ region_market_history : "tracks imports"
