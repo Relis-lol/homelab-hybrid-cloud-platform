@@ -1,10 +1,10 @@
 # Route Risk Assistant
 
-Frontend-based hauling and route analysis tool for EVE Online.
+Browser-based hauling and route analysis tool for EVE Online.
 
-The system is designed to combine route information, cargo value, and contextual risk indicators into a practical decision-support tool for traders and haulers.
+The system combines route information, cargo value, security status analysis, and contextual risk indicators into a modular decision-support tool for traders and haulers.
 
-The current implementation focuses on frontend structure, interaction flow, and future API integration preparation.
+The project currently includes both frontend systems and early backend route analysis foundations.
 
 ## Preview
 
@@ -19,19 +19,21 @@ The current implementation focuses on frontend structure, interaction flow, and 
 - Route setup interface
 - Cargo and ship profile input
 - Route mode selection
-- Manual danger system filtering
-- Risk score calculation
+- Route analysis API foundation
+- Security status detection
+- Kill statistics integration
+- Basic risk scoring prototype
+- Dangerous system identification
 - Scenario saving
 - Responsive dashboard UI
-- Local-only scenario persistence
-- API hook preparation
+- Local scenario persistence
 - EVE-inspired dark UI design
 
 ---
 
 # Current Dashboard Sections
 
-### Route Setup
+## Route Setup
 
 Supports route configuration between systems.
 
@@ -49,15 +51,17 @@ Current inputs:
 
 ---
 
-### Risk Analysis
+## Risk Analysis
 
-The current frontend prototype already calculates and displays simplified route risk estimations.
+The current system already supports basic backend-assisted route analysis.
 
 ### Current Indicators
 
 - Risk score
 - Route length
 - Cargo ISK per m³
+- Security status awareness
+- Dangerous system detection
 - Basic recommendation level
 
 ### Current Risk Levels
@@ -68,9 +72,33 @@ The current frontend prototype already calculates and displays simplified route 
 
 ---
 
+# Backend Foundation
+
+The project now includes an early backend analysis layer.
+
+### Current Backend Features
+
+- Route analysis endpoint
+- System path retrieval
+- Security status lookup
+- Kill statistics integration
+- Basic route scoring prototype
+
+### Current Workflow
+
+```text
+Route Request
+→ Backend Analysis
+→ Security/Kill Evaluation
+→ Risk Scoring
+→ Recommendation Output
+```
+
+---
+
 # Scenario System
 
-The tool currently supports local scenario saving through browser storage.
+The tool supports local scenario persistence through browser storage.
 
 ### Current Capabilities
 
@@ -81,65 +109,41 @@ The tool currently supports local scenario saving through browser storage.
 
 ---
 
-# Planned API Integration
-
-The current frontend structure was intentionally prepared for future backend connectivity.
-
-### Planned Future Data Sources
-
-- EVE kill statistics
-- System activity data
-- Player loss tracking
-- Route danger indicators
-- Historical risk patterns
-
----
-
-# Planned Future Workflow
-
-```text id="uvygrv"
-Route Request
-→ Backend/API Analysis
-→ System Risk Evaluation
-→ Route Scoring
-→ Recommendation Output
-````
-
----
-
-# Current Design Goals
+# Design Goals
 
 The project focuses on:
 
-* Fast route evaluation
-* Lightweight browser-based UX
-* Expandable risk analysis logic
-* Modular dashboard integration
-* Practical hauling support tools
+- Fast route evaluation
+- Lightweight browser-based UX
+- Expandable risk analysis logic
+- Modular dashboard integration
+- Practical hauling support tools
+- Future backend-assisted analysis
 
 ---
 
 # Current Status
 
-Currently implemented:
+Currently operational:
 
-* Full frontend prototype
-* Route setup workflow
-* Risk display system
-* Scenario management
-* Modular dashboard integration
-* API-ready frontend structure
+- Frontend route workflow
+- Backend route analysis foundation
+- Basic scoring prototype
+- Kill-data integration
+- Security status evaluation
+- Scenario persistence
+- Dashboard integration
 
-Backend integration and live risk analysis are planned future expansion areas.
+Advanced route intelligence and visualization systems are still planned future expansion areas.
 
 ---
 
 # Planned Features
 
-* Live kill-data integration
-* Dynamic system danger ratings
-* Safer route suggestions
-* Historical system risk tracking
-* Cargo-aware route scoring
-* Regional hauling analysis
-* AI-assisted hauling recommendations
+- Dynamic system danger ratings
+- Historical route risk tracking
+- Cargo-aware route scoring
+- Safer route suggestions
+- Regional hauling analysis
+- AI-assisted hauling recommendations
+- Expanded route analytics
