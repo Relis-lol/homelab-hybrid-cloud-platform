@@ -1,3 +1,14 @@
+# Core Database Schema
+
+Main relational database structure for the EVE market platform.
+
+The schema focuses on:
+- historical market data
+- item metadata
+- localization support
+- import tracking
+- API-driven analytics
+
 ```mermaid
 
 erDiagram
