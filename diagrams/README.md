@@ -1,3 +1,4 @@
+
 # Architecture Diagrams
 
 This directory contains Mermaid-based architecture and data flow diagrams for the project.
