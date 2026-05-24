@@ -1,19 +1,17 @@
-# Core Database Schema
+# Database Schema
 
 Main relational database structure for the EVE market platform.
 
-The schema focuses on:
-- historical market data
-- item metadata
-- localization support
-- import tracking
-- API-driven analytics
+The schema supports:
 
-
-
+- historical market analytics
+- multilingual item lookup
+- regional market history
+- worker import tracking
+- API-driven frontend systems
+- future route and analytics features
 
 ```mermaid
-
 erDiagram
 
     price_import_runs {
@@ -69,3 +67,4 @@ erDiagram
 
     price_import_runs ||--o{ esi_market_prices : "tracks imports"
     price_import_runs ||--o{ region_market_history : "tracks imports"
+```
