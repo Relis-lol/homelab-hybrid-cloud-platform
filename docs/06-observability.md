@@ -4,7 +4,7 @@
 
 Provide visibility into system behavior, failures, and operational health across the platform.
 
-The current monitoring setup focuses mainly on the automated worker pipeline and basic infrastructure visibility.
+The current observability layer focuses on automated worker execution, infrastructure visibility, and early operational monitoring.
 
 ---
 
@@ -16,6 +16,10 @@ Implemented components:
 - Discord webhook notifications
 - Cron-based execution visibility
 - Docker container logs
+- API offline detection
+- Process count monitoring
+- Network traffic monitoring
+- Backup milestone creation
 - UFW firewall logging
 - Fail2ban SSH monitoring
 
@@ -30,24 +34,25 @@ Current monitoring covers:
 - API availability
 - Database write operations
 - Docker container behavior
+- Process and network activity
 - Basic system security events
 
 ---
 
 ## Worker Monitoring
 
-The worker is currently the most observable part of the platform.
+The worker currently acts as the most observable backend component.
 
 ### Execution Tracking
 
-Each worker run stores metadata in the database, including:
+Each worker run stores metadata inside the database, including:
 
 - Start and finish time
 - Execution status
 - Imported row count
 - Error notes
 
-This provides basic historical visibility into pipeline reliability.
+This provides historical visibility into pipeline reliability and import behavior.
 
 ---
 
@@ -59,13 +64,15 @@ Current behavior:
 
 - Successful imports send summary messages
 - Failed runs send error notifications
+- Offline/API issues trigger alerts
 - Notifications include execution details
 
 ### Benefits
 
 - Faster failure detection
 - Reduced manual log inspection
-- Easier debugging during unattended execution
+- Easier unattended operation monitoring
+- Basic operational awareness
 
 ---
 
@@ -73,7 +80,7 @@ Current behavior:
 
 ### Database-Level
 
-`price_import_runs` acts as a structured execution log.
+`price_import_runs` acts as a structured execution log for worker activity.
 
 ---
 
@@ -99,7 +106,8 @@ Current system logging includes:
 
 - UFW firewall events
 - Fail2ban SSH protection logs
-- Basic Ubuntu logs
+- Basic Ubuntu system logs
+- Process and network monitoring exports
 
 ---
 
@@ -113,6 +121,9 @@ Current behavior:
 - Manual execution still possible
 - Failures surfaced through Discord
 - Controlled one-shot worker lifecycle
+- Monitoring exports generated automatically
+
+This keeps worker execution predictable and easier to debug.
 
 ---
 
@@ -122,23 +133,26 @@ Currently operational:
 
 - Worker execution tracking
 - Structured import history
-- Discord notifications
+- Discord monitoring notifications
+- API availability checks
 - Docker runtime logging
+- Basic process/network monitoring
+- Backup milestone tracking
 - Basic security monitoring
 
-The platform already supports basic operational debugging and monitoring workflows.
+The platform already supports lightweight operational observability and unattended monitoring workflows.
 
 ---
 
 ## Known Limitations
 
-- No centralized logging
-- No metrics dashboard
-- No Prometheus/Grafana stack
-- No uptime monitoring
+- No centralized logging stack
+- No Prometheus/Grafana setup
+- No advanced metrics dashboard
 - No container health dashboard
-- No advanced alerting system
-- No log rotation strategy
+- No distributed tracing
+- No advanced alert escalation
+- No formal retention/rotation strategy
 
 ---
 
