@@ -4,7 +4,7 @@
 
 The API provides a controlled access layer between clients and the PostgreSQL database.
 
-It handles market data queries, business logic, and frontend-facing responses.
+It handles market queries, historical analytics, business logic, and frontend-facing responses for the dashboard platform.
 
 ---
 
@@ -35,11 +35,13 @@ Client → API → PostgreSQL
 
 ## Current Features
 
-- Item lookup and search
-- Global ESI price retrieval
-- Historical market data access
+- Item lookup and multilingual search
+- Global ESI market price retrieval
+- Regional historical market access
 - Cargo value calculation
+- Historical chart support
 - Import run tracking
+- Route risk analysis foundation
 
 ---
 
@@ -52,9 +54,48 @@ Client → API → PostgreSQL
 | `GET` | `/items` | Item metadata |
 | `GET` | `/items/search?q=` | Item search |
 | `GET` | `/esi/global-prices` | Global market prices |
-| `GET` | `/market-history` | Historical price data |
+| `GET` | `/market-history` | Historical market data |
 | `POST` | `/cargo/value` | Cargo value calculation |
 | `GET` | `/import-runs` | Worker execution history |
+| `POST` | `/route-risk/analyze` | Route risk prototype |
+
+---
+
+## Regional Market Support
+
+Historical market endpoints currently support:
+
+- Jita / The Forge
+- Amarr / Domain
+- Dodixie / Sinq Laison
+- Hek / Metropolis
+- Rens / Heimatar
+
+Returned data includes:
+
+- Average prices
+- Low/high values
+- Traded volume
+- Order counts
+
+---
+
+## Multilingual Item Support
+
+The API supports official localized EVE item names.
+
+### Current Supported Languages
+
+- English
+- German
+- French
+- Spanish
+- Russian
+- Japanese
+- Korean
+- Simplified Chinese
+
+This enables multilingual item lookup and localized frontend search behavior.
 
 ---
 
@@ -63,9 +104,25 @@ Client → API → PostgreSQL
 The API currently handles:
 
 - JOIN queries between item and market tables
-- Multi-item cargo calculations
-- Historical market filtering
+- Historical regional filtering
+- Cargo value aggregation
+- Auto-backfill handling for missing history
 - Frontend-ready JSON responses
+- Basic route risk scoring prototype
+
+---
+
+## Frontend Integration
+
+The API acts as the primary backend for the browser dashboard.
+
+Current frontend integrations include:
+
+- Cargo Value
+- Historical Charts
+- Market Search
+- Regional Market Selection
+- Route Risk foundation
 
 ---
 
@@ -84,9 +141,11 @@ Currently operational:
 
 - Stable FastAPI application layer
 - Connected to real EVE market data
-- Multi-endpoint structure active
+- Regional history system active
+- Multilingual item support active
+- Multi-endpoint architecture operational
 - Worker integration confirmed
-- Frontend integration functional
+- Frontend dashboard integration functional
 
 ---
 
@@ -97,6 +156,7 @@ Currently operational:
 - No caching layer
 - No pagination for large datasets
 - Response schemas still incomplete
+- Route risk scoring still early-stage
 
 ---
 
@@ -105,5 +165,6 @@ Currently operational:
 - Add response models
 - Improve filtering and pagination
 - Introduce caching
-- Separate test and production endpoints
-- Optimize API responses for frontend usage
+- Optimize chart query performance
+- Expand route risk scoring logic
+- Prepare public deployment hardening
