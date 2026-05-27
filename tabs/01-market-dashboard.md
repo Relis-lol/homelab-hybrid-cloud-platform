@@ -8,7 +8,9 @@ The dashboard combines live cargo valuation, historical regional market analysis
 
 ![Dashboard Overview](../assets/market-dashboard.png)
 
-![Market Charts](../assets/market-charts.png)
+![Market Charts](../assets/market-charts1.png)
+
+![Market Charts](../assets/market-charts2.png)
 
 ---
 
