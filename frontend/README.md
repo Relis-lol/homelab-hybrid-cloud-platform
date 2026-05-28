@@ -21,6 +21,7 @@ Explore frontend engineering, data visualization, browser performance, and user-
 | `03-logistics-calculator.md`    | Cargo planning and profitability calculations             |
 | `04-wormhole-mapping-system.md` | Interactive wormhole mapping and route management         |
 | `05-webgl-rendering-system.md`  | Real-time Three.js rendering and performance optimization |
+| `06-trade-looper.md` | Hub-to-hub arbitrage analysis and trade opportunity ranking |
 
 ---
 
