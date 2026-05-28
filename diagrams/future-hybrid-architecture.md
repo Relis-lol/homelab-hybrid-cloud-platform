@@ -1,57 +1,76 @@
-# Future Hybrid Architecture
+# Future Hybrid Cloud Architecture
+
+Planned architecture direction for optional cloud and public deployment experiments.
+
+The local platform remains the primary system. Cloud services are only added where they provide clear operational value, such as monitoring, deployment validation, or optional backup experiments.
 
 ```mermaid
 graph TD
 
 %% ----------- USERS -----------
 User["👤 Public User"]
-Admin["💻 Admin Laptop"]
+Admin["💻 Admin Workstation"]
 
-%% ----------- SECURITY -----------
-subgraph Security["Security Layer"]
-    Proxy["🌐 Reverse Proxy"]
+%% ----------- LOCAL SECURITY -----------
+subgraph Security["Local Security Layer"]
     Firewall["🛡️ UFW Firewall"]
+    Fail2Ban["🔒 Fail2Ban"]
 end
 
-%% ----------- LOCAL SERVER -----------
-subgraph Local["🖥️ Local Homelab Server"]
+%% ----------- FUTURE PUBLIC ACCESS -----------
+subgraph PublicAccess["Future Public Access"]
+    Proxy["🌐 Reverse Proxy"]
+    HTTPS["🔐 HTTPS / TLS"]
+end
+
+%% ----------- LOCAL PLATFORM -----------
+subgraph Local["🖥️ Local Homelab Platform"]
 
     subgraph Docker["Docker Compose Stack"]
-        Frontend["🌐 Frontend"]
-        API["⚙️ FastAPI"]
-        Worker["🔄 Worker"]
+        Frontend["🌐 Frontend Dashboard"]
+        API["⚙️ FastAPI Backend"]
+        Worker["🔄 Market Worker"]
         DB[(🗄️ PostgreSQL)]
     end
 
 end
 
-%% ----------- AZURE -----------
-subgraph Azure["☁️ Azure Cloud"]
+%% ----------- EXTERNAL DATA -----------
+ESI["📡 EVE ESI API"]
 
-    Storage["💾 Azure Blob Storage"]
-    Monitor["📊 Monitoring / Logs"]
-    CI["🧠 CI/CD Automation"]
-
+%% ----------- OPTIONAL CLOUD SERVICES -----------
+subgraph Cloud["☁️ Optional Cloud Services"]
+    Monitor["📊 Azure Monitor / Metrics"]
+    CI["🔁 GitHub Actions"]
+    Storage["💾 Optional Archive Storage"]
 end
 
-%% ----------- ACCESS -----------
-User --> Proxy
-Proxy --> Firewall
-Firewall --> Frontend
+%% ----------- CURRENT / PLANNED ACCESS -----------
+Admin -->|SSH Key Auth| Firewall
+Fail2Ban -.->|Protects SSH| Firewall
+Firewall --> Local
 
-Admin -->|SSH Key Auth| Local
+User -.->|Future public access| HTTPS
+HTTPS -.-> Proxy
+Proxy -.-> Firewall
 
-%% ----------- INTERNAL FLOW -----------
+%% ----------- APPLICATION FLOW -----------
 Frontend --> API
 API --> DB
+
+%% ----------- DATA INGESTION -----------
+ESI --> Worker
 Worker --> DB
 
-%% ----------- DATA SOURCE -----------
-EVE["🌐 EVE Market API"]
-EVE --> Worker
-
-%% ----------- AZURE CONNECTIONS -----------
-DB -.->|Backup Sync| Storage
-API -.->|Metrics / Logs| Monitor
-CI -->|Deploy / Update| Local
+%% ----------- OPTIONAL CLOUD CONNECTIONS -----------
+Local -.->|Metrics / Logs| Monitor
+CI -.->|Build / Validation / Deployment Workflow| Local
+DB -.->|Optional Backup Experiment| Storage
 ```
+
+## Notes
+
+* Public access is planned, not required for local operation.
+* Azure usage is optional and focused on monitoring experiments.
+* Blob storage is treated as optional archive storage, not core infrastructure.
+* The platform remains fully functional without cloud services.
