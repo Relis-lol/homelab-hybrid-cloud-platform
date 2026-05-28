@@ -1,46 +1,103 @@
-# Frontend Modules & Experimental Tools
+# Frontend Systems
 
-This folder contains standalone frontend modules, UI experiments, and browser-based utility systems developed for the EVE market platform ecosystem.
+Collection of browser-based applications, visualization systems, analytics tools, and UI experiments developed for the EVE Market Platform.
 
-Most tools started as standalone concepts and later evolved into integrated dashboard components connected to the backend API and historical market database.
-
----
-
-# Included Modules
-
-| File | Purpose |
-|---|---|
-| `3d-planetary-background-system.md` | Real-time WebGL sci-fi background and rendering system |
-| `EVE-trade-cargo-calculator.md` | Standalone cargo and trade profit utility |
-| `live-market-dashboard.md` | API-connected dashboard with historical charts and live market tools |
-| `route-risk-assistant.md` | Planned hauling and route risk analysis system |
-| `wormhole-mapper.md` | Interactive wormhole mapping and route management tool |
+The frontend evolved from standalone utilities into a modular analytics platform connected to real market data, backend services, and historical datasets.
 
 ---
 
-# Frontend Focus Areas
+# 🎯 Purpose
 
-The modules inside this folder focus on:
-
-- Interactive UI systems
-- Real-time data visualization
-- Browser-based tools
-- Lightweight frontend architecture
-- Performance optimization
-- Modular dashboard design
-- EVE-inspired UX and visual design
+Explore frontend engineering, data visualization, browser performance, and user-focused tool design through real-world EVE Online use cases.
 
 ---
 
-# Current Direction
+# 🛠️ Included Systems
 
-The project is gradually evolving from standalone frontend utilities into a unified browser-based market platform with:
+| File                            | Purpose                                                   |
+| ------------------------------- | --------------------------------------------------------- |
+| `01-market-dashboard.md`        | Central analytics dashboard and market interface          |
+| `02-hauling-intelligence.md`    | Route evaluation and hauling risk analysis                |
+| `03-logistics-calculator.md`    | Cargo planning and profitability calculations             |
+| `04-wormhole-mapping-system.md` | Interactive wormhole mapping and route management         |
+| `05-webgl-rendering-system.md`  | Real-time Three.js rendering and performance optimization |
 
-- Shared dashboard architecture
-- API-connected modules
-- Historical market analytics
-- Interactive chart systems
-- Modular feature expansion
-- Future live data integrations
+---
 
-The long-term goal is to combine lightweight frontend engineering with practical data-driven gameplay tools and hybrid infrastructure concepts.
+# 🧱 Frontend Focus Areas
+
+### Data Visualization
+
+* Interactive market charts
+* Historical analytics
+* Dynamic dashboards
+* Real-time data presentation
+
+### Browser Engineering
+
+* Local persistence
+* State management
+* Offline-capable tools
+* Performance optimization
+
+### User Experience
+
+* Modular dashboard architecture
+* Fast workflow design
+* EVE-inspired interface concepts
+* Responsive layouts
+
+### Advanced Frontend Systems
+
+* SVG graph visualization
+* WebGL rendering
+* Clipboard integration
+* Import/export workflows
+* Compressed shareable state
+
+---
+
+# 🚀 Platform Evolution
+
+```text id="vqdcn8"
+Standalone Utilities
+        ↓
+Shared Dashboard Modules
+        ↓
+Backend Integration
+        ↓
+Historical Analytics
+        ↓
+Unified Market Platform
+```
+
+---
+
+# ⚙️ Technologies
+
+* JavaScript
+* HTML5
+* CSS3
+* Chart.js
+* SVG
+* Three.js
+* WebGL
+* LocalStorage
+* FastAPI Integration
+
+---
+
+# 📈 Current Status
+
+The frontend now includes:
+
+* Real market analytics
+* Historical chart systems
+* Cargo valuation tools
+* Route intelligence foundations
+* Wormhole mapping
+* WebGL rendering
+* Persistent browser workflows
+* API-connected dashboard modules
+
+The overall direction is a lightweight, data-driven market platform built around practical gameplay tools, visualization systems, and scalable frontend architecture.
