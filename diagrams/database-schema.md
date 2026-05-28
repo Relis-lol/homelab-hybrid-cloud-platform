@@ -1,15 +1,6 @@
 # Database Schema
 
-Main relational database structure for the EVE market platform.
-
-The schema supports:
-
-- historical market analytics
-- multilingual item lookup
-- regional market history
-- worker import tracking
-- API-driven frontend systems
-- future route and analytics features
+Core PostgreSQL schema powering market analytics, historical storage, localization, snapshots, and worker operations.
 
 ```mermaid
 erDiagram
@@ -61,10 +52,40 @@ erDiagram
         bigint import_run_id FK
     }
 
-    item_types ||--o{ item_name_translations : "official localized names"
-    item_types ||--o{ esi_market_prices : "global price snapshots"
-    item_types ||--o{ region_market_history : "regional daily history"
+    regional_market_snapshots {
+        bigint id PK
+        bigint type_id FK
+        bigint region_id
+        numeric buy_price
+        numeric sell_price
+        bigint buy_volume
+        bigint sell_volume
+        timestamp snapshot_time
+    }
 
-    price_import_runs ||--o{ esi_market_prices : "tracks imports"
-    price_import_runs ||--o{ region_market_history : "tracks imports"
+    hourly_snapshot_items {
+        bigint type_id PK
+        boolean enabled
+        timestamp updated_at
+    }
+
+    regional_order_sync_state {
+        bigint region_id PK
+        timestamp last_sync
+        timestamp updated_at
+    }
+
+    item_types ||--o{ item_name_translations : translations
+
+    item_types ||--o{ esi_market_prices : global_prices
+
+    item_types ||--o{ region_market_history : daily_history
+
+    item_types ||--o{ regional_market_snapshots : live_snapshots
+
+    item_types ||--o{ hourly_snapshot_items : tracked_items
+
+    price_import_runs ||--o{ esi_market_prices : import_tracking
+
+    price_import_runs ||--o{ region_market_history : import_tracking
 ```
