@@ -1,196 +1,188 @@
 # 05 – Public Web Dashboard
 
-## Objective
+Browser-based interface for the EVE Market Platform.
 
-The web dashboard provides browser-based access to EVE market analytics, historical pricing data, and trading tools.
-
-It connects the backend API, historical database, and interactive frontend systems into a modular browser-based interface.
+The dashboard combines market analytics, historical data, trading utilities, route intelligence, and visualization systems into a single user-facing application.
 
 ---
 
-## Current Features
+# 🎯 Purpose
 
-- Cargo value calculator
-- Trade helper tools
-- Interactive historical charts
-- Regional market selection
-- Multilingual item support
-- Multi-tab dashboard system
-- Dynamic chart tabs
-- Persistent chart sessions
-- Responsive dark UI
-- Route risk analysis foundation
+Provide a unified interface for market analysis, trading decisions, logistics planning, and operational insights.
 
 ---
 
-## Architecture
+# 🏗️ Architecture
+
+### Current
 
 ```text
-User → Frontend → API → PostgreSQL
+Browser
+    ↓
+Frontend
+    ↓
+FastAPI
+    ↓
+PostgreSQL
 ```
 
-Planned public deployment:
+### Planned Public Deployment
 
 ```text
-User → Reverse Proxy → Frontend → API → PostgreSQL
-```
-
----
-
-## Main UI Sections
-
-### Cargo Value
-
-Supports direct EVE copy/paste input.
-
-Current capabilities:
-
-- Item and quantity parsing
-- Invalid line detection
-- Missing item detection
-- Total ISK calculation
-- Clickable item results
-- API-connected live pricing
-- Direct chart integration
-
-Example input:
-
-```text
-Compressed Plagioclase    619164
-Vermillion Mykoserocin    240
-Compressed Veldspar       9665
+Browser
+    ↓
+Reverse Proxy
+    ↓
+Frontend
+    ↓
+FastAPI
+    ↓
+PostgreSQL
 ```
 
 ---
 
-### Trade Helper
+# 🛠️ Dashboard Modules
 
-Integrated trading utilities:
-
-- Cargo calculator
-- Profit calculator
-- Buy order calculator
-- Cargo space tools
-
-The goal is to provide lightweight trading and hauling support directly inside the dashboard.
-
----
-
-### Charts
-
-Interactive historical market charts connected to stored regional history data.
-
-Current features:
-
-- Historical price visualization
-- Average and adjusted price display
-- Regional market selection
-- Dynamic chart tabs
-- Multiple open charts
-- Closable chart tabs
-- Persistent chart sessions
-- Automatic history backfill
-- Time range selection
-- Chart tooltip analytics
-
-### Chart Analytics
-
-Current chart analytics include:
-
-- Average price
-- Low/high values
-- Daily traded volume
-- Order count
-- Percentage change
-
-### Interaction Features
-
-- Mouse-wheel zoom
-- Drag-select zoom
-- Reset zoom controls
-- Automatic tab focus behavior
+| Module               | Purpose                       |
+| -------------------- | ----------------------------- |
+| Cargo Value          | Inventory valuation           |
+| Market Charts        | Historical analytics          |
+| Trade Looper         | Arbitrage opportunities       |
+| Logistics Calculator | Cargo and profit planning     |
+| Hauling Intelligence | Route risk evaluation         |
+| Wormhole Mapping     | Chain visualization           |
+| Market Newsfeed      | Optional immersive news layer |
+| WebGL Environment    | Real-time dashboard rendering |
 
 ---
 
-### Route Risk
+# 🧱 Key Design Decisions
 
-Early frontend foundation for future hauling and route analysis systems.
+* Dashboard-first architecture
 
-Current prototype includes:
+  * tools share a common interface
 
-- Route setup UI
-- Risk display system
-- Basic scoring prototype
-- API integration preparation
+* API-driven communication
 
----
+  * frontend remains lightweight
 
-## Multilingual Item Support
+* Modular feature system
 
-The dashboard supports official localized EVE item names.
+  * tools can evolve independently
 
-Currently supported:
+* Persistent browser state
 
-- English
-- German
-- French
-- Spanish
-- Russian
-- Japanese
-- Korean
-- Simplified Chinese
+  * sessions survive refreshes
 
-This allows localized item search instead of English-only item naming.
+* Real EVE market data
+
+  * no simulated datasets
 
 ---
 
-## Data Flow
+# 📊 Core Capabilities
+
+### Market Analytics
+
+* Historical market charts
+* Regional hub comparison
+* Snapshot visualization
+* Market search
+
+### Trading Tools
+
+* Cargo valuation
+* Trade opportunity discovery
+* Profit estimation
+* Fee-aware calculations
+
+### Logistics
+
+* Route evaluation
+* Cargo planning
+* Wormhole mapping
+* Transport analysis
+
+### Platform Features
+
+* Multilingual item support
+* Dynamic chart tabs
+* Persistent sessions
+* Responsive interface
+
+---
+
+# 🌍 Supported Trade Hubs
+
+* Jita / The Forge
+* Amarr / Domain
+* Dodixie / Sinq Laison
+* Hek / Metropolis
+* Rens / Heimatar
+
+---
+
+# 🚀 Data Flow
 
 ```text
-Frontend → API → Database → API → Frontend
+User Action
+      ↓
+Frontend Module
+      ↓
+FastAPI Endpoint
+      ↓
+Market Database
+      ↓
+Analytics Response
+      ↓
+Interactive Visualization
 ```
 
-### Design Principles
+---
 
-- No direct database access
-- API handles calculations and transformations
-- Frontend focuses on interaction and visualization
-- Modular tab-based architecture
+# ⚙️ Technology Stack
+
+* JavaScript
+* HTML5
+* CSS3
+* Chart.js
+* Three.js
+* FastAPI
+* PostgreSQL
 
 ---
 
-## Current Status
+# 📈 Current Status
 
-Currently operational:
+**Operational**
 
-- Cargo Value connected to live API data
-- Historical regional market charts functional
-- Trade Helper integrated
-- Dynamic multi-chart system active
-- Persistent chart sessions working
-- Real EVE market data displayed in browser
-- Multilingual item support active
-- Route Risk foundation started
-
----
-
-## Known Limitations
-
-- No public reverse proxy yet
-- No HTTPS/domain setup
-- Styling still evolving
-- No user accounts or cloud sync
-- No advanced AI analytics yet
-- Route Risk still early-stage
+* Market dashboard
+* Historical analytics
+* Cargo valuation
+* Trade Looper
+* Route analysis foundation
+* Wormhole mapping
+* WebGL rendering layer
+* Multilingual item support
 
 ---
 
-## Next Steps
+# ⚠️ Current Limitations
 
-- Improve UI polish and consistency
-- Add reverse proxy and HTTPS
-- Expand chart analytics
-- Improve route risk scoring
-- Add moving averages and indicators
-- Prepare demo screenshots and GIFs
-- Continue modular frontend expansion
+* No public HTTPS deployment
+* No reverse proxy layer
+* No account system
+* No cloud synchronization
+* Limited observability
+
+---
+
+# 🔮 Planned Expansion
+
+* Reverse proxy & HTTPS
+* Advanced market analytics
+* Enhanced route intelligence
+* Additional dashboard modules
+* Public deployment hardening
+* Azure-connected infrastructure
