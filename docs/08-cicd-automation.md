@@ -1,100 +1,147 @@
 # 08 – CI/CD & Automation
 
-## Objective
+Automation strategy for the EVE Market Platform.
 
-Improve reproducibility, deployment reliability, and operational automation across the platform.
+The platform already includes scheduled operations, reproducible deployments, and environment-based configuration. Future work focuses on extending these foundations into formal CI/CD workflows.
 
 ---
 
-## Current Automation
+# 🎯 Purpose
 
-Some operational automation is already implemented.
+Reduce manual operations, improve deployment consistency, and increase platform reliability through automation.
 
-### Worker Scheduling
+---
 
-- Cron-based worker execution
-- Controlled one-shot batch processing
-- Predictable scheduled imports
-- Manual execution still possible for debugging
+# 🧱 Existing Automation
 
-### Configuration Control
+### Scheduling
 
-Environment variables are used for runtime configuration.
+* Cron-based worker execution
+* Automated market imports
+* Scheduled data processing
+* Controlled batch execution
 
-Example:
+### Deployment
 
-```text
+* Docker-based service deployment
+* Reproducible container builds
+* Environment-driven configuration
+
+### Operations
+
+* Discord notifications
+* Automated monitoring workflows
+* Backup automation foundation
+
+---
+
+# 🛠️ Current Automation Architecture
+
+```text id="xh6ixq"
+Cron
+   ↓
+Worker Execution
+   ↓
+Database Updates
+   ↓
+Discord Notifications
+
+Docker Compose
+   ↓
+Container Deployment
+```
+
+---
+
+# 🧱 Key Design Decisions
+
+* Batch-based automation
+
+  * easier debugging and recovery
+
+* Environment-driven configuration
+
+  * runtime behavior remains configurable
+
+* Reproducible deployments
+
+  * containers can be rebuilt consistently
+
+* Operational simplicity
+
+  * automation without unnecessary complexity
+
+---
+
+# ⚙️ Configuration Example
+
+```text id="wv6ml0"
 ENABLE_NAME_ENRICHMENT=true
 ```
 
-### Separation of Responsibilities
-
-The platform already separates:
-
-- Runtime → Docker containers
-- Scheduling → cron
-- Configuration → `.env`
-
-This keeps the system easier to debug and maintain.
+Configuration remains separated from application code.
 
 ---
 
-## Planned CI/CD Scope
+# 🚀 Current Capabilities
 
-### CI (Continuous Integration)
-
-Planned areas:
-
-- Code validation
-- Docker build verification
-- Configuration checks
-- Basic API testing
-
-### CD (Continuous Deployment)
-
-Future goals:
-
-- Automated deployment workflows
-- Controlled update process
-- Infrastructure validation
+* Scheduled imports
+* Automated worker execution
+* Dockerized deployment workflow
+* Environment-based configuration
+* Notification automation
+* Repeatable platform startup
 
 ---
 
-## CI/CD Philosophy
+# 🔄 Planned CI Scope
 
-The project follows a lightweight automation approach:
-
-- Reproducible container builds
-- Version-controlled configuration
-- Minimal manual deployment work
-- Clear separation between build and runtime
-
-The goal is operational simplicity rather than enterprise-scale orchestration.
+| Area                 | Purpose                        |
+| -------------------- | ------------------------------ |
+| Build Validation     | Verify Docker builds           |
+| API Testing          | Basic endpoint validation      |
+| Configuration Checks | Detect deployment issues       |
+| Code Quality         | Automated validation workflows |
 
 ---
 
-## Current Status
+# 📦 Planned CD Scope
+
+| Area                  | Purpose                        |
+| --------------------- | ------------------------------ |
+| Deployment Validation | Verify releases                |
+| Controlled Rollouts   | Safer updates                  |
+| Infrastructure Checks | Environment verification       |
+| Automated Updates     | Reduced manual deployment work |
+
+---
+
+# 📈 Current Status
+
+**Partially Implemented**
+
+Current automation:
+
+* Cron scheduling
+* Docker deployment workflows
+* Environment configuration
+* Monitoring notifications
 
 Not yet implemented:
 
-- GitHub Actions
-- Automated testing
-- Deployment pipelines
-- Infrastructure-as-Code workflows
-
-However, the platform already includes:
-
-- Automated scheduled imports
-- Controlled worker lifecycle
-- Reproducible Docker builds
-- Environment-based configuration
+* GitHub Actions
+* Automated testing
+* Deployment pipelines
+* Infrastructure as Code
 
 ---
 
-## Next Steps
+# 🔮 Future Expansion
 
-- Create first GitHub Actions workflow
-- Add Docker build validation
-- Add basic API health testing
-- Define deployment strategy (manual → semi-automated → automated)
-- Prepare infrastructure-as-code approach (Terraform or Bicep)
+* GitHub Actions
+* Docker build pipelines
+* API health validation
+* Deployment automation
+* Terraform experiments
+* Bicep experiments
+* Infrastructure validation workflows
