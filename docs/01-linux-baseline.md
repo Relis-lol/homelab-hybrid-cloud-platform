@@ -1,150 +1,144 @@
-# 01 – Linux Baseline Setup
+# 01 – Linux Baseline
 
-## Hardware
+Linux infrastructure foundation for the EVE Market Platform.
 
-**Model:** NiPoGi 4K Mini PC  
-**CPU:** AMD Ryzen 3 4300U (4C / 4T)  
-**RAM:** 16GB DDR4  
-**Storage:** 512GB SSD  
-
-The system originally shipped with Windows 11 Pro and was converted into a dedicated Linux server platform.
-
-### Hardware Rationale
-
-- Low power consumption
-- Suitable for 24/7 operation
-- Enough performance for Docker workloads
-- Upgradeable RAM and storage
-- Cost-efficient homelab foundation
+This system serves as the primary host for containers, databases, backend services, automation workflows, and future hybrid-cloud integrations.
 
 ---
 
-## Additional Hardware
+# 🎯 Purpose
 
-### Backup Storage
-
-- External SSD-based backup solution
-- SanDisk 128GB  SATA SSD in USB enclosure
-- Dedicated for local backup and recovery workflows
-
-### Physical Monitoring Screen (Experimental)
-
-An older Android smartphone is currently being repurposed into a lightweight physical status display for:
-- system monitoring
-- worker status visibility
-- future dashboard integration
-
-This is intended as a low-cost homelab monitoring experiment.
+Provide a secure, lightweight, and reproducible Linux platform for self-hosted infrastructure workloads.
 
 ---
 
-## Operating System
+# 🛠️ Hardware
 
-**Ubuntu Server 24.04 LTS**
-
-### Installation Decisions
-
-- LVM enabled
-- No GUI installed
-- OpenSSH installed during setup
-- Minimal package footprint
-- No disk encryption
-
-### Why Ubuntu Server
-
-- Stable long-term support platform
-- Strong Docker ecosystem compatibility
-- Large community and documentation base
-- Commonly used in production environments
+| Component      | Specification                    |
+| -------------- | -------------------------------- |
+| System         | NiPoGi 4K Mini PC                |
+| CPU            | AMD Ryzen 3 4300U (4C / 4T)      |
+| Memory         | 16 GB DDR4                       |
+| Storage        | 512 GB SSD                       |
+| Backup Storage | External SSD-based backup device |
 
 ---
 
-## Network Configuration
+# 🛠️ Operating System
 
-- Wired LAN connection
-- Router-managed DHCP reservation
-- Internal IP assignment
-- No public port forwarding
-- No public services exposed
-
-### Network Philosophy
-
-The server is intentionally kept LAN-only during the current project stage to reduce attack surface and simplify infrastructure management.
+| Component     | Configuration           |
+| ------------- | ----------------------- |
+| OS            | Ubuntu Server 24.04 LTS |
+| GUI           | None                    |
+| Storage       | LVM                     |
+| Remote Access | OpenSSH                 |
+| Boot Mode     | Headless                |
 
 ---
 
-## Access & Security
+# 🧱 Key Design Decisions
+
+* Headless Linux deployment
+
+  * reduces resource usage and attack surface
+
+* Ubuntu Server LTS
+
+  * stable platform with long-term support
+
+* Container-first architecture
+
+  * services remain isolated and reproducible
+
+* LAN-only deployment
+
+  * simplifies operations and minimizes exposure
+
+* Backup strategy included from the beginning
+
+  * supports recovery and rollback workflows
+
+---
+
+# 🌐 Network Architecture
+
+| Area            | Configuration      |
+| --------------- | ------------------ |
+| Connectivity    | Wired LAN          |
+| Addressing      | DHCP reservation   |
+| Exposure        | No public services |
+| Port Forwarding | Disabled           |
+| Access Scope    | Local network only |
+
+---
+
+# 🔐 Security Baseline
 
 ### SSH
 
-- ED25519 key authentication
-- Password login disabled
-- Root login disabled
-- Subnet-restricted SSH access
+* ED25519 key authentication
+* Password login disabled
+* Root login disabled
+* Restricted network access
 
-### Firewall (UFW)
+### Firewall
 
-- Enabled with deny-incoming policy
-- SSH restricted to local subnet
-- API port (`8000/tcp`) restricted to LAN access
-- Logging enabled
+* UFW enabled
+* Default deny incoming
+* LAN-restricted service access
+* Logging enabled
 
-### Fail2ban
+### Intrusion Protection
 
-- Installed and active
-- SSH protection enabled
-
----
-
-## Container Runtime
-
-### Docker
-
-- Docker Engine installed and operational
-- Service enabled on boot
-
-### Docker Compose
-
-- Compose plugin installed (`docker compose`)
-- Multi-service stack validated successfully
-
-### Current Services
-
-- PostgreSQL container
-- FastAPI container
-- Worker container
+* Fail2ban enabled
+* SSH protection active
 
 ---
 
-## Current System State
+# 🐳 Container Platform
 
-Currently operational:
+### Runtime
 
-- Headless Linux server
-- Hardened SSH configuration
-- Firewall and Fail2ban protection
-- Docker Compose environment
-- PostgreSQL database
-- FastAPI backend
-- Worker-based import pipeline
-- LAN-only API access
+* Docker Engine
+* Docker Compose
 
----
+### Active Services
 
-## Known Limitations
-
-- No reverse proxy yet
-- No public HTTPS setup
-- No centralized monitoring stack
-- No CI/CD pipeline
-- No Azure integration yet
+| Service         | Purpose                  |
+| --------------- | ------------------------ |
+| PostgreSQL      | Data storage             |
+| FastAPI         | Backend API              |
+| Worker Services | Automated data ingestion |
+| Frontend        | Dashboard delivery       |
 
 ---
 
-## Next Steps
+# 🚀 Current Capabilities
 
-- Expand frontend/dashboard layer
-- Improve monitoring and logging
-- Extend automated import workflows
-- Integrate additional analytics features
-- Prepare hybrid cloud integration
+* Headless Linux server
+* Hardened remote access
+* Containerized application stack
+* Automated worker execution
+* Local backup workflows
+* LAN-only API access
+
+---
+
+# ⚠️ Current Limitations
+
+* No reverse proxy
+* No public HTTPS
+* No centralized observability stack
+* No CI/CD deployment pipeline
+* No Azure integration yet
+
+---
+
+# 🔮 Planned Expansion
+
+* Advanced monitoring and logging
+* Automated backup management
+* Azure hybrid-cloud integration
+* Infrastructure as Code
+* CI/CD deployment workflows
+* Public deployment hardening
