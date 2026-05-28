@@ -1,54 +1,51 @@
-## System Architecture Overview
+## Current Platform Architecture
 
 ```mermaid
-
 graph TD
 
-%% ----------- EXTERNAL -----------
-Admin["💻 Admin Laptop"]
-User["👤 Public User / Browser"]
-EVE["EVE Online Market API"]
+%% ----------- ACCESS -----------
+Admin["💻 Admin Workstation"]
 
 %% ----------- SECURITY -----------
-subgraph Security["Server Security"]
-    UFW["UFW Firewall"]
-    Fail2Ban["Fail2Ban"]
+subgraph Security["Host Security"]
+    UFW["🛡️ UFW Firewall"]
+    Fail2Ban["🔒 Fail2Ban"]
 end
 
-%% ----------- SERVER -----------
-Server["🖥️ NiPoGi Mini Server (Ubuntu + Docker)"]
+%% ----------- HOST -----------
+Server["🖥️ Ubuntu Server"]
 
-%% ----------- APPLICATION -----------
+%% ----------- DOCKER -----------
 subgraph Docker["Docker Compose Stack"]
-    Web["🌐 EVE Market Website (Public Interface)"]
-    API["⚙️ FastAPI Service"]
-    Worker["🔄 Market Import Worker"]
+
+    Frontend["🌐 Dashboard Platform"]
+
+    API["⚙️ FastAPI Backend"]
+
+    Worker["🔄 Market Worker"]
+
+    DB[(🗄️ PostgreSQL)]
+
 end
 
-%% ----------- DATABASE -----------
-DB[(🗄️ PostgreSQL History Database)]
-
-%% ----------- AZURE -----------
-subgraph Azure["☁️ Azure Cloud"]
-    CI["🧠 CI/CD Automation"]
-    Storage["💾 Backup / Storage"]
-end
+%% ----------- EXTERNAL -----------
+ESI["📡 EVE ESI API"]
 
 %% ----------- ACCESS -----------
-Admin -->|SSH Key Auth| Server
-User -->|HTTPS| UFW
+Admin -->|SSH Key Auth| UFW
 Fail2Ban -.->|Protects SSH| UFW
 UFW --> Server
 
-%% ----------- SERVER / APP FLOW -----------
-Server --> Web
-Web --> API
+%% ----------- APPLICATION FLOW -----------
+Server --> Frontend
+Frontend --> API
 API --> DB
 
-%% ----------- DATA IMPORT -----------
-EVE -->|Market Data| Worker
-Worker -->|Store History| DB
+%% ----------- DATA PIPELINE -----------
+ESI --> Worker
+Worker --> DB
 
-%% ----------- CLOUD -----------
-CI -->|Deploy / Update| Server
-DB -.->|Backup / Sync| Storage
+%% ----------- ANALYTICS FLOW -----------
+DB --> API
+API --> Frontend
+```
