@@ -4,48 +4,62 @@
 graph TD
 
 %% ----------- SOURCE -----------
-ESI["🌐 EVE Online ESI API"]
+ESI["📡 EVE Online ESI API"]
 
-%% ----------- IMPORT -----------
-Worker["🔄 Import Worker"]
-
-%% ----------- PROCESSING -----------
+%% ----------- WORKER -----------
+Worker["🔄 Market Worker"]
 Validation["✅ Data Validation"]
-Enrichment["🧩 Item Name Enrichment"]
+Enrichment["🧩 Item & Translation Enrichment"]
+Snapshots["📊 Regional Market Snapshots"]
+History["📈 Historical Market Imports"]
 
-%% ----------- STORAGE -----------
-DB[(🗄️ PostgreSQL Database)]
+%% ----------- DATABASE -----------
+DB[(🗄️ PostgreSQL)]
 
 %% ----------- API -----------
-API["⚙️ FastAPI Service"]
+API["⚙️ FastAPI Backend"]
 
 %% ----------- FRONTEND -----------
-Frontend["🌐 Web Dashboard"]
+Dashboard["🌐 Dashboard Platform"]
 
-%% ----------- FEATURES -----------
-Cargo["📦 Cargo Calculator"]
+%% ----------- MODULES -----------
+Cargo["📦 Cargo Value"]
 Charts["📈 Market Charts"]
-Trade["💹 Trade Helper"]
+TradeLooper["💹 Trade Looper"]
+RouteRisk["🛡️ Hauling Intelligence"]
+WHMapper["🕳️ Wormhole Mapping"]
+
+%% ----------- OBSERVABILITY -----------
+Runs["🧾 Import Run Tracking"]
+Discord["🔔 Discord Notifications"]
 
 %% ----------- USER -----------
 User["👤 User"]
 
-%% ----------- FLOW -----------
-ESI -->|Market Data| Worker
-
+%% ----------- INGESTION FLOW -----------
+ESI --> Worker
 Worker --> Validation
 Validation --> Enrichment
-Enrichment --> DB
+Enrichment --> History
+Enrichment --> Snapshots
 
+History --> DB
+Snapshots --> DB
+Worker --> Runs
+Runs --> DB
+Worker --> Discord
+
+%% ----------- API FLOW -----------
 DB --> API
+API --> Dashboard
 
-API --> Cargo
-API --> Charts
-API --> Trade
+%% ----------- DASHBOARD MODULES -----------
+Dashboard --> Cargo
+Dashboard --> Charts
+Dashboard --> TradeLooper
+Dashboard --> RouteRisk
+Dashboard --> WHMapper
 
-Cargo --> Frontend
-Charts --> Frontend
-Trade --> Frontend
-
-Frontend --> User
+%% ----------- USER FLOW -----------
+User --> Dashboard
 ```
