@@ -1,140 +1,176 @@
 # 03 – Database Layer
 
-## Objective
+PostgreSQL data platform powering market analytics, historical storage, localization, snapshot tracking, and backend services.
 
-PostgreSQL acts as the persistent storage layer for market data, item metadata, localization data, and worker execution tracking.
-
-The database is optimized for read-heavy analytics, historical market queries, and API-driven frontend access.
+The database acts as the central source of truth for all market intelligence, dashboard analytics, and worker-generated datasets.
 
 ---
 
-## Stack
+# 🎯 Purpose
 
-- PostgreSQL 16
-- Docker container deployment
-- Persistent Docker volume
+Store, organize, and serve historical and real-time market data for analytics, visualization, and trading tools.
 
 ---
 
-## Architecture
+# 🛠️ Stack
 
-The database runs as an internal-only Docker service.
+| Component       | Technology                 |
+| --------------- | -------------------------- |
+| Database Engine | PostgreSQL 16              |
+| Deployment      | Docker Container           |
+| Storage         | Persistent Docker Volume   |
+| Access          | Internal Container Network |
+
+---
+
+# 🏗️ Architecture
 
 ```text
-API → PostgreSQL
-Worker → PostgreSQL
+Frontend
+    ↓
+FastAPI
+    ↓
+PostgreSQL
+    ↑
+Worker Services
 ```
 
-Database access is restricted to internal container networking.
+Database access remains internal to the Docker network.
 
-No direct LAN or public database exposure exists.
-
----
-
-## Core Tables
-
-| Table | Purpose |
-|---|---|
-| `item_types` | Base item metadata |
-| `item_name_translations` | Official localized item names |
-| `esi_market_prices` | Global ESI market prices |
-| `region_market_history` | Historical regional market data |
-| `price_import_runs` | Worker execution tracking |
+No direct LAN or public database access exists.
 
 ---
 
-## Current Capabilities
+# 📦 Core Tables
 
-- Persistent historical market storage
-- Regional market history tracking
-- Multilingual item lookup support
-- Fast lookup by `type_id`
-- JOIN-based market analysis
-- Historical chart data support
-- Worker execution traceability
-
----
-
-## Regional Market Support
-
-Historical regional data currently includes:
-
-- Jita / The Forge
-- Amarr / Domain
-- Dodixie / Sinq Laison
-- Hek / Metropolis
-- Rens / Heimatar
-
-Stored market history includes:
-
-- Daily average prices
-- Low/high prices
-- Order count
-- Traded volume
+| Table                       | Purpose                   |
+| --------------------------- | ------------------------- |
+| `item_types`                | Item metadata             |
+| `item_name_translations`    | Localized item names      |
+| `esi_market_prices`         | Global ESI prices         |
+| `region_market_history`     | Historical market data    |
+| `regional_market_snapshots` | Intraday market snapshots |
+| `hourly_snapshot_items`     | Snapshot tracking targets |
+| `regional_order_sync_state` | Incremental sync tracking |
+| `price_import_runs`         | Worker execution history  |
 
 ---
 
-## Multilingual Item System
+# 🧱 Key Design Decisions
 
-Official localized EVE item names are supported through the `item_name_translations` table.
+* Historical and live market data separated
 
-### Current Supported Languages
+  * different update frequencies and use cases
 
-- English
-- German
-- French
-- Spanish
-- Russian
-- Japanese
-- Korean
-- Simplified Chinese
+* Incremental synchronization
 
-This enables multilingual item search and localized frontend support.
+  * avoids expensive full-region imports
 
----
+* Multilingual item support
 
-## Current Status
+  * enables localized search and UI features
 
-- PostgreSQL container operational
-- Persistent storage validated
-- Real EVE market data imported
-- Regional history pipeline operational
-- Multilingual translation system active
-- API and worker integration confirmed
-- Historical queries functioning
+* Snapshot-based analytics
 
-Current dataset scale:
+  * supports future liquidity and trend systems
 
-- ~16,800 indexed item names
-- ~848,000 historical market records
-- Official multilingual translations cached locally
+* Internal-only database access
+
+  * reduces exposure and simplifies security
 
 ---
 
-## Security Model
+# 📊 Market Coverage
 
-- Internal Docker network only
-- No exposed database port
-- Credentials handled via `.env`
-- API handles controlled read access
-- Worker handles controlled write access
+Supported trade hubs:
+
+* Jita / The Forge
+* Amarr / Domain
+* Dodixie / Sinq Laison
+* Hek / Metropolis
+* Rens / Heimatar
+
+Stored data includes:
+
+* Average prices
+* Highest prices
+* Lowest prices
+* Order counts
+* Trade volume
+* Market spreads
+* Buy and sell liquidity
 
 ---
 
-## Known Limitations
+# 🌍 Localization System
 
-- No migration framework yet
-- Basic indexing only
-- No partitioning strategy
-- No retention policy defined
-- No dedicated time-series optimization yet
+Official EVE item translations are stored locally.
+
+### Supported Languages
+
+* English
+* German
+* French
+* Spanish
+* Russian
+* Japanese
+* Korean
+* Simplified Chinese
+
+This allows multilingual item lookup and localized frontend experiences.
 
 ---
 
-## Next Steps
+# 📈 Current Dataset Scale
 
-- Add migration tooling
-- Improve indexing strategy
-- Evaluate time-series partitioning
-- Define retention and cleanup workflows
-- Optimize multilingual search performance
+| Metric              | Approximate Size |
+| ------------------- | ---------------- |
+| Indexed Items       | ~16,800          |
+| Historical Records  | ~848,000         |
+| Supported Languages | 8                |
+| Trade Hubs          | 5                |
+
+---
+
+# 🔐 Security Model
+
+* Internal Docker network only
+* No exposed database ports
+* Environment-based credentials
+* API-controlled read access
+* Worker-controlled write access
+
+---
+
+# 🚀 Current Capabilities
+
+* Historical market storage
+* Regional market analytics
+* Snapshot collection
+* Worker execution tracking
+* Multilingual item search
+* Dashboard data delivery
+* Trade analysis support
+* Charting data source
+
+---
+
+# ⚠️ Current Limitations
+
+* No migration framework
+* Limited indexing strategy
+* No table partitioning
+* No time-series optimization
+* Snapshot retention still evolving
+
+---
+
+# 🔮 Planned Expansion
+
+* Migration tooling
+* Advanced indexing
+* Time-series partitioning
+* Retention automation
+* Query optimization
+* Liquidity analytics
+* Market anomaly datasets
