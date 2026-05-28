@@ -1,85 +1,145 @@
 # Homelab Hybrid Cloud Platform
 
-Personal infrastructure and data platform project focused on Linux, Docker, automation, backend services, and hybrid cloud concepts.
+Containerized EVE Online market intelligence platform focused on backend engineering, data pipelines, analytics tooling, observability, and hybrid-cloud concepts.
 
-The platform evolved from a small Ubuntu homelab into a containerized EVE Online market analysis system with automated data ingestion, historical market tracking, API services, interactive frontend tools, and operational monitoring.
-
----
-
-## Current Features
-
-- Hardened Ubuntu Server environment
-- Docker Compose multi-service stack
-- PostgreSQL market database
-- FastAPI backend API
-- Automated ESI market imports
-- Historical regional market tracking
-- Multilingual EVE item support
-- Interactive frontend dashboard
-- Cargo, trade, and route analysis tools
-- Multi-chart visualization system
-- Cron-based worker automation
-- Discord monitoring notifications
-- Basic operational observability
+Built as a real-world infrastructure and automation portfolio project using Linux, Docker, PostgreSQL, FastAPI, Python workers, and modular frontend systems.
 
 ---
 
-## Architecture Overview
+# 🚀 Core Features
 
-Current stack:
-
-- Ubuntu Server
-- Docker Compose
-- PostgreSQL
-- FastAPI
-- Python worker services
-- Browser-based frontend tools
-
-The platform processes real EVE Online market data, stores historical pricing information across multiple regions, and exposes analytics tools through a modular web interface.
-
-Current database scale:
-
-- ~16,800 item names indexed
-- ~848,000 historical market records stored
-- Official multilingual item translations supported
+| Area | Features |
+|---|---|
+| Infrastructure | Hardened Ubuntu Server, Docker Compose stack, service isolation |
+| Backend | FastAPI API layer, modular worker architecture, scheduled ingestion |
+| Database | PostgreSQL analytics database, historical market storage |
+| Data Pipeline | Automated ESI imports, paginated sync system, snapshot aggregation |
+| Analytics | Trade recommendations, ROI analysis, MAV15 liquidity scoring |
+| Frontend | Interactive dashboard, multi-chart analytics, route-risk tools |
+| Observability | Discord monitoring, runtime metrics, import reporting |
+| Localization | Multilingual EVE item support |
+| Architecture | Hybrid-cloud ready structure with Azure integration planning |
 
 ---
 
-## Project Goals
+# 📊 Current Scale
 
-- Hybrid cloud architecture with Azure integration
-- Expanded monitoring and observability
-- CI/CD-driven deployment workflows
-- Public deployment hardening
-- Advanced market and route analytics
-- AI-assisted analysis experiments
+| Metric | Value |
+|---|---|
+| Indexed Items | ~16,800 |
+| Historical Market Records | ~848,000 |
+| Trade Hubs Supported | Jita, Amarr, Dodixie, Hek, Rens |
+| Data Sources | ESI Regional History + Live Market Snapshots |
+| Frontend Charts | Hourly + Daily analytics modes |
 
 ---
 
-## Repository Structure
+# 🧱 Architecture
 
 ```text
-docs/       -> architecture and infrastructure documentation
-diagrams/   -> Mermaid architecture diagrams
-tabs/       -> frontend feature modules and experiments
-infra/      -> infrastructure and deployment helpers
+Ubuntu Server
+│
+├── Docker Compose
+│   ├── PostgreSQL
+│   ├── FastAPI Backend
+│   ├── Python Workers
+│   └── Frontend Services
+│
+├── ESI Market Ingestion
+├── Snapshot Aggregation
+├── Trade Recommendation Engine
+└── Interactive Analytics Dashboard
+````
+
+---
+
+# ⚙️ Key Engineering Decisions
+
+* Modular worker split instead of one monolithic ingestion script
+
+  * easier maintenance and safer debugging
+
+* Incremental paginated market synchronization
+
+  * prevents ESI timeout and 504 instability
+
+* Strict trade-hub filtering
+
+  * removes false arbitrage from citadels and edge stations
+
+* Historical + live snapshot combination
+
+  * enables long-term analytics and future AI-assisted analysis
+
+* Fee-aware trade calculations
+
+  * realistic profitability instead of fake raw spread numbers
+
+* Lightweight frontend architecture
+
+  * responsive browser performance without heavy frameworks
+
+---
+
+# 📂 Repository Structure
+
+```text
+docs/       -> infrastructure and architecture documentation
+diagrams/   -> Mermaid diagrams and schema visuals
+tabs/       -> frontend feature modules and tool systems
+infra/      -> deployment and infrastructure helpers
 scripts/    -> automation and utility scripts
 assets/     -> screenshots and visual assets
 ```
 
 ---
 
-## Documentation
+# 📚 Documentation
 
-Detailed project documentation is available in the `/docs` directory.
+| File                      | Topic                        |
+| ------------------------- | ---------------------------- |
+| `01-linux-baseline.md`    | Ubuntu setup & hardening     |
+| `02-docker-platform.md`   | Container architecture       |
+| `03-database-layer.md`    | PostgreSQL structure         |
+| `04-api-layer.md`         | FastAPI backend              |
+| `05-web-dashboard.md`     | Frontend systems             |
+| `06-observability.md`     | Monitoring & logging         |
+| `07-azure-integration.md` | Hybrid-cloud planning        |
+| `08-cicd-automation.md`   | CI/CD & deployment workflows |
 
-Main topics:
+---
 
-- Linux baseline and hardening
-- Docker platform architecture
-- Database layer
-- API layer
-- Web dashboard architecture
-- Observability and logging
-- Azure hybrid integration
-- CI/CD and automation
+# 🖼️ Platform Preview
+
+| Dashboard              | Charts               | Trade Tools      |
+| ---------------------- | -------------------- | ---------------- |
+| `market-dashboard.png` | `market-charts1.png` | `trade-calc.png` |
+| `route-risk.png`       | `market-charts2.png` | `wh-mapper.png`  |
+
+---
+
+# 🔮 Planned Expansion
+
+* AI-assisted market news analysis
+* Anomaly and event detection
+* Advanced logistics route intelligence
+* Public deployment hardening
+* Azure-integrated hybrid infrastructure
+* CI/CD-driven automated deployments
+* Expanded observability stack
+
+---
+
+# 🛠️ Stack
+
+```text
+Ubuntu Server
+Docker Compose
+PostgreSQL
+FastAPI
+Python
+Chart.js
+JavaScript
+Discord Webhooks
+Mermaid
+```
