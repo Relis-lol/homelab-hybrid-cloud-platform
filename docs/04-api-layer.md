@@ -1,170 +1,220 @@
 # 04 – API Layer
 
-## Objective
+FastAPI application layer connecting frontend systems, worker services, and market analytics data.
 
-The API provides a controlled access layer between clients and the PostgreSQL database.
-
-It handles market queries, historical analytics, business logic, and frontend-facing responses for the dashboard platform.
+The API provides validated access to historical market datasets, real-time snapshots, trading analytics, and platform services while keeping the database isolated from direct client access.
 
 ---
 
-## Stack
+# 🎯 Purpose
 
-- Python
-- FastAPI
-- Uvicorn
-- PostgreSQL (psycopg)
-- Docker deployment
+Serve market intelligence, analytics, and platform functionality through a centralized backend interface.
 
 ---
 
-## Architecture
+# 🛠️ Stack
+
+| Component       | Technology |
+| --------------- | ---------- |
+| Framework       | FastAPI    |
+| Runtime         | Uvicorn    |
+| Language        | Python     |
+| Database Access | psycopg    |
+| Deployment      | Docker     |
+
+---
+
+# 🏗️ Architecture
 
 ```text
-Client → API → PostgreSQL
+Browser
+    ↓
+FastAPI
+    ↓
+PostgreSQL
+
+Worker
+    ↓
+FastAPI
+    ↓
+PostgreSQL
 ```
 
-### Core Principles
+---
 
-- No direct database access
-- Centralized query handling
-- Controlled and validated responses
-- API-driven frontend communication
+# 🧱 Key Design Decisions
+
+* API-first architecture
+
+  * frontend never accesses the database directly
+
+* Centralized business logic
+
+  * calculations remain consistent across tools
+
+* JSON-based communication
+
+  * lightweight integration for browser clients
+
+* Database abstraction layer
+
+  * backend controls validation and filtering
+
+* Modular endpoint design
+
+  * supports independent feature growth
 
 ---
 
-## Current Features
+# 📦 Core Capabilities
 
-- Item lookup and multilingual search
-- Global ESI market price retrieval
-- Regional historical market access
-- Cargo value calculation
-- Historical chart support
-- Import run tracking
-- Route risk analysis foundation
+### Market Data
 
----
+* Item metadata lookup
+* Multilingual search
+* Global ESI prices
+* Historical market access
+* Regional market analytics
 
-## Main Endpoints
+### Dashboard Services
 
-| Method | Endpoint | Purpose |
-|---|---|---|
-| `GET` | `/health` | Health check |
-| `GET` | `/db-check` | Database validation |
-| `GET` | `/items` | Item metadata |
-| `GET` | `/items/search?q=` | Item search |
-| `GET` | `/esi/global-prices` | Global market prices |
-| `GET` | `/market-history` | Historical market data |
-| `POST` | `/cargo/value` | Cargo value calculation |
-| `GET` | `/import-runs` | Worker execution history |
-| `POST` | `/route-risk/analyze` | Route risk prototype |
+* Cargo valuation
+* Historical charting
+* Market search
+* Snapshot retrieval
+* Trade analytics
 
----
+### Platform Services
 
-## Regional Market Support
-
-Historical market endpoints currently support:
-
-- Jita / The Forge
-- Amarr / Domain
-- Dodixie / Sinq Laison
-- Hek / Metropolis
-- Rens / Heimatar
-
-Returned data includes:
-
-- Average prices
-- Low/high values
-- Traded volume
-- Order counts
+* Health monitoring
+* Database validation
+* Import tracking
+* Worker integration
 
 ---
 
-## Multilingual Item Support
+# 📊 Major Endpoint Groups
 
-The API supports official localized EVE item names.
-
-### Current Supported Languages
-
-- English
-- German
-- French
-- Spanish
-- Russian
-- Japanese
-- Korean
-- Simplified Chinese
-
-This enables multilingual item lookup and localized frontend search behavior.
+| Area                  | Purpose              |
+| --------------------- | -------------------- |
+| Health                | Runtime validation   |
+| Items                 | Search and metadata  |
+| Market History        | Historical analytics |
+| Cargo Value           | Cargo pricing        |
+| Regional Snapshots    | Live market state    |
+| Trade Recommendations | Arbitrage analysis   |
+| Import Runs           | Worker tracking      |
+| Route Analysis        | Risk evaluation      |
 
 ---
 
-## Current Processing Logic
+# 🌍 Market Coverage
 
-The API currently handles:
+Supported trade hubs:
 
-- JOIN queries between item and market tables
-- Historical regional filtering
-- Cargo value aggregation
-- Auto-backfill handling for missing history
-- Frontend-ready JSON responses
-- Basic route risk scoring prototype
+* Jita / The Forge
+* Amarr / Domain
+* Dodixie / Sinq Laison
+* Hek / Metropolis
+* Rens / Heimatar
 
----
+Returned analytics may include:
 
-## Frontend Integration
-
-The API acts as the primary backend for the browser dashboard.
-
-Current frontend integrations include:
-
-- Cargo Value
-- Historical Charts
-- Market Search
-- Regional Market Selection
-- Route Risk foundation
+* Average prices
+* High / low prices
+* Trade volume
+* Order counts
+* Market spreads
+* Snapshot data
 
 ---
 
-## Security Model
+# 🌐 Localization Support
 
-- No public database exposure
-- Input validation via FastAPI
-- Firewall-restricted access
-- API acts as controlled read layer
+Supported languages:
 
----
+* English
+* German
+* French
+* Spanish
+* Russian
+* Japanese
+* Korean
+* Simplified Chinese
 
-## Current Status
-
-Currently operational:
-
-- Stable FastAPI application layer
-- Connected to real EVE market data
-- Regional history system active
-- Multilingual item support active
-- Multi-endpoint architecture operational
-- Worker integration confirmed
-- Frontend dashboard integration functional
+Used for multilingual item lookup and localized frontend search.
 
 ---
 
-## Known Limitations
+# ⚙️ Processing Logic
 
-- No authentication system
-- No rate limiting
-- No caching layer
-- No pagination for large datasets
-- Response schemas still incomplete
-- Route risk scoring still early-stage
+Current API responsibilities include:
+
+* Market aggregation
+* Historical filtering
+* Snapshot processing
+* Cargo calculations
+* Trade recommendation generation
+* Item translation lookup
+* Dashboard data delivery
+* Frontend response formatting
 
 ---
 
-## Next Steps
+# 🚀 Frontend Integrations
 
-- Add response models
-- Improve filtering and pagination
-- Introduce caching
-- Optimize chart query performance
-- Expand route risk scoring logic
-- Prepare public deployment hardening
+Connected modules:
+
+* Market Dashboard
+* Trade Looper
+* Logistics Calculator
+* Hauling Intelligence
+* Historical Charts
+* Market Search
+
+---
+
+# 🔐 Security Model
+
+* No direct database exposure
+* FastAPI input validation
+* Internal container communication
+* Firewall-restricted host access
+* Backend-controlled data access
+
+---
+
+# 📈 Current Status
+
+**Operational**
+
+* FastAPI application layer
+* Historical market analytics
+* Snapshot APIs
+* Cargo valuation services
+* Trade recommendation system
+* Multilingual search
+* Worker integration
+* Dashboard integration
+
+---
+
+# ⚠️ Current Limitations
+
+* No authentication
+* No rate limiting
+* No caching layer
+* Partial response-model coverage
+* Limited pagination support
+
+---
+
+# 🔮 Planned Expansion
+
+* Response model standardization
+* Advanced filtering
+* Query caching
+* Pagination improvements
+* API performance optimization
+* Expanded market analytics
+* Public deployment hardening
