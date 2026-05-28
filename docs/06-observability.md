@@ -1,168 +1,194 @@
 # 06 – Observability & Logging
 
-## Objective
+Operational visibility layer for the EVE Market Platform.
 
-Provide visibility into system behavior, failures, and operational health across the platform.
-
-The current observability layer focuses on automated worker execution, infrastructure visibility, and early operational monitoring.
+Provides monitoring, execution tracking, logging, and failure visibility across backend services, worker pipelines, and infrastructure components.
 
 ---
 
-## Current Monitoring Features
+# 🎯 Purpose
 
-Implemented components:
-
-- Worker execution tracking
-- Discord webhook notifications
-- Cron-based execution visibility
-- Docker container logs
-- API offline detection
-- Process count monitoring
-- Network traffic monitoring
-- Backup milestone creation
-- UFW firewall logging
-- Fail2ban SSH monitoring
+Detect failures early, monitor platform health, and provide visibility into automated workflows.
 
 ---
 
-## Monitoring Scope
+# 🛠️ Current Observability Components
+
+| Area              | Coverage                  |
+| ----------------- | ------------------------- |
+| Worker Monitoring | Import execution tracking |
+| Notifications     | Discord alerts            |
+| Runtime Logs      | Docker container logs     |
+| API Monitoring    | Availability checks       |
+| Database Tracking | Import history records    |
+| Security Events   | UFW and Fail2ban logs     |
+| Scheduling        | Cron execution visibility |
+| Infrastructure    | Basic host monitoring     |
+
+---
+
+# 🧱 Key Design Decisions
+
+* Monitoring starts at the worker layer
+
+  * data ingestion is the most critical platform process
+
+* Notifications over manual log inspection
+
+  * failures become visible immediately
+
+* Structured execution tracking
+
+  * import history remains queryable
+
+* Lightweight observability first
+
+  * avoids unnecessary complexity during early development
+
+* Security events included
+
+  * operational and security visibility share the same workflow
+
+---
+
+# 📊 Monitoring Scope
 
 Current monitoring covers:
 
-- Worker success/failure status
-- Import duration and row counts
-- API availability
-- Database write operations
-- Docker container behavior
-- Process and network activity
-- Basic system security events
+* Worker execution status
+* Import duration
+* Imported row counts
+* API availability
+* Database write operations
+* Docker container activity
+* Scheduled task execution
+* Security-related events
 
 ---
 
-## Worker Monitoring
+# 🔄 Worker Monitoring
 
-The worker currently acts as the most observable backend component.
+The worker is currently the most observable platform component.
 
-### Execution Tracking
+Tracked information includes:
 
-Each worker run stores metadata inside the database, including:
+* Start time
+* Completion time
+* Execution status
+* Imported records
+* Error details
+* Runtime information
 
-- Start and finish time
-- Execution status
-- Imported row count
-- Error notes
+Stored in:
 
-This provides historical visibility into pipeline reliability and import behavior.
-
----
-
-### Discord Notifications
-
-Worker runs send Discord webhook notifications.
-
-Current behavior:
-
-- Successful imports send summary messages
-- Failed runs send error notifications
-- Offline/API issues trigger alerts
-- Notifications include execution details
-
-### Benefits
-
-- Faster failure detection
-- Reduced manual log inspection
-- Easier unattended operation monitoring
-- Basic operational awareness
-
----
-
-## Logging Sources
-
-### Database-Level
-
-`price_import_runs` acts as a structured execution log for worker activity.
-
----
-
-### Container-Level
-
-Docker logs provide runtime visibility for:
-
-- API container
-- Worker container
-- PostgreSQL container
-
-Example:
-
-```bash
-docker compose logs worker
+```text id="ykq86p"
+price_import_runs
 ```
 
 ---
 
-### System-Level
+# 🔔 Notification System
 
-Current system logging includes:
+Discord webhooks provide operational alerts.
 
-- UFW firewall events
-- Fail2ban SSH protection logs
-- Basic Ubuntu system logs
-- Process and network monitoring exports
+### Current Events
 
----
+* Successful imports
+* Failed imports
+* API availability issues
+* Worker execution summaries
 
-## Automation Visibility
+### Benefits
 
-Worker execution is handled through cron scheduling.
-
-Current behavior:
-
-- Scheduled automatic imports
-- Manual execution still possible
-- Failures surfaced through Discord
-- Controlled one-shot worker lifecycle
-- Monitoring exports generated automatically
-
-This keeps worker execution predictable and easier to debug.
+* Faster issue detection
+* Reduced manual monitoring
+* Improved unattended operation
+* Lightweight alerting workflow
 
 ---
 
-## Current Status
+# 📜 Logging Sources
 
-Currently operational:
+### Database
 
-- Worker execution tracking
-- Structured import history
-- Discord monitoring notifications
-- API availability checks
-- Docker runtime logging
-- Basic process/network monitoring
-- Backup milestone tracking
-- Basic security monitoring
+Structured execution tracking:
 
-The platform already supports lightweight operational observability and unattended monitoring workflows.
+```text id="z3ntga"
+price_import_runs
+```
+
+### Containers
+
+Runtime visibility for:
+
+* FastAPI
+* Worker
+* PostgreSQL
+
+Example:
+
+```bash id="w4yb1u"
+docker compose logs worker
+```
+
+### Host System
+
+* UFW firewall logs
+* Fail2ban events
+* Ubuntu system logs
+* Scheduled task execution
 
 ---
 
-## Known Limitations
+# ⚙️ Automation Visibility
 
-- No centralized logging stack
-- No Prometheus/Grafana setup
-- No advanced metrics dashboard
-- No container health dashboard
-- No distributed tracing
-- No advanced alert escalation
-- No formal retention/rotation strategy
+Worker execution is managed through scheduled cron jobs.
+
+Current workflow:
+
+```text id="ls4jzb"
+Cron Schedule
+      ↓
+Worker Execution
+      ↓
+Database Tracking
+      ↓
+Discord Notification
+```
+
+This creates a complete audit trail for import operations.
 
 ---
 
-## Next Steps
+# 🚀 Current Capabilities
 
-- Add structured API request logging
-- Introduce centralized log aggregation
-- Add lightweight monitoring dashboard
-- Implement metrics collection
-- Add container health monitoring
-- Improve alerting workflows
-- Define log retention strategy
-- Explore Azure-assisted monitoring later
+* Worker execution tracking
+* Import history storage
+* Discord alerting
+* API availability checks
+* Docker logging
+* Security event visibility
+* Scheduled-job monitoring
+
+---
+
+# ⚠️ Current Limitations
+
+* No centralized log aggregation
+* No Prometheus metrics
+* No Grafana dashboards
+* No distributed tracing
+* Limited container health monitoring
+* No formal log-retention strategy
+
+---
+
+# 🔮 Planned Expansion
+
+* Structured API request logging
+* Centralized log collection
+* Metrics dashboards
+* Container health monitoring
+* Alert escalation workflows
+* Azure Monitor evaluation
+* Long-term retention policies
