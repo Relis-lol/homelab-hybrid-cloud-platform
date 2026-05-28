@@ -1,62 +1,122 @@
-# EVE Trade Cargo Calculator
 
-Standalone browser-based trading and hauling utility for EVE Online.
+# Trade Cargo Calculator
 
-The tool focuses on practical trade logistics, cargo planning, and profit estimation for station trading and hauling workflows.
+Browser-based logistics and profitability calculator for EVE Online traders and haulers.
 
-Unlike the live market dashboard, this calculator is designed around operational trade calculations rather than historical market analysis or API-driven market visualization.
+Built to support fast decision-making during station trading, hauling operations, and cargo planning without requiring backend services or market API access.
 
-## Preview
+---
+
+# 🖼️ Preview
 
 ![Trade Calculator](../assets/trade-calc.png)
 
 ---
 
-# Core Features
+# 🎯 Purpose
 
-- Multi-ship cargo management
-- Cargo capacity calculations
-- Buy vs sell profit estimation
-- Buy order fee and tax simulation
-- Profit-per-unit analysis
-- Profit-per-m³ analysis
-- Manual quantity overrides
-- Integrated side calculator
-- Smart market number parsing
-- Local browser persistence
+Estimate cargo capacity, trade profitability, and transport efficiency within seconds.
 
 ---
 
-# Trading Workflow Focus
+# 🛠️ Core Features
 
-The calculator was designed for common hauling and trading scenarios such as:
-
-- Determining maximum purchasable item amounts
-- Estimating hauling profitability
-- Comparing market buy/sell margins
-- Calculating ISK efficiency per cargo run
-- Planning multi-ship transport capacity
-
-The tool prioritizes speed and low interaction overhead during active gameplay.
+| Area               | Features                                 |
+| ------------------ | ---------------------------------------- |
+| Cargo Planning     | Multi-ship cargo management              |
+| Capacity Analysis  | Maximum purchasable quantity calculation |
+| Profitability      | Buy vs. sell profit estimation           |
+| Trading Costs      | Fee and tax simulation                   |
+| Efficiency Metrics | Profit per unit and profit per m³        |
+| Quantity Control   | Manual amount overrides                  |
+| Utility Tools      | Integrated side calculator               |
+| Input Handling     | Smart market number parsing              |
+| Persistence        | Local browser storage                    |
 
 ---
 
-# Local Persistence
+# 🧱 Key Design Decisions
 
-The tool stores settings locally in the browser.
+* Fully client-side architecture
 
-### Stored Data
+  * no backend dependency
+
+* Designed for active gameplay usage
+
+  * minimal clicks and fast calculations
+
+* Local persistence only
+
+  * no accounts or user data collection
+
+* Supports multiple hauling scenarios
+
+  * single ship and fleet cargo planning
+
+* Lightweight implementation
+
+  * instant calculations without API calls
+
+---
+
+# 📊 Supported Trading Workflows
+
+* Cargo run planning
+* Station trading calculations
+* Multi-ship logistics planning
+* Capacity optimization
+* Margin comparison
+* Profitability estimation
+
+---
+
+# 🔢 Smart Number Parsing
+
+Supported formats:
+
+```text id="1rl5ut"
+1.5m
+250k
+2b
+1250000
+```
+
+Automatically converts common EVE market notation into usable values.
+
+---
+
+# 💾 Local Persistence
+
+Stored in browser LocalStorage:
 
 * Ship counts
 * Cargo capacities
 * Calculator preferences
-* Previous calculation settings
+* Previous calculation values
 
-No account system, backend, or database is required.
+No backend, database, or account system required.
 
 ---
 
-# Technology Stack
+# 🚀 Example Workflow
+
+```text id="0c3zmu"
+Cargo Capacity
+    ↓
+Market Price
+    ↓
+Trading Fees
+    ↓
+Profit Analysis
+    ↓
+Profit per m³
+    ↓
+Transport Decision
+```
+
+---
+
+# ⚙️ Tech Stack
 
 * HTML5
 * CSS3
@@ -65,32 +125,25 @@ No account system, backend, or database is required.
 
 ---
 
-# Design Goals
+# 📈 Current Status
 
-The project focused on:
-
-* Lightweight browser-only architecture
-* Fast calculation workflows
-* Minimal UI overhead
-* Responsive dark UI design
-* Fully client-side execution
-* Practical usability for active traders and haulers
-
-The calculator intentionally avoids unnecessary complexity and external dependencies.
-
----
-
-# Current Status
-
-Currently functional as a standalone utility.
-
-Implemented systems include:
+**Operational**
 
 * Cargo calculations
 * Profit estimation
 * Multi-ship support
+* Fee simulation
+* Profit-per-m³ analysis
+* Smart number parsing
 * Local persistence
-* Responsive UI behavior
 * Browser-only execution
 
-The tool remains independent from the live market dashboard and focuses specifically on trading logistics and hauling support workflows.
+---
+
+# 🔮 Future Expansion
+
+* Trade Looper integration
+* Route profitability integration
+* Cargo-aware route planning
+* Advanced hauling metrics
+* Fleet logistics calculations
