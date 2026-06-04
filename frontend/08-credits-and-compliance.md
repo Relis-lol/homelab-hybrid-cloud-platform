@@ -1,6 +1,6 @@
 # Credits & Compliance
 
-Credits, contact information, and legal notices for the EVE Market Platform.
+Credits, contact information, and legal notices for the EVE Trade Intelligence Platform.
 
 ---
 
@@ -12,21 +12,21 @@ Provide transparent attribution, project contact information, and required legal
 
 # 🛠️ Included Components
 
-| Component              | Purpose                               |
-| ---------------------- | ------------------------------------- |
-| Character Contact Card | Ingame contact information            |
-| Credits Section        | Project attribution                   |
-| CCP Disclaimer         | Intellectual property acknowledgement |
-| AI Disclosure          | Generated content transparency        |
-| Compliance Design      | Privacy-focused project structure     |
+| Component           | Purpose                               |
+| ------------------- | ------------------------------------- |
+| Contact Information | Ingame and project contact options    |
+| Credits Section     | Project attribution                   |
+| CCP Disclaimer      | Intellectual property acknowledgement |
+| AI Disclosure       | Generated content transparency        |
+| Compliance Design   | Privacy-focused platform structure    |
 
 ---
 
 # 🧱 Design Decisions
 
-* Ingame contact only
+* Minimal contact footprint
 
-  * no email addresses, real names, or public contact information required
+  * project contact available without exposing unnecessary personal information
 
 * No user accounts
 
@@ -68,22 +68,31 @@ News headlines, summaries and atmospheric roleplay-style text may be automatical
 
 ---
 
+# 🔒 Privacy Approach
+
+The platform is intentionally designed to minimize personal data handling.
+
+* No user accounts
+* No registration requirements
+* No profile system
+* No user-generated databases
+* No gameplay tracking
+
+Users can access platform features without creating an account or providing personal information.
+
+---
+
 # 📈 Current Status
 
-**Operational**
+**Live Production Deployment**
 
-* Ingame contact card
+* Contact information available
 * Credits section
 * CCP disclaimer
 * AI disclosure
 * Privacy-focused design
 * Dashboard integration
 
----
+Used as part of:
 
-# 🔮 Future Considerations
-
-* Additional compliance reviews
-* Expanded attribution management
-* Public deployment legal review
-* Optional privacy documentation
+https://eve-tradelooper.com/
