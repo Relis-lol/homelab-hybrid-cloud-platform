@@ -81,12 +81,14 @@ Selected technical challenges encountered during development and the architectur
 **Solution**
 
 * Introduced fee-aware calculations
-* Added additional market-quality metrics
+* Added market-quality metrics
+* Integrated liquidity-aware evaluation
 
 **Result**
 
 * More realistic profit estimates
 * Better trade recommendations
+* Fewer misleading opportunities
 
 ---
 
@@ -95,24 +97,28 @@ Selected technical challenges encountered during development and the architectur
 **Problem**
 
 * API and worker layers accumulated unrelated responsibilities
-* Debugging became increasingly difficult
+* Large files became difficult to navigate and debug
 
 **Solution**
 
-* Split large files into dedicated modules
-* Separated:
+* Split the API into dedicated feature modules
 
-  * API features
+* Split the worker into:
+
   * ingestion
   * enrichment
   * orchestration
   * reporting
+  * analytics
+
+* Reduced monolithic files into focused components
 
 **Result**
 
 * Improved maintainability
 * Easier troubleshooting
 * Faster feature development
+* Cleaner architecture
 
 ---
 
@@ -121,21 +127,70 @@ Selected technical challenges encountered during development and the architectur
 **Problem**
 
 * Missing or inconsistent data produced misleading charts
+* Frontend improvements could not compensate for poor data quality
 
 **Solution**
 
 * Improved validation and preprocessing
 * Added better handling for incomplete datasets
+* Tightened analytics filtering
 
 **Result**
 
 * More reliable analytics
 * Better dashboard experience
+* Increased confidence in recommendations
+
+---
+
+## 🧮 Data Types Can Break Business Logic
+
+**Problem**
+
+* SQL calculations returned decimal values where integer quantities were expected
+* Cargo volume calculations became distorted
+* Trade Looper recommendations showed unrealistic hauling volumes
+
+**Solution**
+
+* Reviewed numeric handling in SQL result processing
+* Separated quantity logic from price and volume calculations
+* Tightened conversion rules between database results and API responses
+
+**Result**
+
+* More realistic cargo metrics
+* Cleaner trade recommendation output
+* Better confidence in logistics calculations
+
+---
+
+## 🔄 Monitoring Matters Before Failure
+
+**Problem**
+
+* Worker failures were not immediately visible
+* Infrastructure health required manual checks
+* Operational issues could remain unnoticed
+
+**Solution**
+
+* Added Discord alerting
+* Integrated Azure Monitor and Azure Arc
+* Implemented a dedicated ESP32 CYD monitoring display
+* Added structured execution tracking
+
+**Result**
+
+* Faster issue detection
+* Better operational visibility
+* Reduced manual monitoring effort
+* Improved platform reliability
 
 ---
 
 ## 🎯 Key Takeaway
 
-The largest improvements came from architecture, data quality, and operational reliability rather than adding new features.
+The largest improvements came from architecture, data quality, observability, and operational reliability rather than adding new features.
 
 Investing in maintainable systems consistently produced better results than increasing feature count.
