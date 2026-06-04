@@ -50,7 +50,7 @@ PostgreSQL
 
 * Centralized business logic
 
-  * calculations remain consistent across tools
+  * calculations remain consistent across all tools
 
 * JSON-based communication
 
@@ -58,11 +58,11 @@ PostgreSQL
 
 * Database abstraction layer
 
-  * backend controls validation and filtering
+  * validation and filtering remain server-side
 
 * Modular endpoint design
 
-  * supports independent feature growth
+  * features can evolve independently
 
 ---
 
@@ -76,13 +76,13 @@ PostgreSQL
 * Historical market access
 * Regional market analytics
 
-### Dashboard Services
+### Analytics Services
 
 * Cargo valuation
 * Historical charting
-* Market search
 * Snapshot retrieval
-* Trade analytics
+* Trade recommendations
+* Route intelligence
 
 ### Platform Services
 
@@ -118,7 +118,7 @@ Supported trade hubs:
 * Hek / Metropolis
 * Rens / Heimatar
 
-Returned analytics may include:
+Returned analytics include:
 
 * Average prices
 * High / low prices
@@ -126,6 +126,7 @@ Returned analytics may include:
 * Order counts
 * Market spreads
 * Snapshot data
+* Trade opportunity metrics
 
 ---
 
@@ -146,7 +147,7 @@ Used for multilingual item lookup and localized frontend search.
 
 ---
 
-# ⚙️ Processing Logic
+# ⚙️ Processing Responsibilities
 
 Current API responsibilities include:
 
@@ -163,14 +164,14 @@ Current API responsibilities include:
 
 # 🚀 Frontend Integrations
 
-Connected modules:
+Connected systems:
 
 * Market Dashboard
 * Trade Looper
-* Logistics Calculator
 * Hauling Intelligence
 * Historical Charts
 * Market Search
+* AHN News Network
 
 ---
 
@@ -179,42 +180,32 @@ Connected modules:
 * No direct database exposure
 * FastAPI input validation
 * Internal container communication
-* Firewall-restricted host access
 * Backend-controlled data access
+* Environment-based configuration
 
 ---
 
 # 📈 Current Status
 
-**Operational**
+**Live Production API**
 
-* FastAPI application layer
 * Historical market analytics
 * Snapshot APIs
 * Cargo valuation services
-* Trade recommendation system
+* Trade recommendation engine
 * Multilingual search
 * Worker integration
 * Dashboard integration
+* Route analysis services
+
+Platform URL:
+
+https://eve-tradelooper.com/
 
 ---
 
-# ⚠️ Current Limitations
+# 🎯 Engineering Focus
 
-* No authentication
-* No rate limiting
-* No caching layer
-* Partial response-model coverage
-* Limited pagination support
+The API acts as the central orchestration layer between market ingestion, analytics processing, data storage, and frontend delivery.
 
----
-
-# 🔮 Planned Expansion
-
-* Response model standardization
-* Advanced filtering
-* Query caching
-* Pagination improvements
-* API performance optimization
-* Expanded market analytics
-* Public deployment hardening
+All market calculations, trade intelligence, filtering, and aggregation logic are executed server-side to ensure consistency across platform features.
