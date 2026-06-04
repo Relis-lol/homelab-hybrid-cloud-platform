@@ -1,4 +1,3 @@
-
 # Trade Cargo Calculator
 
 Browser-based logistics and profitability calculator for EVE Online traders and haulers.
@@ -74,7 +73,7 @@ Estimate cargo capacity, trade profitability, and transport efficiency within se
 
 Supported formats:
 
-```text id="1rl5ut"
+```text
 1.5m
 250k
 2b
@@ -100,7 +99,7 @@ No backend, database, or account system required.
 
 # 🚀 Example Workflow
 
-```text id="0c3zmu"
+```text
 Cargo Capacity
     ↓
 Market Price
@@ -116,7 +115,7 @@ Transport Decision
 
 ---
 
-# ⚙️ Tech Stack
+# ⚙️ Technology Stack
 
 * HTML5
 * CSS3
@@ -127,7 +126,7 @@ Transport Decision
 
 # 📈 Current Status
 
-**Operational**
+**Completed**
 
 * Cargo calculations
 * Profit estimation
@@ -138,12 +137,4 @@ Transport Decision
 * Local persistence
 * Browser-only execution
 
----
-
-# 🔮 Future Expansion
-
-* Trade Looper integration
-* Route profitability integration
-* Cargo-aware route planning
-* Advanced hauling metrics
-* Fleet logistics calculations
+The calculator remains a lightweight standalone utility focused on practical trading and hauling workflows.
