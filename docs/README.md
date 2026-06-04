@@ -1,60 +1,68 @@
 # Documentation
 
-This directory contains the technical documentation for the Homelab Hybrid Cloud Platform project.
+Technical documentation for the EVE Trade Intelligence Platform.
 
-The project documents the evolution of a Linux homelab server into a containerized market data and hybrid cloud platform focused on:
-- Docker-based infrastructure
-- API-driven architecture
-- Automated EVE market data ingestion
-- Interactive analytics tools
-- Monitoring and observability
-- Azure hybrid integration
-- CI/CD concepts and automation
+This documentation covers the infrastructure, architecture, analytics systems, data pipelines, observability, and frontend components that power the live platform.
 
 ---
 
-# Documentation Structure
+# 📚 Documentation Structure
 
-| File | Description |
-|---|---|
-| `01-linux-baseline.md` | Ubuntu server setup, SSH hardening, firewall configuration |
-| `02-docker-platform.md` | Docker and Docker Compose architecture |
-| `03-database-layer.md` | PostgreSQL database structure and persistence |
-| `04-api-layer.md` | FastAPI backend and API design |
-| `05-web-dashboard.md` | Frontend structure and dashboard features |
-| `06-observability.md` | Logging, monitoring, worker tracking, notifications |
-| `07-azure-integration.md` | Planned hybrid cloud integration with Azure |
-| `08-cicd-automation.md` | CI/CD and deployment automation concepts |
+| File                          | Description                                            |
+| ----------------------------- | ------------------------------------------------------ |
+| `01-linux-baseline.md`        | Ubuntu Server setup, security, and platform foundation |
+| `02-docker-platform.md`       | Docker Compose architecture and service design         |
+| `03-database-layer.md`        | PostgreSQL schema and analytics storage                |
+| `04-api-layer.md`             | FastAPI backend architecture and endpoints             |
+| `05-web-dashboard.md`         | Dashboard systems and frontend integration             |
+| `06-observability.md`         | Monitoring, logging, and operational visibility        |
+| `07-hybrid-cloud-planning.md` | Hybrid-cloud concepts and Azure planning               |
+| `08-cicd-automation.md`       | Automation and CI/CD planning                          |
+| `09-lessons-learned.md`       | Architectural decisions and project learnings          |
 
 ---
 
-# Related Directories
+# 📊 Related Directories
 
 ```text
-/diagrams
-/infra
-/scripts
+assets/
+diagrams/
+frontend/
 ```
 
-These directories contain:
-- Mermaid architecture diagrams
-- Infrastructure-related files
-- Automation and helper scripts
+| Directory   | Purpose                                        |
+| ----------- | ---------------------------------------------- |
+| `assets/`   | Screenshots and visual project assets          |
+| `diagrams/` | Architecture, data flow, and database diagrams |
+| `frontend/` | Frontend modules and feature documentation     |
 
 ---
 
-# Current Platform State
+# 🚀 Platform Overview
 
-Currently implemented:
-- Hardened Ubuntu server
-- Docker Compose infrastructure
-- PostgreSQL database
-- FastAPI backend API
-- Worker-based EVE market imports
-- Historical market data storage
-- Cargo and trade analysis tools
-- Interactive market charts
-- Cron-based worker automation
-- Discord monitoring integration
+Implemented systems include:
 
-The platform is actively evolving toward a production-style hybrid cloud and analytics environment.
+* Ubuntu Server infrastructure
+* Docker Compose platform
+* PostgreSQL analytics database
+* FastAPI backend services
+* Automated EVE market ingestion
+* Historical market analytics
+* Trade Looper intelligence engine
+* Route Risk analysis
+* Wormhole Mapping system
+* AHN News Network
+* WebGL dashboard environment
+* Discord monitoring integration
+
+---
+
+# 🌐 Live Platform
+
+https://eve-tradelooper.com/
+
+---
+
+# 🎯 Documentation Goal
+
+Document the design decisions, architecture, and engineering challenges behind a real-world analytics platform built around Linux, Docker, Python, PostgreSQL, FastAPI, and browser-based intelligence tools.
