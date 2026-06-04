@@ -46,7 +46,7 @@ Provide a fast and lightweight way to build, maintain, and share wormhole chain 
 
 * Compressed export format
 
-  * easy sharing of large maps
+  * efficient sharing of large maps
 
 * Browser persistence
 
@@ -80,9 +80,7 @@ Provide a fast and lightweight way to build, maintain, and share wormhole chain 
 
 # 🔄 Data Sharing
 
-Supported workflows:
-
-```text id="3km5hd"
+```text
 Create Map
     ↓
 Compress Data
@@ -107,7 +105,7 @@ Supported clipboard workflows:
 
 ---
 
-# ⚙️ Tech Stack
+# ⚙️ Technology Stack
 
 * HTML5
 * CSS3
@@ -121,7 +119,7 @@ Supported clipboard workflows:
 
 # 📈 Current Status
 
-**Operational**
+**Completed**
 
 * Interactive system editor
 * Wormhole connection tracking
@@ -132,13 +130,4 @@ Supported clipboard workflows:
 * Shareable map codes
 * Clipboard integration
 
----
-
-# 🔮 Future Expansion
-
-* Advanced route analysis
-* Chain statistics
-* Automated route validation
-* Connection lifetime tracking
-* Fleet planning overlays
-* Additional visualization layers
+The application operates entirely in the browser and does not require accounts, servers, databases, or external services.
