@@ -1,108 +1,115 @@
-# Market Newsfeed
+# AHN News Network
 
-Lightweight RP-style news layer for the EVE Market Platform.
+Dynamic news aggregation and presentation system for the EVE Trade Intelligence Platform.
 
-Designed to transform public EVE Online updates, patch notes, CCP news, and lore-related information into short atmospheric trading-news snippets for dashboard immersion.
+Designed to transform public EVE Online updates, patch notes, CCP announcements, and lore-related content into short market-oriented news briefs for dashboard presentation.
 
 ---
 
 # 🎯 Purpose
 
-Add optional worldbuilding and market atmosphere without turning the platform into an automated financial advisor.
+Provide contextual market and universe information without replacing data-driven analytics.
 
 ---
 
-# 🛠️ Planned Features
+# 🛠️ Core Features
 
-| Area                | Purpose                                                |
-| ------------------- | ------------------------------------------------------ |
-| Public News Sources | Read CCP news, patch notes, and official updates       |
-| Lore Context        | Include worldbuilding flavor where relevant            |
-| News Rewriting      | Convert long updates into short market-style headlines |
-| Trading Flavor      | Present updates as an in-universe trade news channel   |
-| Toggle Control      | Allow users to disable the feature                     |
-| Lightweight Runtime | Keep processing small and non-critical                 |
+| Area                | Purpose                                     |
+| ------------------- | ------------------------------------------- |
+| Public News Sources | CCP news, patch notes, and official updates |
+| Lore Context        | Optional worldbuilding and universe events  |
+| News Summaries      | Short-form headline generation              |
+| Market Presentation | Trading-oriented news delivery              |
+| User Control        | Optional enable/disable toggle              |
+| Lightweight Runtime | Low-impact processing and delivery          |
 
 ---
 
-# 🧱 Design Decisions
+# 🧱 Key Design Decisions
 
-* Decorative and informational only
+* Informational rather than predictive
 
-  * not used as direct trading advice
+  * does not generate trading recommendations
 
 * Public sources only
 
-  * no private scraping or account-based data
+  * no account-based or private data collection
 
-* Optional feature
+* Optional dashboard feature
 
-  * can be disabled without affecting core tools
+  * can be disabled independently
 
-* Lightweight implementation
+* Lightweight processing
 
-  * avoids heavy AI workloads on the main platform
+  * avoids heavy infrastructure requirements
 
-* Clear AI disclosure
+* Transparent AI disclosure
 
-  * rewritten or generated text is marked transparently
+  * generated and rewritten content is clearly identified
 
-* Separated from trade calculations
+* Separated from analytics systems
 
-  * market recommendations remain data-driven, not lore-driven
+  * trading calculations remain fully data-driven
 
 ---
 
-# 📰 Example Output Style
+# 📰 Example Output
 
-```text
+```text id="xlmjua"
 YC128 Market Brief:
-New industrial directives from empire space are stirring speculation across logistics hubs. Traders are watching mineral flow, fuel demand, and regional hauling pressure.
+
+New industrial directives from empire space are increasing speculation across logistics hubs. Traders are closely monitoring mineral flow, fuel demand, and regional hauling activity.
 ```
 
 ---
 
-# 🚀 Planned Flow
+# 🚀 Processing Flow
 
-```text
-Public CCP / Patch / Lore Sources
+```text id="77rggt"
+Public News Sources
         ↓
 Source Filtering
         ↓
-Short Summary Generation
+Content Summarization
         ↓
-RP Trading-News Rewrite
+Market-Oriented Rewrite
         ↓
-Dashboard News Ticker
+Dashboard Presentation
         ↓
 Optional User Toggle
 ```
 
 ---
 
-# ⚙️ Planned Tech
+# ⚙️ Technology Stack
 
-* Python Worker
-* FastAPI Endpoint
-* Public Web Sources / RSS
-* Lightweight AI or rule-based rewriting
-* Frontend News Ticker
+* Python
+* FastAPI
+* Frontend News Components
+* Public News Sources
+* AI-Assisted Text Processing
 
 ---
 
 # 📈 Current Status
 
-**Planning Phase**
+**Live Production Feature**
 
-The system is planned as an optional dashboard feature for immersion, context, and presentation polish.
+* Dashboard-integrated news feed
+* Public source aggregation
+* Short-form news summaries
+* Market-oriented presentation
+* User-controlled visibility
+* AI disclosure integration
+
+Used as an optional contextual information layer within:
+
+https://eve-tradelooper.com/
 
 ---
 
-# 🔮 Future Expansion
+# 🎯 Engineering Focus
 
-* Source attribution links
-* Manual moderation mode
-* Event impact tags
-* Category filters
-* Market anomaly pairing
-* Discord news summaries
+The system enhances platform presentation and immersion while remaining completely separated from trading calculations, rankings, and recommendation logic.
+
+Market intelligence remains data-driven. The news layer provides context only.
