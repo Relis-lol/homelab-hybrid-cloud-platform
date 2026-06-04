@@ -3,8 +3,12 @@
 ```mermaid
 graph TD
 
-%% ----------- ACCESS -----------
+%% ----------- USERS -----------
+User["👤 Public User"]
 Admin["💻 Admin Workstation"]
+
+%% ----------- CLOUDFLARE -----------
+CF["☁️ Cloudflare"]
 
 %% ----------- SECURITY -----------
 subgraph Security["Host Security"]
@@ -28,10 +32,25 @@ subgraph Docker["Docker Compose Stack"]
 
 end
 
+%% ----------- MONITORING -----------
+subgraph Monitoring["Observability"]
+
+    Azure["☁️ Azure Monitor / Arc"]
+
+    Discord["🔔 Discord Alerts"]
+
+    CYD["📟 ESP32 CYD Display"]
+
+end
+
 %% ----------- EXTERNAL -----------
 ESI["📡 EVE ESI API"]
 
-%% ----------- ACCESS -----------
+%% ----------- PUBLIC ACCESS -----------
+User --> CF
+CF --> Frontend
+
+%% ----------- ADMIN ACCESS -----------
 Admin -->|SSH Key Auth| UFW
 Fail2Ban -.->|Protects SSH| UFW
 UFW --> Server
@@ -48,4 +67,9 @@ Worker --> DB
 %% ----------- ANALYTICS FLOW -----------
 DB --> API
 API --> Frontend
+
+%% ----------- OBSERVABILITY -----------
+Worker --> Discord
+Server --> Azure
+Server --> CYD
 ```
