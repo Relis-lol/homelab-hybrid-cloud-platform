@@ -1,29 +1,41 @@
 # 02 – Docker Platform
 
-## Objective
+Container platform powering the EVE Trade Intelligence Platform.
 
-Docker is used as the runtime platform for all application services.
-
-The platform uses containerized services for isolation, reproducibility, and simplified deployment management.
+Docker Compose is used to provide service isolation, reproducible deployments, and simplified platform operations.
 
 ---
 
-## Platform Overview
+# 🎯 Purpose
+
+Run the complete application stack through containerized services with consistent deployment and recovery workflows.
+
+---
+
+# 🛠️ Platform Overview
 
 ```text
-Ubuntu Host → Docker Engine → Compose Stack → Containers
+Ubuntu Host
+      ↓
+Docker Engine
+      ↓
+Docker Compose
+      ↓
+Application Services
 ```
 
-### Current Services
+### Active Services
 
-- PostgreSQL → persistent database
-- FastAPI → backend API
-- Worker → market import pipeline
-- Frontend → planned dashboard
+| Service    | Purpose                   |
+| ---------- | ------------------------- |
+| PostgreSQL | Analytics database        |
+| FastAPI    | Backend API               |
+| Worker     | Market ingestion pipeline |
+| Frontend   | Public web platform       |
 
 ---
 
-## Project Structure
+# 📂 Project Structure
 
 ```text
 ~/stack/
@@ -36,13 +48,35 @@ Ubuntu Host → Docker Engine → Compose Stack → Containers
     └── frontend/
 ```
 
-The structure separates services cleanly and keeps the platform easier to maintain as new components are added.
+---
+
+# 🧱 Key Design Decisions
+
+* Containerized service architecture
+
+  * isolates application components
+
+* Docker Compose orchestration
+
+  * simplified deployment and maintenance
+
+* Persistent database storage
+
+  * data survives container recreation
+
+* Internal service networking
+
+  * database remains inaccessible from public endpoints
+
+* Environment-based configuration
+
+  * secrets remain separated from application code
 
 ---
 
-## Worker Design
+# 🔄 Worker Architecture
 
-The worker runs as a one-shot batch container instead of a permanent background service.
+The ingestion worker operates as a one-shot batch process instead of a permanently running service.
 
 ### Manual Execution
 
@@ -50,68 +84,67 @@ The worker runs as a one-shot batch container instead of a permanent background 
 docker compose run --rm worker
 ```
 
-Optional enrichment mode:
+### Optional Enrichment Mode
 
 ```bash
 docker compose run --rm -e ENABLE_NAME_ENRICHMENT=true worker
 ```
 
-### Current Behavior
+### Worker Responsibilities
 
-- Imports market data
-- Writes data to PostgreSQL
-- Sends optional Discord notifications
-- Exits after completion
-
-### Why This Model
-
-- Prevents uncontrolled loops
-- Easier debugging and recovery
-- Better control over execution timing
-- Closer to real-world batch processing
+* Market data ingestion
+* Snapshot generation
+* Historical data updates
+* Database writes
+* Discord notifications
+* Import reporting
 
 ---
 
-## Automation
+# ⏰ Automation
 
-Worker execution is currently handled through cron scheduling outside Docker.
+Worker execution is scheduled externally through cron.
 
 Current automation includes:
 
-- Scheduled imports
-- Manual enrichment runs
-- Controlled execution timing
+* Scheduled market imports
+* Snapshot generation
+* Controlled execution timing
+* Manual execution support
 
 ---
 
-## Networking
+# 🌐 Internal Networking
 
-Docker Compose provides internal networking between services.
+Docker Compose provides isolated networking between services.
 
-### Internal Communication
+### Service Communication
 
-- `api` ↔ `postgres`
-- `worker` ↔ `postgres`
+```text
+Frontend → API
+API → PostgreSQL
+Worker → PostgreSQL
+```
 
-Database traffic remains internal to the Docker network and is not exposed publicly.
+Database traffic remains internal to the Docker network.
 
 ---
 
-## Storage
+# 💾 Persistent Storage
 
-PostgreSQL uses a persistent Docker volume:
+PostgreSQL data is stored in a dedicated Docker volume:
 
 ```text
 postgres-data
 ```
 
-This keeps database data independent from container recreation.
+This allows containers to be rebuilt without affecting stored analytics data.
 
 ---
 
-## Environment & Security
+# 🔒 Environment & Security
 
-Configuration and secrets are handled through environment variables stored in:
+Configuration is managed through:
 
 ```text
 .env
@@ -119,46 +152,32 @@ Configuration and secrets are handled through environment variables stored in:
 
 Examples include:
 
-- Database credentials
-- Worker flags
-- Discord webhook configuration
+* Database credentials
+* Worker configuration
+* Discord webhook settings
 
-### Security Model
+### Security Principles
 
-- No direct public database exposure
-- Database isolated inside Docker network
-- Firewall restricts LAN access
-- SSH limited to local subnet
-- Secrets separated from application code
-
----
-
-## Current Status
-
-Operational components:
-
-- Stable Docker Compose stack
-- Persistent PostgreSQL database
-- FastAPI backend
-- Automated worker imports
-- Cron-based scheduling
-- Discord notifications
-- Internal container networking
+* No public database exposure
+* Internal Docker networking
+* Environment-based secrets
+* Service isolation
+* Firewall-protected host
 
 ---
 
-## Known Limitations
+# 📈 Current Status
 
-- No reverse proxy yet
-- No centralized monitoring stack
-- No container health monitoring
-- No deployment automation yet
+**Live Production Environment**
 
----
+* Stable Docker Compose stack
+* Persistent PostgreSQL database
+* FastAPI backend services
+* Automated worker pipeline
+* Scheduled ingestion workflows
+* Public frontend deployment
+* Internal service networking
 
-## Next Steps
+Platform URL:
 
-- Add reverse proxy layer
-- Introduce centralized logging
-- Implement health checks
-- Prepare CI/CD integration
+https://eve-tradelooper.com/
