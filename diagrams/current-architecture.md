@@ -32,7 +32,7 @@ subgraph Docker["Docker Compose Stack"]
 
 end
 
-%% ----------- MONITORING -----------
+%% ----------- OBSERVABILITY -----------
 subgraph Monitoring["Observability"]
 
     Azure["☁️ Azure Monitor / Arc"]
@@ -68,8 +68,9 @@ Worker --> DB
 DB --> API
 API --> Frontend
 
-%% ----------- OBSERVABILITY -----------
-Worker --> Discord
+%% ----------- OBSERVABILITY FLOW -----------
 Server --> Azure
+Server --> Discord
 Server --> CYD
+Worker --> Discord
 ```
