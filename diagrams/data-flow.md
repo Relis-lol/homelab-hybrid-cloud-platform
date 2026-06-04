@@ -1,3 +1,6 @@
+# Data Flow
+
+```mermaid
 graph TD
 
 %% ----------- SOURCE -----------
