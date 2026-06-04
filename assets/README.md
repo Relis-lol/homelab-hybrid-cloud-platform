@@ -15,5 +15,6 @@ Visual assets used throughout the project documentation and portfolio presentati
 | `route-risk2.png`      | Route risk analysis             |
 | `wh-mapper.png`        | Wormhole mapping tool           |
 | `3d-background.png`    | WebGL dashboard environment     |
+| `ahn.png`              | News aggregation                |
 
 All assets are used for documentation, portfolio presentation, and project previews.
