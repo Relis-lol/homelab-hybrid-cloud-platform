@@ -1,8 +1,8 @@
 # Architecture Diagrams
 
-Visual architecture documentation for the EVE Market Platform.
+Visual architecture documentation for the EVE Trade Intelligence Platform.
 
-These diagrams complement the technical documentation and provide a high-level view of infrastructure, data movement, service interactions, and future platform direction.
+These diagrams complement the technical documentation and provide a high-level view of infrastructure, data movement, service interactions, database structure, and deployment architecture.
 
 ---
 
@@ -14,11 +14,12 @@ Provide a fast visual overview of how platform components interact.
 
 # 📊 Available Diagrams
 
-| File                            | Purpose                                                 |
-| ------------------------------- | ------------------------------------------------------- |
-| `current-architecture.md`       | Current platform architecture and service relationships |
-| `data-flow.md`                  | Market ingestion and analytics data flow                |
-| `future-hybrid-architecture.md` | Future hybrid-cloud and public deployment concepts      |
+| File                            | Purpose                                                   |
+| ------------------------------- | --------------------------------------------------------- |
+| `current-architecture.md`       | Current production architecture and service relationships |
+| `data-flow.md`                  | Market ingestion and analytics data flow                  |
+| `database-schema.md`            | Core PostgreSQL schema and table relationships            |
+| `future-hybrid-architecture.md` | Hybrid-cloud monitoring and deployment architecture       |
 
 ---
 
@@ -30,6 +31,7 @@ Provide a fast visual overview of how platform components interact.
 * Docker platform
 * Service isolation
 * Network boundaries
+* Public deployment architecture
 
 ### Data Flow
 
@@ -39,17 +41,27 @@ Provide a fast visual overview of how platform components interact.
 * API delivery
 * Frontend consumption
 
+### Database Design
+
+* Market history storage
+* Snapshot architecture
+* Localization system
+* Import tracking
+* Relational data structure
+
 ### Security
 
+* Cloudflare protection
 * Internal networking
 * Service separation
 * Controlled access layers
 
-### Future Planning
+### Hybrid Cloud
 
-* Reverse proxy architecture
-* Hybrid-cloud concepts
-* Deployment evolution
+* Azure Arc integration
+* Azure Monitor visibility
+* Log Analytics integration
+* Hybrid-cloud operations
 
 ---
 
@@ -69,11 +81,10 @@ Benefits:
 
 # 🔗 Related Documentation
 
-```text id="pmw4rk"
+```text
 docs/
 frontend/
-infra/
-scripts/
+assets/
 ```
 
 The diagrams provide visual support for the detailed documentation contained in those directories.
