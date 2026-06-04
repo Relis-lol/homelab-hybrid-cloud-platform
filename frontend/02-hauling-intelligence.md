@@ -1,8 +1,8 @@
-# Route Risk Assistant
+# Hauling Intelligence
 
-Route analysis and hauling risk evaluation tool for EVE Online.
+Route analysis and hauling risk evaluation system for EVE Online.
 
-Designed to combine route information, cargo characteristics, security status, and combat activity into a practical decision-support system for traders and haulers.
+Combines route information, cargo characteristics, security status, and combat activity into a practical decision-support tool for traders and haulers.
 
 ---
 
@@ -24,11 +24,12 @@ Estimate hauling risk before moving valuable cargo through New Eden.
 
 | Area                | Features                      |
 | ------------------- | ----------------------------- |
-| Route Setup         | Start & destination systems   |
+| Route Planning      | Start and destination systems |
 | Cargo Analysis      | Cargo value, volume, ISK/m³   |
 | Route Options       | Multiple route modes          |
-| Risk Evaluation     | Security status analysis      |
+| Security Analysis   | Security status evaluation    |
 | Activity Analysis   | Kill statistics integration   |
+| Risk Scoring        | Multi-factor risk assessment  |
 | Persistence         | Local scenario storage        |
 | Backend Integration | API-assisted route evaluation |
 
@@ -36,33 +37,33 @@ Estimate hauling risk before moving valuable cargo through New Eden.
 
 # 🧱 Key Design Decisions
 
-* Risk evaluation handled by backend services
+* Backend-driven risk evaluation
 
-  * allows future expansion without frontend changes
+  * allows scoring logic to evolve independently of the frontend
 
-* Scenario storage remains local
+* Local scenario storage
 
   * no accounts or user database required
 
-* Multiple risk factors contribute to scoring
+* Multi-factor scoring model
 
-  * avoids relying on a single metric
+  * combines route, cargo, security, and activity data
 
-* Designed as a dashboard module
+* Dashboard integration
 
-  * integrates directly with other trading tools
+  * operates alongside analytics and trading tools
 
 ---
 
 # 📊 Risk Inputs
 
-Current scoring uses combinations of:
+Current scoring considers:
 
 * Security status
 * Route length
 * Cargo value
 * Cargo density (ISK/m³)
-* Known dangerous systems
+* Dangerous systems
 * Recent kill activity
 
 ---
@@ -85,7 +86,7 @@ Recommendation Output
 
 ---
 
-# 🔧 Current Risk Levels
+# 🔧 Risk Levels
 
 | Level  | Meaning                       |
 | ------ | ----------------------------- |
@@ -95,9 +96,9 @@ Recommendation Output
 
 ---
 
-# 💾 Scenario System
+# 💾 Scenario Persistence
 
-Supported through browser local storage.
+Stored locally in the browser.
 
 Features:
 
@@ -108,7 +109,7 @@ Features:
 
 ---
 
-# ⚙️ Tech Stack
+# ⚙️ Technology Stack
 
 * JavaScript
 * FastAPI
@@ -119,22 +120,16 @@ Features:
 
 # 📈 Current Status
 
-**Operational**
+**Integrated Dashboard Module**
 
 * Route planning workflow
 * Security status evaluation
-* Kill-data integration
-* Basic risk scoring
+* Kill activity integration
+* Risk scoring engine
 * Scenario persistence
+* Backend integration
 * Dashboard integration
 
----
+Used as part of the live production platform:
 
-# 🔮 Planned Expansion
-
-* Dynamic danger ratings
-* Historical route intelligence
-* Cargo-aware scoring models
-* Safer route recommendations
-* Regional hauling analytics
-* Event-driven risk detection
+https://eve-tradelooper.com/
