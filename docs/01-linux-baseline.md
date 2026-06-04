@@ -1,14 +1,14 @@
 # 01 – Linux Baseline
 
-Linux infrastructure foundation for the EVE Market Platform.
+Linux infrastructure foundation for the EVE Trade Intelligence Platform.
 
-This system serves as the primary host for containers, databases, backend services, automation workflows, and future hybrid-cloud integrations.
+The system hosts the production environment, databases, backend services, automation workflows, and public web platform.
 
 ---
 
 # 🎯 Purpose
 
-Provide a secure, lightweight, and reproducible Linux platform for self-hosted infrastructure workloads.
+Provide a secure, lightweight, and reproducible Linux environment for self-hosted infrastructure workloads.
 
 ---
 
@@ -24,7 +24,7 @@ Provide a secure, lightweight, and reproducible Linux platform for self-hosted i
 
 ---
 
-# 🛠️ Operating System
+# 🖥️ Operating System
 
 | Component     | Configuration           |
 | ------------- | ----------------------- |
@@ -40,7 +40,7 @@ Provide a secure, lightweight, and reproducible Linux platform for self-hosted i
 
 * Headless Linux deployment
 
-  * reduces resource usage and attack surface
+  * reduced resource usage and attack surface
 
 * Ubuntu Server LTS
 
@@ -50,25 +50,25 @@ Provide a secure, lightweight, and reproducible Linux platform for self-hosted i
 
   * services remain isolated and reproducible
 
-* LAN-only deployment
+* Self-hosted infrastructure
 
-  * simplifies operations and minimizes exposure
+  * full control over deployment and operations
 
-* Backup strategy included from the beginning
+* Local backup strategy
 
   * supports recovery and rollback workflows
 
 ---
 
-# 🌐 Network Architecture
+# 🌐 Network Configuration
 
-| Area            | Configuration      |
-| --------------- | ------------------ |
-| Connectivity    | Wired LAN          |
-| Addressing      | DHCP reservation   |
-| Exposure        | No public services |
-| Port Forwarding | Disabled           |
-| Access Scope    | Local network only |
+| Area          | Configuration           |
+| ------------- | ----------------------- |
+| Connectivity  | Wired LAN               |
+| Addressing    | DHCP Reservation        |
+| Remote Access | SSH Key Authentication  |
+| Public Access | Web Platform Deployment |
+| Domain        | eve-tradelooper.com     |
 
 ---
 
@@ -79,13 +79,13 @@ Provide a secure, lightweight, and reproducible Linux platform for self-hosted i
 * ED25519 key authentication
 * Password login disabled
 * Root login disabled
-* Restricted network access
+* Restricted administrative access
 
 ### Firewall
 
 * UFW enabled
 * Default deny incoming
-* LAN-restricted service access
+* Service-specific access rules
 * Logging enabled
 
 ### Intrusion Protection
@@ -104,12 +104,12 @@ Provide a secure, lightweight, and reproducible Linux platform for self-hosted i
 
 ### Active Services
 
-| Service         | Purpose                  |
-| --------------- | ------------------------ |
-| PostgreSQL      | Data storage             |
-| FastAPI         | Backend API              |
-| Worker Services | Automated data ingestion |
-| Frontend        | Dashboard delivery       |
+| Service         | Purpose                    |
+| --------------- | -------------------------- |
+| PostgreSQL      | Analytics database         |
+| FastAPI         | Backend API                |
+| Worker Services | Automated market ingestion |
+| Frontend        | Public dashboard delivery  |
 
 ---
 
@@ -120,25 +120,23 @@ Provide a secure, lightweight, and reproducible Linux platform for self-hosted i
 * Containerized application stack
 * Automated worker execution
 * Local backup workflows
-* LAN-only API access
+* Public web deployment
+* Production analytics platform hosting
 
 ---
 
-# ⚠️ Current Limitations
+# 📈 Current Status
 
-* No reverse proxy
-* No public HTTPS
-* No centralized observability stack
-* No CI/CD deployment pipeline
-* No Azure integration yet
+**Live Production Environment**
 
----
+Hosts:
 
-# 🔮 Planned Expansion
+* Market analytics
+* Historical data storage
+* Trade intelligence systems
+* Dashboard services
+* Monitoring workflows
 
-* Advanced monitoring and logging
-* Automated backup management
-* Azure hybrid-cloud integration
-* Infrastructure as Code
-* CI/CD deployment workflows
-* Public deployment hardening
+Platform URL:
+
+https://eve-tradelooper.com/
