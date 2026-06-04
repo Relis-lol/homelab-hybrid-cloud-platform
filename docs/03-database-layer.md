@@ -37,7 +37,7 @@ Worker Services
 
 Database access remains internal to the Docker network.
 
-No direct LAN or public database access exists.
+No direct public database access exists.
 
 ---
 
@@ -60,7 +60,7 @@ No direct LAN or public database access exists.
 
 * Historical and live market data separated
 
-  * different update frequencies and use cases
+  * different update frequencies and analytics use cases
 
 * Incremental synchronization
 
@@ -72,7 +72,7 @@ No direct LAN or public database access exists.
 
 * Snapshot-based analytics
 
-  * supports future liquidity and trend systems
+  * supports liquidity, spread, and trade analysis
 
 * Internal-only database access
 
@@ -117,7 +117,7 @@ Official EVE item translations are stored locally.
 * Korean
 * Simplified Chinese
 
-This allows multilingual item lookup and localized frontend experiences.
+This enables multilingual item lookup and localized frontend functionality.
 
 ---
 
@@ -152,25 +152,23 @@ This allows multilingual item lookup and localized frontend experiences.
 * Dashboard data delivery
 * Trade analysis support
 * Charting data source
+* Trade Looper data source
 
 ---
 
-# ⚠️ Current Limitations
+# 📈 Current Status
 
-* No migration framework
-* Limited indexing strategy
-* No table partitioning
-* No time-series optimization
-* Snapshot retention still evolving
+**Live Production Database**
 
----
+Supports:
 
-# 🔮 Planned Expansion
+* Historical analytics
+* Market charting
+* Trade intelligence
+* Localization services
+* Snapshot aggregation
+* Dashboard integrations
 
-* Migration tooling
-* Advanced indexing
-* Time-series partitioning
-* Retention automation
-* Query optimization
-* Liquidity analytics
-* Market anomaly datasets
+Platform URL:
+
+https://eve-tradelooper.com/
