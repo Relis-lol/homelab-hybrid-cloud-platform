@@ -1,6 +1,3 @@
-# Data Flow
-
-```mermaid
 graph TD
 
 %% ----------- SOURCE -----------
@@ -28,6 +25,7 @@ Charts["📈 Market Charts"]
 TradeLooper["💹 Trade Looper"]
 RouteRisk["🛡️ Hauling Intelligence"]
 WHMapper["🕳️ Wormhole Mapping"]
+News["📰 AHN News Network"]
 
 %% ----------- OBSERVABILITY -----------
 Runs["🧾 Import Run Tracking"]
@@ -59,7 +57,7 @@ Dashboard --> Charts
 Dashboard --> TradeLooper
 Dashboard --> RouteRisk
 Dashboard --> WHMapper
+Dashboard --> News
 
 %% ----------- USER FLOW -----------
-User --> Dashboard
-```
+Dashboard --> User
