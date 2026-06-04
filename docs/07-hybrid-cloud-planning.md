@@ -1,46 +1,49 @@
+
 # 07 – Hybrid Cloud Planning
 
-Future hybrid-cloud roadmap for the EVE Market Platform.
+Hybrid-cloud integration layer for the EVE Trade Intelligence Platform.
 
-The platform is intentionally designed around a self-hosted architecture, with selected cloud services evaluated where they provide practical operational value.
+The platform is intentionally designed around a self-hosted architecture, with selected cloud services used where they provide practical operational value.
 
 ---
 
 # 🎯 Purpose
 
-Explore cloud technologies without moving the core platform away from the local infrastructure.
+Gain hands-on cloud experience while keeping core infrastructure, applications, and data pipelines self-hosted.
 
 ---
 
-# 🧱 Current Strategy
+# 🧱 Hybrid-Cloud Strategy
 
 * Local server remains the primary platform
 * Critical services stay self-hosted
 * Cloud services are added selectively
-* Avoid unnecessary hosting costs
+* Operational visibility takes priority over cloud hosting
 * Focus on practical learning and operational benefits
 
 ---
 
-# ☁️ Planned Cloud Areas
+# ☁️ Implemented Cloud Services
 
-| Area           | Purpose                         |
-| -------------- | ------------------------------- |
-| Monitoring     | Azure Monitor experiments       |
-| Backups        | Optional cloud archive storage  |
-| Automation     | GitHub Actions integration      |
-| Infrastructure | Infrastructure-as-Code learning |
+| Area | Technology | Purpose |
+|---|---|---|
+| Hybrid Management | Azure Arc | Cloud-based server management |
+| Monitoring | Azure Monitor | Infrastructure visibility |
+| Logging | Log Analytics Workspace | Centralized telemetry |
+| Observability | OpenTelemetry | Monitoring integration |
 
 ---
 
-# 🏗️ Target Architecture
+# 🏗️ Hybrid Architecture
 
 ```text
 User
    ↓
+Cloudflare
+   ↓
 Local Platform
    ↕
-Selected Cloud Services
+Azure Monitoring Services
 ```
 
 The local platform continues handling:
@@ -50,38 +53,76 @@ The local platform continues handling:
 * Worker services
 * Frontend applications
 * Market analytics
+* Data storage
+
+Azure currently provides:
+
+* Monitoring
+* Resource visibility
+* Heartbeat tracking
+* Log collection
+* Alerting support
 
 ---
 
-# 🚀 Planned First Step
+# 🚀 Key Design Decisions
 
-Azure Monitor integration for infrastructure visibility and operational monitoring.
+* Cloud services complement local infrastructure
 
-This provides practical cloud experience without increasing application complexity.
+  * core workloads remain self-hosted
+
+* Monitoring before migration
+
+  * operational visibility delivers immediate value
+
+* Cost-controlled cloud adoption
+
+  * avoid unnecessary recurring costs
+
+* Learning through real infrastructure
+
+  * cloud services are integrated into a production environment
+
+---
+
+# 📊 Current Cloud Footprint
+
+Implemented:
+
+* Azure Arc connected server
+* Azure Monitor Agent
+* Log Analytics Workspace
+* OpenTelemetry integration
+* Cost monitoring and alerting
+
+Not implemented:
+
+* Cloud-hosted databases
+* Cloud-hosted applications
+* Cloud storage dependencies
+* Cloud compute workloads
 
 ---
 
 # 📈 Current Status
 
-**Planning / Research Phase**
+**Operational Hybrid-Cloud Environment**
 
-Current development priorities remain:
+The platform remains fully functional without Azure.
 
-* Platform stability
-* Analytics features
-* Monitoring improvements
-* Automation workflows
-* Deployment hardening
+Azure currently enhances:
 
-No production cloud services are currently required for normal platform operation.
+* Infrastructure visibility
+* Operational monitoring
+* Resource tracking
+* Hybrid-cloud management
+
+Platform URL:
+
+https://eve-tradelooper.com/
 
 ---
 
-# 🔮 Future Exploration
+# 🎯 Engineering Focus
 
-* Azure Monitor
-* Cloud backup workflows
-* GitHub Actions automation
-* Terraform experiments
-* Bicep experiments
-* Hybrid-cloud learning projects
+The project demonstrates how cloud services can be integrated into an existing self-hosted platform without migrating core workloads, creating a practical hybrid-cloud architecture focused on monitoring, observability, and operational management.
