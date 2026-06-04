@@ -1,14 +1,6 @@
 # Assets
 
-Visual assets used throughout the project documentation.
-
-## Included Content
-
-* Dashboard screenshots
-* Feature previews
-* UI demonstrations
-* Platform visuals
-* Future demo media
+Visual assets used throughout the project documentation and portfolio presentation.
 
 ## Current Assets
 
@@ -24,4 +16,4 @@ Visual assets used throughout the project documentation.
 | `wh-mapper.png`        | Wormhole mapping tool           |
 | `3d-background.png`    | WebGL dashboard environment     |
 
-All assets are used exclusively for documentation, portfolio presentation, and project previews.
+All assets are used for documentation, portfolio presentation, and project previews.
