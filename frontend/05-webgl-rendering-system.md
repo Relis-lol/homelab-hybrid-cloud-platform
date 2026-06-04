@@ -1,8 +1,8 @@
 # WebGL Rendering System
 
-Real-time 3D rendering layer developed for the EVE Market Platform.
+Real-time WebGL environment developed for the EVE Trade Intelligence Platform.
 
-Built to provide a cinematic sci-fi environment while maintaining low browser resource consumption and stable long-session performance.
+Built to create a cinematic sci-fi atmosphere while maintaining low browser resource consumption and stable long-session performance.
 
 ---
 
@@ -14,7 +14,7 @@ Built to provide a cinematic sci-fi environment while maintaining low browser re
 
 # 🎯 Purpose
 
-Create an immersive dashboard experience without compromising frontend performance.
+Enhance the dashboard experience through immersive visuals without impacting analytics performance.
 
 ---
 
@@ -35,9 +35,9 @@ Create an immersive dashboard experience without compromising frontend performan
 
 # 🧱 Key Design Decisions
 
-* WebGL-based rendering
+* GPU-accelerated rendering
 
-  * GPU acceleration instead of CPU-heavy animation
+  * WebGL and Three.js instead of CPU-heavy animation
 
 * Fully browser-side execution
 
@@ -45,21 +45,19 @@ Create an immersive dashboard experience without compromising frontend performan
 
 * Modular dashboard integration
 
-  * visual layer remains independent from business logic
+  * visual layer remains independent from analytics systems
 
-* Long-session stability prioritized
+* Long-session stability
 
-  * optimized for continuous runtime
+  * optimized for continuous browser runtime
 
-* Memory usage treated as a first-class concern
+* Memory-first optimization
 
-  * visual quality balanced against resource consumption
+  * visual quality balanced against resource usage
 
 ---
 
 # ⚡ Performance Optimization
-
-Major optimization efforts focused on reducing browser memory usage while preserving visual quality.
 
 Implemented improvements:
 
@@ -69,14 +67,14 @@ Implemented improvements:
 * Controlled mipmap generation
 * Reduced starfield density
 * Improved texture filtering
-* Cloud-rendering optimization
+* Cloud rendering optimization
 * Artifact reduction during movement
 
 ---
 
 # 📊 Optimization Result
 
-```text id="v8b3jh"
+```text id="iwfqg9"
 Approximate Browser Memory Usage
 
 ~460 MB
@@ -84,7 +82,7 @@ Approximate Browser Memory Usage
 ~186 MB
 ```
 
-Reduction achieved while maintaining:
+Achieved while maintaining:
 
 * Smooth animation
 * Stable rendering
@@ -96,7 +94,7 @@ Reduction achieved while maintaining:
 
 # 🚀 Rendering Architecture
 
-```text id="dqk2hl"
+```text id="wm8w6j"
 Three.js Scene
         ↓
 Planet & Atmosphere
@@ -114,7 +112,7 @@ Browser Display
 
 ---
 
-# ⚙️ Tech Stack
+# ⚙️ Technology Stack
 
 * Three.js
 * WebGL
@@ -127,7 +125,7 @@ Browser Display
 
 # 📈 Current Status
 
-**Operational**
+**Completed**
 
 * Real-time WebGL rendering
 * Animated planetary environment
@@ -136,12 +134,4 @@ Browser Display
 * Dashboard integration
 * Stable long-session operation
 
----
-
-# 🔮 Future Expansion
-
-* Additional environmental effects
-* Enhanced depth layering
-* Dynamic lighting transitions
-* Quality presets
-* Multiple background environments
+The rendering system serves as a lightweight visual layer for the platform and operates entirely within the browser without requiring backend resources.
