@@ -1,267 +1,191 @@
+# 05 – Public Web Dashboard
 
-# 06 – Observability & Logging
+Browser-based interface for the EVE Trade Intelligence Platform.
 
-Operational visibility layer for the EVE Trade Intelligence Platform.
-
-Provides monitoring, execution tracking, logging, alerting, and infrastructure visibility across backend services, worker pipelines, cloud monitoring systems, and physical monitoring hardware.
+The dashboard combines market analytics, historical data, trading tools, route intelligence, visualization systems, and platform services into a unified user-facing application.
 
 ---
 
 # 🎯 Purpose
 
-Detect failures early, monitor platform health, and provide visibility into automated workflows and infrastructure behavior.
+Provide a single interface for market analysis, trading decisions, logistics planning, and operational insights.
 
 ---
 
-# 🛠️ Observability Components
+# 🏗️ Architecture
 
-| Area | Coverage |
+```text
+Browser
+    ↓
+Cloudflare
+    ↓
+Frontend
+    ↓
+FastAPI
+    ↓
+PostgreSQL
+```
+
+---
+
+# 🛠️ Dashboard Modules
+
+| Module | Purpose |
 |---|---|
-| Worker Monitoring | Import execution tracking |
-| Notifications | Discord alerts |
-| Runtime Logs | Docker container logs |
-| API Monitoring | Availability checks |
-| Database Tracking | Import history records |
-| Security Events | UFW and Fail2ban logs |
-| Scheduling | Cron execution visibility |
-| Infrastructure | Host resource monitoring |
-| Azure Monitoring | Cloud-based monitoring |
-| Cloudflare Analytics | Traffic visibility |
-| CYD Display | Physical monitoring dashboard |
+| Cargo Value | Inventory valuation |
+| Market Charts | Historical analytics |
+| Trade Looper | Arbitrage opportunities |
+| Logistics Calculator | Cargo and profit planning |
+| Hauling Intelligence | Route risk evaluation |
+| Wormhole Mapping | Chain visualization |
+| AHN News Network | Dynamic market news |
+| WebGL Environment | Real-time dashboard rendering |
+| Credits & Compliance | Legal notices and project information |
 
 ---
 
 # 🧱 Key Design Decisions
 
-* Monitoring starts at the worker layer
+* Dashboard-first architecture
 
-  * data ingestion is the most critical platform process
+  * all tools share a unified interface
 
-* Notifications over manual log inspection
+* API-driven communication
 
-  * failures become visible immediately
+  * frontend remains lightweight
 
-* Structured execution tracking
+* Modular feature system
 
-  * import history remains queryable
+  * features evolve independently
 
-* Lightweight observability
+* Persistent browser state
 
-  * practical visibility without requiring a large monitoring stack
+  * sessions survive refreshes
 
-* Hybrid-cloud monitoring
+* Real EVE market data
 
-  * infrastructure remains observable remotely
+  * analytics are based on live and historical datasets
 
-* Security visibility included
+* No account requirements
 
-  * operational and security monitoring share the same workflow
-
----
-
-# 📊 Monitoring Scope
-
-Current monitoring covers:
-
-* Worker execution status
-* Import duration
-* Imported row counts
-* API availability
-* Database write operations
-* Docker container activity
-* Scheduled task execution
-* Security-related events
-* CPU utilization
-* Memory utilization
-* Storage utilization
-* Network throughput
-* System temperature
-* Public endpoint availability
-* Traffic visibility
+  * tools remain accessible without registration
 
 ---
 
-# 🔄 Worker Monitoring
+# 📊 Core Capabilities
 
-Tracked information includes:
+### Market Analytics
 
-* Start time
-* Completion time
-* Execution status
-* Imported records
-* Error details
-* Runtime information
+* Historical market charts
+* Regional hub comparison
+* Snapshot visualization
+* Market search
+* Market trend analysis
 
-Stored in:
+### Trading Tools
+
+* Cargo valuation
+* Trade opportunity discovery
+* Profit estimation
+* Fee-aware calculations
+* Liquidity evaluation
+
+### Logistics
+
+* Route evaluation
+* Cargo planning
+* Wormhole mapping
+* Transport analysis
+
+### Platform Features
+
+* Multilingual item support
+* Dynamic chart tabs
+* Persistent sessions
+* Responsive interface
+* WebGL environment
+* AHN News Network
+* Public HTTPS deployment
+
+---
+
+# 🌍 Supported Trade Hubs
+
+* Jita / The Forge
+* Amarr / Domain
+* Dodixie / Sinq Laison
+* Hek / Metropolis
+* Rens / Heimatar
+
+---
+
+# 🚀 Data Flow
 
 ```text
-price_import_runs
+User Action
+      ↓
+Frontend Module
+      ↓
+FastAPI Endpoint
+      ↓
+Market Database
+      ↓
+Analytics Response
+      ↓
+Interactive Visualization
 ```
 
 ---
 
-# 🔔 Notification System
+# 🌐 Public Deployment
 
-Discord webhooks provide operational alerts.
+The platform is publicly available through a production deployment hosted on a self-managed Linux server.
 
-### Current Events
+Deployment components include:
 
-* Successful imports
-* Failed imports
-* API availability issues
-* Worker execution summaries
-
-### Benefits
-
-* Faster issue detection
-* Reduced manual monitoring
-* Improved unattended operation
-* Lightweight alerting workflow
+* Cloudflare DNS
+* HTTPS encryption
+* Reverse proxy protection
+* Public domain integration
+* Internal API architecture
+* Internal-only database access
 
 ---
 
-# ☁️ Azure Monitoring
+# ⚙️ Technology Stack
 
-Implemented through:
-
-* Azure Arc
-* Azure Monitor Agent
-* Log Analytics Workspace
-* OpenTelemetry
-
-### Current Capabilities
-
-* Hybrid-cloud monitoring
-* Heartbeat monitoring
-* Offline detection
-* Cloud-based log collection
-* Resource visibility
-* Alerting support
-
-### Cost Control
-
-Monitoring operates behind strict budget limits and alert thresholds to prevent unexpected cloud costs.
-
----
-
-# 📟 CYD Monitoring Display
-
-A dedicated ESP32 CYD 2.8" display provides real-time infrastructure visibility.
-
-Displayed metrics include:
-
-* API status
-* Database status
-* Worker status
-* CPU utilization
-* RAM utilization
-* SSD utilization
-* Network throughput
-* System temperature
-* Last synchronization timestamp
-
-Refresh interval:
-
-```text
-30 seconds
-```
-
----
-
-# 🌐 Cloudflare Visibility
-
-Cloudflare provides:
-
-* DNS management
-* HTTPS protection
-* Reverse proxy services
-* Basic traffic analytics
-* Public endpoint visibility
-
----
-
-# 📜 Logging Sources
-
-### Database
-
-Structured execution tracking:
-
-```text
-price_import_runs
-```
-
-### Containers
-
-Runtime visibility for:
-
+* JavaScript
+* HTML5
+* CSS3
+* Chart.js
+* Three.js
 * FastAPI
-* Worker
 * PostgreSQL
-* Frontend
-
-Example:
-
-```bash
-docker compose logs worker
-```
-
-### Host System
-
-* UFW firewall logs
-* Fail2ban events
-* Ubuntu system logs
-* Scheduled task execution
-
----
-
-# ⚙️ Automation Visibility
-
-Worker execution is managed through scheduled cron jobs.
-
-Current workflow:
-
-```text
-Cron Schedule
-      ↓
-Worker Execution
-      ↓
-Database Tracking
-      ↓
-Discord Notification
-```
-
-This creates a complete audit trail for import operations.
-
----
-
-# 🚀 Current Capabilities
-
-* Worker execution tracking
-* Import history storage
-* Discord alerting
-* API availability checks
-* Docker logging
-* Security event visibility
-* Scheduled-job monitoring
-* Azure-based monitoring
-* Cloudflare traffic visibility
-* Real-time hardware monitoring display
+* Cloudflare
 
 ---
 
 # 📈 Current Status
 
-**Live Production Observability Layer**
+**Live Production Platform**
 
-Provides operational visibility for:
-
-* Market ingestion
-* Backend services
-* Database operations
-* Infrastructure health
-* Security monitoring
-* Public platform availability
+* Market dashboard
+* Historical analytics
+* Cargo valuation
+* Trade Looper
+* Hauling Intelligence
+* Wormhole Mapping
+* AHN News Network
+* WebGL rendering layer
+* Multilingual item support
+* Public web deployment
 
 Platform URL:
 
 https://eve-tradelooper.com/
+
+---
+
+# 🎯 Engineering Focus
+
+The dashboard serves as the primary user interface for all analytics systems and integrates market intelligence, visualization, trading tools, logistics workflows, and operational data into a single platform experience.
