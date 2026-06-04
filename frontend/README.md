@@ -1,76 +1,54 @@
 # Frontend Systems
 
-Collection of browser-based applications, visualization systems, analytics tools, and UI experiments developed for the EVE Market Platform.
-
-The frontend evolved from standalone utilities into a modular analytics platform connected to real market data, backend services, and historical datasets.
+Browser-based analytics tools, visualization systems, and market intelligence applications developed for the EVE Trade Intelligence Platform.
 
 ---
 
 # 🎯 Purpose
 
-Explore frontend engineering, data visualization, browser performance, and user-focused tool design through real-world EVE Online use cases.
+Provide practical gameplay analytics through lightweight, responsive, and data-driven frontend systems.
 
 ---
 
 # 🛠️ Included Systems
 
-| File                            | Purpose                                                   |
-| ------------------------------- | --------------------------------------------------------- |
-| `01-market-dashboard.md`        | Central analytics dashboard and market interface          |
-| `02-hauling-intelligence.md`    | Route evaluation and hauling risk analysis                |
-| `03-logistics-calculator.md`    | Cargo planning and profitability calculations             |
-| `04-wormhole-mapping-system.md` | Interactive wormhole mapping and route management         |
-| `05-webgl-rendering-system.md`  | Real-time Three.js rendering and performance optimization |
-| `06-trade-looper.md` | Hub-to-hub arbitrage analysis and trade opportunity ranking |
+| File                            | Purpose                                                     |
+| ------------------------------- | ----------------------------------------------------------- |
+| `01-market-dashboard.md`        | Central analytics dashboard and market interface            |
+| `02-hauling-intelligence.md`    | Route evaluation and hauling risk analysis                  |
+| `03-logistics-calculator.md`    | Cargo planning and profitability calculations               |
+| `04-wormhole-mapping-system.md` | Interactive wormhole mapping and route management           |
+| `05-webgl-rendering-system.md`  | Real-time WebGL rendering and performance optimization      |
+| `06-trade-looper.md`            | Hub-to-hub arbitrage analysis and trade opportunity ranking |
+| `07-ahn-news-network.md`        | Dynamic news feed and event aggregation system              |
 
 ---
 
 # 🧱 Frontend Focus Areas
 
-### Data Visualization
+### Analytics & Visualization
 
-* Interactive market charts
-* Historical analytics
-* Dynamic dashboards
-* Real-time data presentation
+* Historical market charts
+* Trade opportunity ranking
+* Cargo valuation
+* Route intelligence
+* Dashboard workflows
 
 ### Browser Engineering
 
 * Local persistence
 * State management
-* Offline-capable tools
-* Performance optimization
-
-### User Experience
-
-* Modular dashboard architecture
-* Fast workflow design
-* EVE-inspired interface concepts
-* Responsive layouts
-
-### Advanced Frontend Systems
-
-* SVG graph visualization
-* WebGL rendering
 * Clipboard integration
 * Import/export workflows
-* Compressed shareable state
+* Performance optimization
 
----
+### Advanced Systems
 
-# 🚀 Platform Evolution
-
-```text id="vqdcn8"
-Standalone Utilities
-        ↓
-Shared Dashboard Modules
-        ↓
-Backend Integration
-        ↓
-Historical Analytics
-        ↓
-Unified Market Platform
-```
+* SVG visualization
+* WebGL rendering
+* Dynamic chart generation
+* Shareable compressed state
+* Modular dashboard architecture
 
 ---
 
@@ -88,17 +66,18 @@ Unified Market Platform
 
 ---
 
-# 📈 Current Status
+# 📈 Current Platform
 
-The frontend now includes:
+The frontend includes:
 
-* Real market analytics
-* Historical chart systems
-* Cargo valuation tools
-* Route intelligence foundations
-* Wormhole mapping
-* WebGL rendering
-* Persistent browser workflows
-* API-connected dashboard modules
+* Market Dashboard
+* Trade Looper
+* Route Intelligence
+* Wormhole Mapper
+* Logistics Calculator
+* AHN News Network
+* Historical Analytics
+* WebGL Environment
 
-The overall direction is a lightweight, data-driven market platform built around practical gameplay tools, visualization systems, and scalable frontend architecture.
+All systems are integrated into a live production deployment and operate on real EVE Online market data.
+
