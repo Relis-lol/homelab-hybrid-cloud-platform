@@ -8,7 +8,7 @@ Designed to transform public EVE Online updates, CCP announcements, patch notes,
 
 # 🖼️ Preview
 
-![AHN News Network](../assets/ahn-news-network.png)
+![AHN News Network](../assets/ahn.png) 
 
 ---
 
