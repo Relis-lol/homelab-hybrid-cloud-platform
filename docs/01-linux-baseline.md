@@ -14,25 +14,49 @@ Provide a secure, lightweight, and reproducible Linux environment for self-hoste
 
 # 🛠️ Hardware
 
-| Component      | Specification                    |
-| -------------- | -------------------------------- |
-| System         | NiPoGi 4K Mini PC                |
-| CPU            | AMD Ryzen 3 4300U (4C / 4T)      |
-| Memory         | 16 GB DDR4                       |
-| Storage        | 512 GB SSD                       |
-| Backup Storage | External SSD-based backup device |
+| Component | Specification |
+|---|---|
+| System | NiPoGi 4K Mini PC |
+| CPU | AMD Ryzen 3 4300U (4C / 4T) |
+| Memory | 16 GB DDR4 |
+| Storage | 512 GB SSD |
+| Backup Storage | External SSD Backup Drive |
+| Monitoring Display | ESP32 CYD 2.8" Status Display |
+
+---
+
+# 🖥️ Auxiliary Hardware
+
+| Device | Purpose |
+|---|---|
+| External SSD | Local backup and recovery storage |
+| ESP32 CYD 2.8" | Real-time platform monitoring display |
+
+### CYD Monitoring Metrics
+
+- API status
+- Database status
+- Worker status
+- CPU utilization
+- RAM utilization
+- SSD usage
+- Network traffic
+- System temperature
+- Last synchronization time
+
+Refresh interval: 30 seconds
 
 ---
 
 # 🖥️ Operating System
 
-| Component     | Configuration           |
-| ------------- | ----------------------- |
-| OS            | Ubuntu Server 24.04 LTS |
-| GUI           | None                    |
-| Storage       | LVM                     |
-| Remote Access | OpenSSH                 |
-| Boot Mode     | Headless                |
+| Component | Configuration |
+|---|---|
+| OS | Ubuntu Server 24.04 LTS |
+| GUI | None |
+| Storage | LVM |
+| Remote Access | OpenSSH |
+| Boot Mode | Headless |
 
 ---
 
@@ -62,13 +86,13 @@ Provide a secure, lightweight, and reproducible Linux environment for self-hoste
 
 # 🌐 Network Configuration
 
-| Area          | Configuration           |
-| ------------- | ----------------------- |
-| Connectivity  | Wired LAN               |
-| Addressing    | DHCP Reservation        |
-| Remote Access | SSH Key Authentication  |
+| Area | Configuration |
+|---|---|
+| Connectivity | Wired LAN |
+| Addressing | DHCP Reservation |
+| Remote Access | SSH Key Authentication |
 | Public Access | Web Platform Deployment |
-| Domain        | eve-tradelooper.com     |
+| Domain | eve-tradelooper.com |
 
 ---
 
@@ -76,22 +100,22 @@ Provide a secure, lightweight, and reproducible Linux environment for self-hoste
 
 ### SSH
 
-* ED25519 key authentication
-* Password login disabled
-* Root login disabled
-* Restricted administrative access
+- ED25519 key authentication
+- Password login disabled
+- Root login disabled
+- Restricted administrative access
 
 ### Firewall
 
-* UFW enabled
-* Default deny incoming
-* Service-specific access rules
-* Logging enabled
+- UFW enabled
+- Default deny incoming
+- Service-specific access rules
+- Logging enabled
 
 ### Intrusion Protection
 
-* Fail2ban enabled
-* SSH protection active
+- Fail2ban enabled
+- SSH protection active
 
 ---
 
@@ -99,29 +123,30 @@ Provide a secure, lightweight, and reproducible Linux environment for self-hoste
 
 ### Runtime
 
-* Docker Engine
-* Docker Compose
+- Docker Engine
+- Docker Compose
 
 ### Active Services
 
-| Service         | Purpose                    |
-| --------------- | -------------------------- |
-| PostgreSQL      | Analytics database         |
-| FastAPI         | Backend API                |
+| Service | Purpose |
+|---|---|
+| PostgreSQL | Analytics database |
+| FastAPI | Backend API |
 | Worker Services | Automated market ingestion |
-| Frontend        | Public dashboard delivery  |
+| Frontend | Public dashboard delivery |
 
 ---
 
 # 🚀 Current Capabilities
 
-* Headless Linux server
-* Hardened remote access
-* Containerized application stack
-* Automated worker execution
-* Local backup workflows
-* Public web deployment
-* Production analytics platform hosting
+- Headless Linux server
+- Hardened remote access
+- Containerized application stack
+- Automated worker execution
+- Local backup workflows
+- Real-time hardware monitoring display
+- Public web deployment
+- Production analytics platform hosting
 
 ---
 
@@ -131,11 +156,11 @@ Provide a secure, lightweight, and reproducible Linux environment for self-hoste
 
 Hosts:
 
-* Market analytics
-* Historical data storage
-* Trade intelligence systems
-* Dashboard services
-* Monitoring workflows
+- Market analytics
+- Historical data storage
+- Trade intelligence systems
+- Dashboard services
+- Monitoring workflows
 
 Platform URL:
 
