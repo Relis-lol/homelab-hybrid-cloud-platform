@@ -1,8 +1,8 @@
-# Future Hybrid Cloud Architecture
+# Hybrid Cloud Architecture
 
-Planned architecture direction for optional cloud and public deployment experiments.
+Hybrid-cloud architecture for the EVE Trade Intelligence Platform.
 
-The local platform remains the primary system. Cloud services are only added where they provide clear operational value, such as monitoring, deployment validation, or optional backup experiments.
+The local platform remains the primary production system. Cloud services are used selectively for monitoring, visibility, and operational management.
 
 ```mermaid
 graph TD
@@ -11,16 +11,13 @@ graph TD
 User["👤 Public User"]
 Admin["💻 Admin Workstation"]
 
+%% ----------- PUBLIC EDGE -----------
+Cloudflare["☁️ Cloudflare"]
+
 %% ----------- LOCAL SECURITY -----------
 subgraph Security["Local Security Layer"]
     Firewall["🛡️ UFW Firewall"]
     Fail2Ban["🔒 Fail2Ban"]
-end
-
-%% ----------- FUTURE PUBLIC ACCESS -----------
-subgraph PublicAccess["Future Public Access"]
-    Proxy["🌐 Reverse Proxy"]
-    HTTPS["🔐 HTTPS / TLS"]
 end
 
 %% ----------- LOCAL PLATFORM -----------
@@ -38,21 +35,27 @@ end
 %% ----------- EXTERNAL DATA -----------
 ESI["📡 EVE ESI API"]
 
-%% ----------- OPTIONAL CLOUD SERVICES -----------
-subgraph Cloud["☁️ Optional Cloud Services"]
-    Monitor["📊 Azure Monitor / Metrics"]
-    CI["🔁 GitHub Actions"]
-    Storage["💾 Optional Archive Storage"]
+%% ----------- CLOUD MONITORING -----------
+subgraph Azure["☁️ Azure Monitoring"]
+    Arc["🔗 Azure Arc"]
+    Monitor["📊 Azure Monitor"]
+    Logs["📚 Log Analytics Workspace"]
 end
 
-%% ----------- CURRENT / PLANNED ACCESS -----------
+%% ----------- LOCAL OBSERVABILITY -----------
+subgraph Observability["Local Observability"]
+    Discord["🔔 Discord Alerts"]
+    CYD["📟 ESP32 CYD Display"]
+end
+
+%% ----------- PUBLIC ACCESS -----------
+User --> Cloudflare
+Cloudflare --> Frontend
+
+%% ----------- ADMIN ACCESS -----------
 Admin -->|SSH Key Auth| Firewall
 Fail2Ban -.->|Protects SSH| Firewall
 Firewall --> Local
-
-User -.->|Future public access| HTTPS
-HTTPS -.-> Proxy
-Proxy -.-> Firewall
 
 %% ----------- APPLICATION FLOW -----------
 Frontend --> API
@@ -62,15 +65,21 @@ API --> DB
 ESI --> Worker
 Worker --> DB
 
-%% ----------- OPTIONAL CLOUD CONNECTIONS -----------
-Local -.->|Metrics / Logs| Monitor
-CI -.->|Build / Validation / Deployment Workflow| Local
-DB -.->|Optional Backup Experiment| Storage
+%% ----------- CLOUD MONITORING FLOW -----------
+Local --> Arc
+Arc --> Monitor
+Monitor --> Logs
+
+%% ----------- LOCAL OBSERVABILITY FLOW -----------
+Local --> CYD
+Worker --> Discord
+Local --> Discord
 ```
 
 ## Notes
 
-* Public access is planned, not required for local operation.
-* Azure usage is optional and focused on monitoring experiments.
-* Blob storage is treated as optional archive storage, not core infrastructure.
-* The platform remains fully functional without cloud services.
+* Core workloads remain self-hosted.
+* Azure is used for monitoring and hybrid visibility, not application hosting.
+* PostgreSQL remains local and is not exposed publicly.
+* Cloudflare handles public access, DNS, HTTPS, and edge protection.
+* Discord and the ESP32 CYD display provide lightweight operational visibility.
