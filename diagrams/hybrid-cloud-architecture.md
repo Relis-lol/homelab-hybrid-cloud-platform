@@ -1,8 +1,6 @@
 # Hybrid Cloud Architecture
 
-Hybrid-cloud architecture for the EVE Trade Intelligence Platform.
-
-The local platform remains the primary production system. Cloud services are used selectively for monitoring, visibility, and operational management.
+Current production architecture combining a self-hosted platform with selected cloud services for monitoring, visibility, and operational management.
 
 ```mermaid
 graph TD
@@ -79,7 +77,8 @@ Local --> Discord
 ## Notes
 
 * Core workloads remain self-hosted.
-* Azure is used for monitoring and hybrid visibility, not application hosting.
 * PostgreSQL remains local and is not exposed publicly.
-* Cloudflare handles public access, DNS, HTTPS, and edge protection.
-* Discord and the ESP32 CYD display provide lightweight operational visibility.
+* Cloudflare provides DNS, HTTPS, and edge protection.
+* Azure provides monitoring and hybrid-cloud management.
+* Discord and CYD monitoring provide operational visibility.
+* The platform remains operational even if cloud monitoring services are unavailable.
