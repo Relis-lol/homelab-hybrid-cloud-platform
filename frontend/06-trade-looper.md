@@ -1,8 +1,8 @@
 # Trade Looper
 
-Hub-to-hub trade analysis system for EVE Online.
+Hub-to-hub trade intelligence system for EVE Online.
 
-Built to identify profitable arbitrage opportunities between major trade hubs using real market snapshots, demand estimation, fee-aware ROI calculations, and cargo logistics metrics.
+Built to identify profitable arbitrage opportunities using real market snapshots, demand estimation, fee-aware ROI calculations, liquidity analysis, and cargo logistics metrics.
 
 ---
 
@@ -14,7 +14,7 @@ Built to identify profitable arbitrage opportunities between major trade hubs us
 
 # 🎯 Purpose
 
-Transform raw market data into actionable trading opportunities ranked by profitability, liquidity, and execution quality.
+Transform market data into actionable trading opportunities ranked by profitability, liquidity, and execution quality.
 
 ---
 
@@ -27,7 +27,7 @@ Transform raw market data into actionable trading opportunities ranked by profit
 | Demand Analysis    | Buy-order demand estimation    |
 | Liquidity          | Supply and demand evaluation   |
 | Logistics          | Cargo volume calculations      |
-| Risk Filtering     | Low-margin deal suppression    |
+| Risk Filtering     | Low-quality deal suppression   |
 | Ranking            | Weighted opportunity scoring   |
 | Market Coverage    | Major EVE trade hubs           |
 
@@ -35,9 +35,9 @@ Transform raw market data into actionable trading opportunities ranked by profit
 
 # 🧱 Key Design Decisions
 
-* Real market snapshots instead of static prices
+* Real market snapshots
 
-  * reflects current market conditions
+  * reflects current market conditions instead of static pricing
 
 * Fee-aware profitability calculations
 
@@ -45,15 +45,15 @@ Transform raw market data into actionable trading opportunities ranked by profit
 
 * Demand and supply validation
 
-  * prevents impossible trade recommendations
+  * filters low-quality opportunities
 
-* Hub-specific analysis
+* Trade-hub focused analysis
 
-  * excludes irrelevant regional noise
+  * removes regional noise from non-hub markets
 
-* Expandable scoring architecture
+* Multi-factor ranking system
 
-  * supports future anomaly and event detection
+  * profitability alone does not determine recommendation quality
 
 ---
 
@@ -105,7 +105,7 @@ Opportunity Recommendations
 
 ---
 
-# ⚙️ Tech Stack
+# ⚙️ Technology Stack
 
 * FastAPI
 * PostgreSQL
@@ -116,24 +116,31 @@ Opportunity Recommendations
 
 # 📈 Current Status
 
-**Operational**
+**Live Production Feature**
 
 * Trade opportunity discovery
 * Fee-aware profit estimation
 * Demand scoring
+* Liquidity analysis
 * Cargo volume integration
-* Hub filtering
+* Trade-hub filtering
 * Market ranking system
 * Interactive frontend workflow
 
+Used as part of the live platform:
+
+https://eve-tradelooper.com/
+
 ---
 
-# 🔮 Planned Expansion
+# 🎯 Engineering Focus
 
-* MAV15 liquidity analysis
-* Estimated liquidation time
-* Organic demand modeling
-* Event detection
-* HOT deal classification
-* Market anomaly scanner
-* AI-assisted trade commentary
+The system prioritizes realistic trading opportunities over raw profit numbers by combining:
+
+* Market demand
+* Available supply
+* Trading fees
+* Cargo efficiency
+* Opportunity ranking
+
+This reduces misleading recommendations and produces more practical trading results.
