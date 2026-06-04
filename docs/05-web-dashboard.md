@@ -1,8 +1,8 @@
 # 05 – Public Web Dashboard
 
-Browser-based interface for the EVE Market Platform.
+Browser-based interface for the EVE Trade Intelligence Platform.
 
-The dashboard combines market analytics, historical data, trading utilities, route intelligence, and visualization systems into a single user-facing application.
+The dashboard combines market analytics, historical data, trading tools, route intelligence, visualization systems, and platform services into a single user-facing application.
 
 ---
 
@@ -14,8 +14,6 @@ Provide a unified interface for market analysis, trading decisions, logistics pl
 
 # 🏗️ Architecture
 
-### Current
-
 ```text
 Browser
     ↓
@@ -26,12 +24,12 @@ FastAPI
 PostgreSQL
 ```
 
-### Planned Public Deployment
+### Live Deployment
 
 ```text
 Browser
     ↓
-Reverse Proxy
+Cloudflare
     ↓
 Frontend
     ↓
@@ -52,7 +50,7 @@ PostgreSQL
 | Logistics Calculator | Cargo and profit planning     |
 | Hauling Intelligence | Route risk evaluation         |
 | Wormhole Mapping     | Chain visualization           |
-| Market Newsfeed      | Optional immersive news layer |
+| AHN News Network     | Dynamic news aggregation      |
 | WebGL Environment    | Real-time dashboard rendering |
 
 ---
@@ -61,7 +59,7 @@ PostgreSQL
 
 * Dashboard-first architecture
 
-  * tools share a common interface
+  * tools share a unified interface
 
 * API-driven communication
 
@@ -69,7 +67,7 @@ PostgreSQL
 
 * Modular feature system
 
-  * tools can evolve independently
+  * features evolve independently
 
 * Persistent browser state
 
@@ -77,7 +75,7 @@ PostgreSQL
 
 * Real EVE market data
 
-  * no simulated datasets
+  * analytics are based on live and historical datasets
 
 ---
 
@@ -110,6 +108,8 @@ PostgreSQL
 * Dynamic chart tabs
 * Persistent sessions
 * Responsive interface
+* WebGL environment
+* AHN News Network
 
 ---
 
@@ -155,34 +155,24 @@ Interactive Visualization
 
 # 📈 Current Status
 
-**Operational**
+**Live Production Platform**
 
 * Market dashboard
 * Historical analytics
 * Cargo valuation
 * Trade Looper
-* Route analysis foundation
-* Wormhole mapping
+* Hauling Intelligence
+* Wormhole Mapping
+* AHN News Network
 * WebGL rendering layer
 * Multilingual item support
 
----
+Platform URL:
 
-# ⚠️ Current Limitations
-
-* No public HTTPS deployment
-* No reverse proxy layer
-* No account system
-* No cloud synchronization
-* Limited observability
+https://eve-tradelooper.com/
 
 ---
 
-# 🔮 Planned Expansion
+# 🎯 Engineering Focus
 
-* Reverse proxy & HTTPS
-* Advanced market analytics
-* Enhanced route intelligence
-* Additional dashboard modules
-* Public deployment hardening
-* Azure-connected infrastructure
+The dashboard serves as the primary user interface for all analytics systems and integrates market intelligence, visualization, trading tools, logistics workflows, and operational data into a single platform experience.
