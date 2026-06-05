@@ -1,3 +1,4 @@
+
 # 01 – Linux Baseline
 
 Linux infrastructure foundation for the EVE Trade Intelligence Platform.
@@ -14,49 +15,44 @@ Provide a secure, lightweight, and reproducible Linux environment for self-hoste
 
 # 🛠️ Hardware
 
-| Component | Specification |
-|---|---|
-| System | NiPoGi 4K Mini PC |
-| CPU | AMD Ryzen 3 4300U (4C / 4T) |
-| Memory | 16 GB DDR4 |
-| Storage | 512 GB SSD |
-| Backup Storage | External SSD Backup Drive |
-| Monitoring Display | ESP32 CYD 2.8" Status Display |
+| Component      | Specification                 |
+| -------------- | ----------------------------- |
+| System         | NiPoGi 4K Mini PC             |
+| CPU            | AMD Ryzen 3 4300U (4C / 4T)   |
+| Memory         | 16 GB DDR4                    |
+| Storage        | 512 GB SSD                    |
+| Backup Storage | External SSD Backup Drive     |
+| Monitoring     | ESP32 CYD 2.8" Status Display |
 
 ---
 
-# 🖥️ Auxiliary Hardware
+# 📟 Monitoring Display
 
-| Device | Purpose |
-|---|---|
-| External SSD | Local backup and recovery storage |
-| ESP32 CYD 2.8" | Real-time platform monitoring display |
+The ESP32 CYD provides lightweight infrastructure monitoring with a 30-second refresh interval.
 
-### CYD Monitoring Metrics
+Displayed metrics:
 
-- API status
-- Database status
-- Worker status
-- CPU utilization
-- RAM utilization
-- SSD usage
-- Network traffic
-- System temperature
-- Last synchronization time
-
-Refresh interval: 30 seconds
+* API status
+* Database status
+* Worker status
+* CPU utilization
+* RAM utilization
+* SSD usage
+* Network traffic
+* System temperature
+* Last synchronization time
 
 ---
 
 # 🖥️ Operating System
 
-| Component | Configuration |
-|---|---|
-| OS | Ubuntu Server 24.04 LTS |
-| GUI | None |
-| Storage | LVM |
-| Remote Access | OpenSSH |
-| Boot Mode | Headless |
+| Component     | Configuration           |
+| ------------- | ----------------------- |
+| OS            | Ubuntu Server 24.04 LTS |
+| GUI           | None                    |
+| Storage       | LVM                     |
+| Remote Access | OpenSSH                 |
+| Boot Mode     | Headless                |
 
 ---
 
@@ -86,13 +82,28 @@ Refresh interval: 30 seconds
 
 # 🌐 Network Configuration
 
-| Area | Configuration |
-|---|---|
-| Connectivity | Wired LAN |
-| Addressing | DHCP Reservation |
-| Remote Access | SSH Key Authentication |
+| Area          | Configuration           |
+| ------------- | ----------------------- |
+| Connectivity  | Wired LAN               |
+| Addressing    | DHCP Reservation        |
+| Remote Access | SSH Key Authentication  |
 | Public Access | Web Platform Deployment |
-| Domain | eve-tradelooper.com |
+| Domain        | eve-tradelooper.com     |
+
+---
+
+# 🌍 Domain & DNS Automation
+
+Cloudflare Dynamic DNS automation maintains public availability of the platform.
+
+Features:
+
+* Automatic public IP updates
+* Cloudflare API integration
+* Restricted DNS-scoped API tokens
+* Reduced operational maintenance
+
+This allows the platform to remain reachable even when the ISP-assigned public IP changes.
 
 ---
 
@@ -100,22 +111,22 @@ Refresh interval: 30 seconds
 
 ### SSH
 
-- ED25519 key authentication
-- Password login disabled
-- Root login disabled
-- Restricted administrative access
+* ED25519 key authentication
+* Password login disabled
+* Root login disabled
+* Restricted administrative access
 
 ### Firewall
 
-- UFW enabled
-- Default deny incoming
-- Service-specific access rules
-- Logging enabled
+* UFW enabled
+* Default deny incoming
+* Service-specific access rules
+* Logging enabled
 
 ### Intrusion Protection
 
-- Fail2ban enabled
-- SSH protection active
+* Fail2ban enabled
+* SSH protection active
 
 ---
 
@@ -123,30 +134,30 @@ Refresh interval: 30 seconds
 
 ### Runtime
 
-- Docker Engine
-- Docker Compose
+* Docker Engine
+* Docker Compose
 
 ### Active Services
 
-| Service | Purpose |
-|---|---|
-| PostgreSQL | Analytics database |
-| FastAPI | Backend API |
+| Service         | Purpose                    |
+| --------------- | -------------------------- |
+| PostgreSQL      | Analytics database         |
+| FastAPI         | Backend API                |
 | Worker Services | Automated market ingestion |
-| Frontend | Public dashboard delivery |
+| Frontend        | Public dashboard delivery  |
 
 ---
 
 # 🚀 Current Capabilities
 
-- Headless Linux server
-- Hardened remote access
-- Containerized application stack
-- Automated worker execution
-- Local backup workflows
-- Real-time hardware monitoring display
-- Public web deployment
-- Production analytics platform hosting
+* Containerized application stack
+* Automated worker execution
+* Historical market analytics
+* Public web deployment
+* Local backup workflows
+* Real-time monitoring display
+* Cloudflare DNS automation
+* Production platform hosting
 
 ---
 
@@ -156,11 +167,11 @@ Refresh interval: 30 seconds
 
 Hosts:
 
-- Market analytics
-- Historical data storage
-- Trade intelligence systems
-- Dashboard services
-- Monitoring workflows
+* Market analytics
+* Historical data storage
+* Trade intelligence systems
+* Dashboard services
+* Monitoring workflows
 
 Platform URL:
 
