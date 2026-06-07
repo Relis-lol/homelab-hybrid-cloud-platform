@@ -81,6 +81,7 @@ PostgreSQL
 * Cargo valuation
 * Historical charting
 * Snapshot retrieval
+* Hub snapshot aggregation
 * Trade recommendations
 * Route intelligence
 
@@ -95,16 +96,17 @@ PostgreSQL
 
 # 📊 Major Endpoint Groups
 
-| Area                  | Purpose              |
-| --------------------- | -------------------- |
-| Health                | Runtime validation   |
-| Items                 | Search and metadata  |
-| Market History        | Historical analytics |
-| Cargo Value           | Cargo pricing        |
-| Regional Snapshots    | Live market state    |
-| Trade Recommendations | Arbitrage analysis   |
-| Import Runs           | Worker tracking      |
-| Route Analysis        | Risk evaluation      |
+| Area                  | Purpose                    |
+| --------------------- | -------------------------- |
+| Health                | Runtime validation         |
+| Items                 | Search and metadata        |
+| Market History        | Historical analytics       |
+| Cargo Value           | Cargo pricing              |
+| Regional Snapshots    | Live market state          |
+| Hub Snapshots         | Live trade-hub aggregation |
+| Trade Recommendations | Arbitrage analysis         |
+| Import Runs           | Worker tracking            |
+| Route Analysis        | Risk evaluation            |
 
 ---
 
@@ -154,6 +156,8 @@ Current API responsibilities include:
 * Market aggregation
 * Historical filtering
 * Snapshot processing
+* Hub snapshot aggregation
+* Market-quality filtering
 * Cargo calculations
 * Trade recommendation generation
 * Item translation lookup
@@ -191,6 +195,7 @@ Connected systems:
 
 * Historical market analytics
 * Snapshot APIs
+* Hub snapshot aggregation
 * Cargo valuation services
 * Trade recommendation engine
 * Multilingual search
