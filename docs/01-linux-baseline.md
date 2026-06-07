@@ -154,9 +154,10 @@ This allows the platform to remain reachable even when the ISP-assigned public I
 * Automated worker execution
 * Historical market analytics
 * Public web deployment
+* Cloudflare-protected domain hosting
+* Dynamic DNS automation
 * Local backup workflows
 * Real-time monitoring display
-* Cloudflare DNS automation
 * Production platform hosting
 
 ---
