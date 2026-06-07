@@ -189,8 +189,37 @@ Selected technical challenges encountered during development and the architectur
 
 ---
 
+## 🌐 Internal Health Does Not Guarantee Public Availability
+
+**Problem**
+
+* Multiple production incidents occurred while all internal services appeared healthy
+* Docker containers, API, database and workers reported normal operation
+* Users could still not reach the public website due to DNS and connectivity issues
+
+**Solution**
+
+* Implemented automated Cloudflare DDNS updates
+* Added external website reachability monitoring
+* Added Cloudflare DDNS logging and validation
+* Integrated Discord alerting for public availability failures
+* Added website status visibility to the ESP32 monitoring dashboard
+* Removed hard-coded local network dependencies from frontend API communication
+
+**Result**
+
+* Faster root-cause identification
+* Improved resilience against ISP IP changes
+* Better visibility into real user experience
+* Reduced recovery time during connectivity incidents
+* Stronger operational reliability
+
+---
+
 ## 🎯 Key Takeaway
 
 The largest improvements came from architecture, data quality, observability, and operational reliability rather than adding new features.
 
 Investing in maintainable systems consistently produced better results than increasing feature count.
+
+A reliable system is not defined by healthy internal services alone. Real reliability means ensuring that users can actually reach and use the platform under real-world conditions.
