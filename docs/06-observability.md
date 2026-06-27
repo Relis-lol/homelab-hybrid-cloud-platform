@@ -131,11 +131,33 @@ Implemented through:
 ### Current Capabilities
 
 * Hybrid-cloud monitoring
+* Arc machine connection status
 * Heartbeat monitoring
 * Offline detection
+* CPU utilization visibility
+* Memory utilization visibility
+* Network visibility
+* Logical disk usage visibility
+* Health event tracking
 * Cloud-based log collection
 * Resource visibility
 * Alerting support
+
+### Current Azure Arc Status
+
+The self-hosted Linux server is connected to Azure Arc and monitored through Azure Monitor.
+
+The 30-day Azure Monitor view shows one setup-related health event from the initial Azure Arc onboarding phase. No recurring health issues are visible after setup.
+
+<a href="../assets/azure-arc-monitoring-30d-overview.png">
+  <img src="../assets/azure-arc-monitoring-30d-overview.png" alt="Azure Arc 30-day monitoring overview" width="620">
+</a>
+
+The 24-hour CPU utilization view shows recurring workload spikes caused by scheduled workers and processing jobs. After each workload spike, the server returns to a lower idle baseline instead of staying under constant high load.
+
+<a href="../assets/azure-arc-cpu-24h-worker-pattern.png">
+  <img src="../assets/azure-arc-cpu-24h-worker-pattern.png" alt="Azure Monitor 24-hour CPU worker pattern" width="620">
+</a>
 
 ### Cost Control
 
