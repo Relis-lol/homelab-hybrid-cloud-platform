@@ -220,31 +220,25 @@ Selected technical challenges encountered during development and the architectur
 
 **Problem**
 
-A duplicated cron configuration allowed worker jobs to overlap during scheduled execution.
-
-This caused duplicate database writes and uncontrolled growth in high-volume market tables. Over roughly two weeks, the issue produced more than 100 million unnecessary rows and significantly increased database storage usage.
+* A duplicated cron configuration allowed worker jobs to overlap during scheduled execution
+* Overlapping workers created duplicate database writes in high-volume market tables
+* Over roughly two weeks, the issue produced more than 100 million unnecessary rows
+* Database storage usage increased significantly and growth became harder to predict
 
 **Solution**
 
-Added explicit concurrency control for scheduled worker execution using a lock-based `flock` setup.
-
-Reviewed and cleaned the active crontab configuration.
-
-Removed duplicated runtime data from affected database tables.
-
-Added stronger validation around worker scheduling and runtime behavior.
+* Added explicit concurrency control for scheduled worker execution using `flock`
+* Reviewed and cleaned the active crontab configuration
+* Removed duplicated runtime data from affected database tables
+* Added stronger validation around worker scheduling and runtime behavior
 
 **Result**
 
-Only one worker instance can run at a time.
-
-Overlapping imports are skipped instead of running in parallel.
-
-More than 100 million unnecessary rows were removed.
-
-Database growth became predictable again.
-
-The platform now has safer scheduled execution and lower risk of silent data duplication.
+* Only one worker instance can run at a time
+* Overlapping imports are skipped instead of running in parallel
+* More than 100 million unnecessary rows were removed
+* Database growth became predictable again
+* Scheduled background execution is now safer and easier to operate
 
 ---
 
