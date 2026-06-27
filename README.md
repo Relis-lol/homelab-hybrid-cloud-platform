@@ -29,8 +29,6 @@ Built as a real-world infrastructure engineering portfolio project using Linux, 
 
 # 📊 Current Scale
 
-# 📊 Current Scale
-
 | Metric | Value |
 |---|---|
 | Market Records | Multi-million row PostgreSQL market database |
