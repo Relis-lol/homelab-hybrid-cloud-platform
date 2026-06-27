@@ -16,6 +16,8 @@ Visual assets used throughout the project documentation and portfolio presentati
 | `wh-mapper.png` | Wormhole mapping tool |
 | `3d-background.png` | WebGL dashboard environment |
 | `ahn.png` | AI-assisted market news system |
+| `azure-arc-monitoring-30d-overview.png` | Azure Arc 30-day monitoring overview |
+| `azure-arc-cpu-24h-worker-pattern.png` | Azure Monitor 24-hour CPU worker pattern |
 
 ---
 
