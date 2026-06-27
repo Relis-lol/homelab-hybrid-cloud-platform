@@ -216,10 +216,42 @@ Selected technical challenges encountered during development and the architectur
 
 ---
 
+## ⏱️ Scheduled Jobs Need Concurrency Control
+
+** Problem **
+
+A duplicated cron configuration allowed worker jobs to overlap during scheduled execution.
+
+This caused duplicate database writes and uncontrolled growth in high-volume market tables. Over roughly two weeks, the issue produced more than 100 million unnecessary rows and significantly increased database storage usage.
+
+** Solution **
+
+Added explicit concurrency control for scheduled worker execution using a lock-based `flock` setup.
+
+Reviewed and cleaned the active crontab configuration.
+
+Removed duplicated runtime data from affected database tables.
+
+Added stronger validation around worker scheduling and runtime behavior.
+
+### Result
+
+Only one worker instance can run at a time.
+
+Overlapping imports are skipped instead of running in parallel.
+
+More than 100 million unnecessary rows were removed.
+
+Database growth became predictable again.
+
+The platform now has safer scheduled execution and lower risk of silent data duplication.
+
+---
+
 ## 🎯 Key Takeaway
 
 The largest improvements came from architecture, data quality, observability, and operational reliability rather than adding new features.
 
 Investing in maintainable systems consistently produced better results than increasing feature count.
 
-A reliable system is not defined by healthy internal services alone. Real reliability means ensuring that users can actually reach and use the platform under real-world conditions.
+A reliable system is not defined by healthy internal services alone. Real reliability means ensuring that users can actually reach and use the platform under real-world conditions, while scheduled background jobs remain controlled, observable, and safe against accidental overlap.
