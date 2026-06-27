@@ -10,33 +10,34 @@ Built as a real-world infrastructure engineering portfolio project using Linux, 
 
 # 🚀 Core Features
 
-| Area | Features |
-|---|---|
-| Infrastructure | Hardened Ubuntu Server, Docker Compose stack, service isolation |
-| Backend | FastAPI API layer, modular worker architecture, scheduled ingestion |
-| Database | PostgreSQL analytics database, historical market storage |
-| Data Pipeline | Automated ESI imports, paginated sync system, snapshot aggregation |
-| Market Intelligence | Trade Looper, Route Risk Calculator, Wormhole Mapper, Cargo Analysis |
-| Analytics | Trade recommendations, ROI analysis, MAV15 liquidity scoring |
-| Frontend | Interactive dashboard, multi-chart analytics, modular tool ecosystem |
-| News System | AHN News Network, lore feed, event feed architecture |
-| Observability | Discord monitoring, runtime metrics, import reporting |
-| Localization | Multilingual EVE item support |
-| Architecture | Hybrid-cloud ready structure with Azure integration planning |
+| Area                | Features                                                                  |
+| ------------------- | ------------------------------------------------------------------------- |
+| Infrastructure      | Hardened Ubuntu Server, Docker Compose stack, service isolation           |
+| Backend             | FastAPI API layer, modular worker architecture, scheduled ingestion       |
+| Database            | PostgreSQL analytics database, historical market storage                  |
+| Data Pipeline       | Automated ESI imports, paginated sync system, snapshot aggregation        |
+| Market Intelligence | Trade Looper, Route Risk Calculator, Wormhole Mapper, Cargo Analysis      |
+| Analytics           | Trade recommendations, ROI analysis, MAV15 liquidity scoring              |
+| Frontend            | Interactive dashboard, multi-chart analytics, modular tool ecosystem      |
+| News System         | AHN News Network, lore feed, event feed architecture                      |
+| Observability       | Discord alerts, email alerts, Azure Monitor, CYD display, runtime metrics |
+| Privacy Design      | No user accounts, no login system, no personal user tracking              |
+| Localization        | Multilingual EVE item support                                             |
+| Architecture        | Self-hosted hybrid-cloud architecture with Azure Arc monitoring           |
 
 ---
 
 # 📊 Current Scale
 
-| Metric | Value |
-|---|---|
-| Indexed Items | ~16,800 |
-| Historical Market Records | ~848,000 |
-| Trade Hubs Supported | Jita, Amarr, Dodixie, Hek, Rens |
-| Data Sources | ESI Regional History + Live Market Snapshots |
-| Frontend Charts | Hourly + Daily analytics modes |
-| Git Commits | 177+ |
-| Deployment | Public Production Instance |
+| Metric                    | Value                                        |
+| ------------------------- | -------------------------------------------- |
+| Indexed Items             | ~16,800                                      |
+| Historical Market Records | ~848,000                                     |
+| Trade Hubs Supported      | Jita, Amarr, Dodixie, Hek, Rens              |
+| Data Sources              | ESI Regional History + Live Market Snapshots |
+| Frontend Charts           | Hourly + Daily analytics modes               |
+| Git Commits               | 177+                                         |
+| Deployment                | Public Production Instance                   |
 
 ---
 
@@ -87,6 +88,10 @@ Ubuntu Server
 
   * independent feature modules for easier maintenance and expansion
 
+* Privacy-first public access
+
+  * designed without user accounts, login flows, or personal user profiles
+
 * Lightweight frontend architecture
 
   * responsive browser performance without heavy frameworks
@@ -114,17 +119,17 @@ assets/     -> screenshots and visual assets
 
 # 📚 Documentation
 
-| File | Topic |
-|---|---|
-| `01-linux-baseline.md` | Ubuntu setup & hardening |
-| `02-docker-platform.md` | Container architecture |
-| `03-database-layer.md` | PostgreSQL design |
-| `04-api-layer.md` | FastAPI backend |
-| `05-web-dashboard.md` | Frontend architecture |
-| `06-observability.md` | Monitoring & logging |
-| `07-hybrid-cloud-planning.md` | Azure and hybrid-cloud concepts |
-| `08-cicd-automation.md` | CI/CD planning |
-| `09-lessons-learned.md` | Engineering lessons and post-mortem |
+| File                          | Topic                                       |
+| ----------------------------- | ------------------------------------------- |
+| `01-linux-baseline.md`        | Ubuntu setup & hardening                    |
+| `02-docker-platform.md`       | Container architecture                      |
+| `03-database-layer.md`        | PostgreSQL design                           |
+| `04-api-layer.md`             | FastAPI backend                             |
+| `05-web-dashboard.md`         | Frontend architecture                       |
+| `06-observability.md`         | Monitoring & logging                        |
+| `07-hybrid-cloud-planning.md` | Azure and hybrid-cloud concepts             |
+| `08-cicd-automation.md`       | Deployment workflow and automation planning |
+| `09-lessons-learned.md`       | Engineering lessons and post-mortem         |
 
 ---
 
@@ -137,7 +142,6 @@ assets/     -> screenshots and visual assets
 ![Route Risk](assets/route-risk.png)
 
 ![Wormhole Mapper](assets/wh-mapper.png)
-
 
 ---
 
@@ -152,5 +156,10 @@ Python
 JavaScript
 Chart.js
 Discord Webhooks
+Email Alerts
+Azure Arc
+Azure Monitor
+Cloudflare
+ESP32 CYD
 Mermaid
 ```
