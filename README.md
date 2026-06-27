@@ -29,15 +29,16 @@ Built as a real-world infrastructure engineering portfolio project using Linux, 
 
 # 📊 Current Scale
 
-| Metric                    | Value                                        |
-| ------------------------- | -------------------------------------------- |
-| Indexed Items             | ~16,800                                      |
-| Historical Market Records | ~848,000                                     |
-| Trade Hubs Supported      | Jita, Amarr, Dodixie, Hek, Rens              |
-| Data Sources              | ESI Regional History + Live Market Snapshots |
-| Frontend Charts           | Hourly + Daily analytics modes               |
-| Git Commits               | 177+                                         |
-| Deployment                | Public Production Instance                   |
+# 📊 Current Scale
+
+| Metric | Value |
+|---|---|
+| Market Records | Multi-million row PostgreSQL market database |
+| Station Coverage | Hundreds of active market stations |
+| Market Coverage | Main EVE trade hub regions and active station markets |
+| Data Sources | ESI regional history, live market snapshots, station market data |
+| Chart Analytics | 24h to 365d time-range views with hourly and daily aggregation |
+| Deployment | Public self-hosted production instance |
 
 ---
 
