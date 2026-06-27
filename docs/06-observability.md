@@ -149,15 +149,25 @@ The self-hosted Linux server is connected to Azure Arc and monitored through Azu
 
 The 30-day Azure Monitor view shows one setup-related health event from the initial Azure Arc onboarding phase. No recurring health issues are visible after setup.
 
-<a href="../assets/azure-arc-monitoring-30d-overview.png">
-  <img src="../assets/azure-arc-monitoring-30d-overview.png" alt="Azure Arc 30-day monitoring overview" width="620">
-</a>
+<img src="../assets/azure-arc-monitoring-30d-overview.png" alt="Azure Arc 30-day monitoring overview" width="620">
+
+<details>
+<summary>Open full-size 30-day Azure Monitor screenshot</summary>
+
+<img src="../assets/azure-arc-monitoring-30d-overview.png" alt="Azure Arc 30-day monitoring overview">
+
+</details>
 
 The 24-hour CPU utilization view shows recurring workload spikes caused by scheduled workers and processing jobs. After each workload spike, the server returns to a lower idle baseline instead of staying under constant high load.
 
-<a href="../assets/azure-arc-cpu-24h-worker-pattern.png">
-  <img src="../assets/azure-arc-cpu-24h-worker-pattern.png" alt="Azure Monitor 24-hour CPU worker pattern" width="620">
-</a>
+<img src="../assets/azure-arc-cpu-24h-worker-pattern.png" alt="Azure Monitor 24-hour CPU worker pattern" width="620">
+
+<details>
+<summary>Open full-size 24-hour CPU screenshot</summary>
+
+<img src="../assets/azure-arc-cpu-24h-worker-pattern.png" alt="Azure Monitor 24-hour CPU worker pattern">
+
+</details>
 
 ### Cost Control
 
