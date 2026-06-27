@@ -138,16 +138,6 @@ assets/     -> screenshots and visual assets
 
 ![Wormhole Mapper](assets/wh-mapper.png)
 
----
-
-# 🔮 Planned Expansion
-
-* AI-assisted market analysis
-* Event-driven anomaly detection
-* Azure monitoring integration
-* Automated CI/CD pipelines
-* Advanced logistics intelligence
-* Expanded observability stack
 
 ---
 
