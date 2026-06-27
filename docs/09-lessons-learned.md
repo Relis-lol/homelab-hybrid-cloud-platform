@@ -218,13 +218,13 @@ Selected technical challenges encountered during development and the architectur
 
 ## ⏱️ Scheduled Jobs Need Concurrency Control
 
-** Problem **
+**Problem**
 
 A duplicated cron configuration allowed worker jobs to overlap during scheduled execution.
 
 This caused duplicate database writes and uncontrolled growth in high-volume market tables. Over roughly two weeks, the issue produced more than 100 million unnecessary rows and significantly increased database storage usage.
 
-** Solution **
+**Solution**
 
 Added explicit concurrency control for scheduled worker execution using a lock-based `flock` setup.
 
@@ -234,7 +234,7 @@ Removed duplicated runtime data from affected database tables.
 
 Added stronger validation around worker scheduling and runtime behavior.
 
-### Result
+**Result**
 
 Only one worker instance can run at a time.
 
