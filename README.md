@@ -17,6 +17,7 @@ Built as a real-world infrastructure engineering portfolio project using Linux, 
 | Database            | PostgreSQL analytics database, historical market storage                  |
 | Data Pipeline       | Automated ESI imports, paginated sync system, snapshot aggregation        |
 | Market Intelligence | Trade Looper, Route Risk Calculator, Wormhole Mapper, Cargo Analysis      |
+| Gameplay Tools      | OmniScanner, ESS Raid Calculator, Trig WH Finder, Pochven Radar, Gank Optimizer |
 | Analytics           | Trade recommendations, ROI analysis, MAV15 liquidity scoring              |
 | Frontend            | Interactive dashboard, multi-chart analytics, modular tool ecosystem      |
 | News System         | AHN News Network, lore feed, event feed architecture                      |
@@ -31,12 +32,13 @@ Built as a real-world infrastructure engineering portfolio project using Linux, 
 
 | Metric | Value |
 |---|---|
-| Market Records | Multi-million row PostgreSQL market database |
+| Market Records | Multi-million row PostgreSQL market database with active retention controls |
 | Station Coverage | Hundreds of active market stations |
 | Market Coverage | Main EVE trade hub regions and active station markets |
-| Data Sources | ESI regional history, live market snapshots, station market data |
+| Data Sources | ESI regional history, live market snapshots, station market data, live killmail streams |
 | Chart Analytics | 24h to 365d time-range views with hourly and daily aggregation |
 | Deployment | Public self-hosted production instance |
+| Wiki Scope | Growing EVE knowledge base with guides, reference content and tool context |
 
 ---
 
@@ -79,6 +81,10 @@ Ubuntu Server
 
   * enables long-term analytics and future AI-assisted analysis
 
+* Live kill-signal processing
+
+  * supports gatecamp, Pochven, Triglavian wormhole and risk-intelligence tools from shared event streams
+
 * Fee-aware trade calculations
 
   * realistic profitability instead of fake raw spread numbers
@@ -90,6 +96,10 @@ Ubuntu Server
 * Privacy-first public access
 
   * designed without user accounts, login flows, or personal user profiles
+
+* Operational review after stable production use
+
+  * identified and fixed retention, worker overlap, log-management and exposure risks before they became long-term maintenance problems
 
 * Lightweight frontend architecture
 
@@ -104,14 +114,10 @@ Ubuntu Server
 # 📂 Repository Structure
 
 ```text
-frontend/   -> dashboard, tools, UI modules and assets
-api/        -> FastAPI endpoints and analytics services
-worker/     -> ingestion, enrichment and orchestration services
-docs/       -> infrastructure and architecture documentation
-diagrams/   -> architecture and schema diagrams
-infra/      -> deployment and infrastructure helpers
-scripts/    -> automation and utility scripts
-assets/     -> screenshots and visual assets
+docs/       -> infrastructure, operations and architecture documentation
+frontend/   -> dashboard, tools and UI module documentation
+diagrams/   -> architecture, data-flow and schema diagrams
+assets/     -> screenshots and visual project assets
 ```
 
 ---
@@ -127,20 +133,38 @@ assets/     -> screenshots and visual assets
 | `05-web-dashboard.md`         | Frontend architecture                       |
 | `06-observability.md`         | Monitoring & logging                        |
 | `07-hybrid-cloud-planning.md` | Azure and hybrid-cloud concepts             |
-| `08-cicd-automation.md`       | Deployment workflow and automation planning |
+| `08-automation-operations.md` | Deployment workflow and operational automation |
 | `09-lessons-learned.md`       | Engineering lessons and post-mortem         |
 
 ---
 
 # 🖼️ Platform Preview
 
-![Dashboard](assets/market-dashboard.png)
+## Current Website
 
-![Trade Looper](assets/trade-looper.png)
+![Live Dashboard](assets/live-dashboard-2026-07-04.png)
 
-![Route Risk](assets/route-risk.png)
+![Wiki Overview](assets/wiki-overview-2026-07-04.png)
 
-![Wormhole Mapper](assets/wh-mapper.png)
+![Current UI Screenshot Overview](assets/tab-screenshots-2026-07-04/contact-sheet.png)
+
+Full current UI screenshot pass:
+
+```text
+assets/tab-screenshots-2026-07-04/
+```
+
+## Website Version v1.0 Screenshot Archive
+
+The original screenshot set is kept as a versioned visual archive of the earlier website state.
+
+![Dashboard v1.0](assets/market-dashboard.png)
+
+![Trade Looper v1.0](assets/trade-looper.png)
+
+![Route Risk v1.0](assets/route-risk.png)
+
+![Wormhole Mapper v1.0](assets/wh-mapper.png)
 
 ---
 

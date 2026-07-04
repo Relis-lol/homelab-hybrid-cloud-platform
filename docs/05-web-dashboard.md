@@ -41,6 +41,12 @@ PostgreSQL
 | AHN News Network | Dynamic market news |
 | WebGL Environment | Real-time dashboard rendering |
 | Credits & Compliance | Legal notices and project information |
+| OmniScanner | Automatic pasted-input detection |
+| Wiki | Static EVE knowledge base and guides |
+| Trig WH Finder | Pochven activity and wormhole signal discovery |
+| Pochven Flashpoint Radar | Kill-burst based activity detection |
+| ESS Raid Calculator | ESS robbery planning and defender-risk estimation |
+| Gank Efficiency Optimizer | Highsec gank cost and profitability estimation |
 
 ---
 
@@ -176,6 +182,12 @@ Deployment components include:
 * Hauling Intelligence
 * Wormhole Mapping
 * AHN News Network
+* OmniScanner
+* Static Wiki area
+* Trig WH Finder
+* Pochven Flashpoint Radar
+* ESS Raid Calculator
+* Gank Efficiency Optimizer
 * WebGL rendering layer
 * Multilingual item support
 * Public web deployment

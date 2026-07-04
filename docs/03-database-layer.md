@@ -53,6 +53,8 @@ No direct public database access exists.
 | `hourly_snapshot_items`     | Snapshot tracking targets |
 | `regional_order_sync_state` | Incremental sync tracking |
 | `price_import_runs`         | Worker execution history  |
+| `station_market_snapshots`  | Station-level live market snapshots |
+| Kill-signal tables          | Gatecamp, Pochven and combat intelligence inputs |
 
 ---
 
@@ -73,6 +75,10 @@ No direct public database access exists.
 * Snapshot-based analytics
 
   * supports liquidity, spread, and trade analysis
+
+* Retention for high-volume tables
+
+  * prevents live snapshot and global price tables from growing without operational limits
 
 * Internal-only database access
 
@@ -130,6 +136,8 @@ This enables multilingual item lookup and localized frontend functionality.
 | Supported Languages | 8                |
 | Trade Hubs          | 5                |
 
+High-volume production tables are managed through pruning jobs rather than being allowed to grow indefinitely. This became important after an operational review found that overlapping scheduled workers had produced more than 100 million unnecessary rows.
+
 ---
 
 # 🔐 Security Model
@@ -147,7 +155,9 @@ This enables multilingual item lookup and localized frontend functionality.
 * Historical market storage
 * Regional market analytics
 * Snapshot collection
+* Retention-managed market price storage
 * Worker execution tracking
+* Live kill-signal storage for route, Pochven and gatecamp tools
 * Multilingual item search
 * Dashboard data delivery
 * Trade analysis support

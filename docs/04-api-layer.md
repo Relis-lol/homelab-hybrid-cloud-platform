@@ -107,6 +107,10 @@ PostgreSQL
 | Trade Recommendations | Arbitrage analysis         |
 | Import Runs           | Worker tracking            |
 | Route Analysis        | Risk evaluation            |
+| Gatecamp Intelligence | Live route danger signals  |
+| Pochven Intelligence  | Flashpoint and Trig activity |
+| ESS / Gank Tools      | Combat and robbery calculators |
+| Wiki                  | Static reference content delivery |
 
 ---
 
@@ -160,6 +164,9 @@ Current API responsibilities include:
 * Market-quality filtering
 * Cargo calculations
 * Trade recommendation generation
+* ESS raid estimates
+* Gank profitability estimates
+* Pochven and Triglavian activity summaries
 * Item translation lookup
 * Dashboard data delivery
 * Frontend response formatting
@@ -186,6 +193,9 @@ Connected systems:
 * Internal container communication
 * Backend-controlled data access
 * Environment-based configuration
+* Generic client-facing error responses for production failures
+
+Server-side logs keep exception details for troubleshooting, while API clients receive generic failure messages instead of raw stack or exception text.
 
 ---
 
@@ -202,6 +212,10 @@ Connected systems:
 * Worker integration
 * Dashboard integration
 * Route analysis services
+* Gatecamp intelligence
+* Pochven / Trig activity services
+* ESS and gank calculator support
+* Wiki content integration
 
 Platform URL:
 

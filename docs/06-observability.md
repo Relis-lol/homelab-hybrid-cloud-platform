@@ -24,6 +24,8 @@ Detect failures early, monitor platform health, and provide visibility into auto
 | Security Events | UFW and Fail2ban logs |
 | Scheduling | Cron execution visibility |
 | Infrastructure | Host resource monitoring |
+| Retention | Database growth and pruning visibility |
+| Public Reachability | External website availability checks |
 | Azure Monitoring | Cloud-based monitoring |
 | Cloudflare Analytics | Traffic visibility |
 | CYD Display | Physical monitoring dashboard |
@@ -77,6 +79,8 @@ Current monitoring covers:
 * System temperature
 * Public endpoint availability
 * Traffic visibility
+* Database growth behavior
+* Backup storage pressure
 
 ---
 
@@ -109,6 +113,8 @@ Discord webhooks provide operational alerts.
 * Failed imports
 * API availability issues
 * Worker execution summaries
+* Public website reachability failures
+* Storage and backup pressure warnings
 
 ### Benefits
 
@@ -242,6 +248,8 @@ docker compose logs worker
 * Fail2ban events
 * Ubuntu system logs
 * Scheduled task execution
+* Pruning and retention logs
+* Backup execution logs
 
 ---
 
@@ -263,6 +271,10 @@ Discord Notification
 
 This creates a complete audit trail for import operations.
 
+Scheduled workers are protected with a non-blocking `flock` lock so a long-running import cannot overlap with the next cron trigger. This keeps runtime behavior predictable and prevents duplicate high-volume database writes.
+
+Daily pruning jobs keep volatile market and snapshot tables within an intended retention window. Log rotation is used for worker, DDNS, pruning and platform logs so operational visibility does not become a storage risk.
+
 ---
 
 # 🚀 Current Capabilities
@@ -274,6 +286,9 @@ This creates a complete audit trail for import operations.
 * Docker logging
 * Security event visibility
 * Scheduled-job monitoring
+* Worker overlap prevention
+* Database pruning visibility
+* Log rotation for long-running operations
 * Azure-based monitoring
 * Cloudflare traffic visibility
 * Real-time hardware monitoring display

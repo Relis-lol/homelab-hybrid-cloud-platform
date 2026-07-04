@@ -17,7 +17,7 @@ This documentation covers the infrastructure, architecture, analytics systems, d
 | `05-web-dashboard.md`         | Dashboard systems and frontend integration             |
 | `06-observability.md`         | Monitoring, logging, and operational visibility        |
 | `07-hybrid-cloud-planning.md` | Hybrid-cloud concepts and Azure planning               |
-| `08-cicd-automation.md`       | Automation and CI/CD planning                          |
+| `08-automation-operations.md` | Automation, backups, retention, and operations         |
 | `09-lessons-learned.md`       | Architectural decisions and project learnings          |
 
 ---
@@ -52,6 +52,12 @@ Implemented systems include:
 * Route Risk analysis
 * Wormhole Mapping system
 * AHN News Network
+* OmniScanner input detection
+* ESS Raid Calculator
+* Trig WH Finder
+* Pochven Flashpoint Radar
+* Gank Efficiency Optimizer
+* Growing static EVE Wiki area
 * WebGL dashboard environment
 * Discord monitoring integration
 
@@ -65,4 +71,4 @@ https://eve-tradelooper.com/
 
 # 🎯 Documentation Goal
 
-Document the design decisions, architecture, and engineering challenges behind a real-world analytics platform built around Linux, Docker, Python, PostgreSQL, FastAPI, and browser-based intelligence tools.
+Document the design decisions, architecture, operational lessons, and engineering challenges behind a real-world analytics platform built around Linux, Docker, Python, PostgreSQL, FastAPI, browser-based intelligence tools, and self-hosted production operations.

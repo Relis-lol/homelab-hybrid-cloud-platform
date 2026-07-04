@@ -242,10 +242,58 @@ Selected technical challenges encountered during development and the architectur
 
 ---
 
+## 🧯 Production Reviews Are Feature Work
+
+**Problem**
+
+* The platform had grown beyond a simple dashboard into a live production system
+* Database growth, backups, log volume, worker scheduling and port exposure became operational concerns
+* These issues were not visible from feature testing alone
+
+**Solution**
+
+* Performed a post-deployment architecture and operations review using an AI-assisted code audit as one input
+* Verified findings independently before applying changes
+* Tested fixes in a separate development clone before production rollout
+* Focused improvements on reliability, observability, storage management and production safety
+
+**Result**
+
+* High-volume database tables now have retention controls
+* Scheduled workers are protected against overlap
+* API errors are safer for public clients
+* Logs and backups are easier to operate over time
+* The project gained a repeatable review-improve-deploy workflow instead of only accumulating new features
+
+---
+
+## 💾 Backups Need To Protect The Backup Target Too
+
+**Problem**
+
+* Backup automation checked only part of the data footprint before writing new dumps
+* A growing external backup SSD could reach full capacity while the main services still appeared healthy
+* Failed backups created a recovery risk that normal application monitoring would not catch
+
+**Solution**
+
+* Expanded backup storage checks across the relevant data directories
+* Added pressure-aware cleanup behavior
+* Kept an instant-restore backup copy outside the normal deletion rotation
+* Included backup logs in the operational review workflow
+
+**Result**
+
+* Backup failures are easier to detect
+* Restore workflows are safer
+* Storage pressure is treated as an operational signal, not only a disk-space problem
+
+---
+
 ## 🎯 Key Takeaway
 
 The largest improvements came from architecture, data quality, observability, and operational reliability rather than adding new features.
 
 Investing in maintainable systems consistently produced better results than increasing feature count.
 
-A reliable system is not defined by healthy internal services alone. Real reliability means ensuring that users can actually reach and use the platform under real-world conditions, while scheduled background jobs remain controlled, observable, and safe against accidental overlap.
+A reliable system is not defined by healthy internal services alone. Real reliability means ensuring that users can actually reach and use the platform under real-world conditions, while scheduled background jobs remain controlled, observable, storage-aware, and safe against accidental overlap.

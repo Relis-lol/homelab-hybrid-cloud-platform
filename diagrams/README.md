@@ -19,7 +19,7 @@ Provide a fast visual overview of how platform components interact.
 | `current-architecture.md`       | Current production architecture and service relationships |
 | `data-flow.md`                  | Market ingestion and analytics data flow                  |
 | `database-schema.md`            | Core PostgreSQL schema and table relationships            |
-| `future-hybrid-architecture.md` | Hybrid-cloud monitoring and deployment architecture       |
+| `hybrid-cloud-architecture.md`  | Hybrid-cloud monitoring and deployment architecture       |
 
 ---
 

@@ -1,0 +1,234 @@
+[
+  {
+    "index": 0,
+    "label": "Start",
+    "normalizedLabel": "Start",
+    "file": "01-start.png",
+    "categoryParentIndex": null,
+    "status": "ok"
+  },
+  {
+    "index": 1,
+    "label": "Wiki",
+    "normalizedLabel": "Wiki",
+    "file": "02-wiki.png",
+    "categoryParentIndex": null,
+    "status": "ok"
+  },
+  {
+    "index": 2,
+    "label": "Markt & Handel ▾",
+    "normalizedLabel": "Markt & Handel ▾",
+    "file": "03-markt-handel.png",
+    "categoryParentIndex": null,
+    "status": "ok"
+  },
+  {
+    "index": 3,
+    "label": "Industrie & Bergbau ▾",
+    "normalizedLabel": "Industrie & Bergbau ▾",
+    "file": "04-industrie-bergbau.png",
+    "categoryParentIndex": null,
+    "status": "ok"
+  },
+  {
+    "index": 4,
+    "label": "Navigation ▾",
+    "normalizedLabel": "Navigation ▾",
+    "file": "05-navigation.png",
+    "categoryParentIndex": null,
+    "status": "ok"
+  },
+  {
+    "index": 5,
+    "label": "Kampf & PVE ▾",
+    "normalizedLabel": "Kampf & PVE ▾",
+    "file": "06-kampf-pve.png",
+    "categoryParentIndex": null,
+    "status": "ok"
+  },
+  {
+    "index": 6,
+    "label": "17:04 SAT 07/04 YC128",
+    "normalizedLabel": "Credits and clock",
+    "file": "07-credits-and-clock.png",
+    "categoryParentIndex": null,
+    "status": "ok"
+  },
+  {
+    "index": 7,
+    "label": "Frachtwert",
+    "normalizedLabel": "Frachtwert",
+    "file": "08-frachtwert.png",
+    "categoryParentIndex": 2,
+    "status": "ok"
+  },
+  {
+    "index": 8,
+    "label": "Charts",
+    "normalizedLabel": "Charts",
+    "file": "09-charts.png",
+    "categoryParentIndex": 2,
+    "status": "ok"
+  },
+  {
+    "index": 9,
+    "label": "Trade Looper",
+    "normalizedLabel": "Trade Looper",
+    "file": "10-trade-looper.png",
+    "categoryParentIndex": 2,
+    "status": "ok"
+  },
+  {
+    "index": 10,
+    "label": "Handelsrechner",
+    "normalizedLabel": "Handelsrechner",
+    "file": "11-handelsrechner.png",
+    "categoryParentIndex": 2,
+    "status": "ok"
+  },
+  {
+    "index": 11,
+    "label": "LP-Shop",
+    "normalizedLabel": "LP-Shop",
+    "file": "12-lp-shop.png",
+    "categoryParentIndex": 2,
+    "status": "ok"
+  },
+  {
+    "index": 12,
+    "label": "Abyssal-Markt",
+    "normalizedLabel": "Abyssal-Markt",
+    "file": "13-abyssal-markt.png",
+    "categoryParentIndex": 2,
+    "status": "ok"
+  },
+  {
+    "index": 13,
+    "label": "Verkaufen oder wiederaufbereiten",
+    "normalizedLabel": "Verkaufen oder wiederaufbereiten",
+    "file": "14-verkaufen-oder-wiederaufbereiten.png",
+    "categoryParentIndex": 2,
+    "status": "ok"
+  },
+  {
+    "index": 14,
+    "label": "Bergbau",
+    "normalizedLabel": "Bergbau",
+    "file": "15-bergbau.png",
+    "categoryParentIndex": 3,
+    "status": "ok"
+  },
+  {
+    "index": 15,
+    "label": "Industrie-Pipeline",
+    "normalizedLabel": "Industrie-Pipeline",
+    "file": "16-industrie-pipeline.png",
+    "categoryParentIndex": 3,
+    "status": "ok"
+  },
+  {
+    "index": 16,
+    "label": "Attribut-Optimierer",
+    "normalizedLabel": "Attribut-Optimierer",
+    "file": "17-attribut-optimierer.png",
+    "categoryParentIndex": 3,
+    "status": "ok"
+  },
+  {
+    "index": 17,
+    "label": "Routenrisiko",
+    "normalizedLabel": "Routenrisiko",
+    "file": "18-routenrisiko.png",
+    "categoryParentIndex": 4,
+    "status": "ok"
+  },
+  {
+    "index": 18,
+    "label": "Gatecamps",
+    "normalizedLabel": "Gatecamps",
+    "file": "19-gatecamps.png",
+    "categoryParentIndex": 4,
+    "status": "ok"
+  },
+  {
+    "index": 19,
+    "label": "Intel",
+    "normalizedLabel": "Intel",
+    "file": "20-intel.png",
+    "categoryParentIndex": 4,
+    "status": "ok"
+  },
+  {
+    "index": 20,
+    "label": "WH-Kartierung",
+    "normalizedLabel": "WH-Kartierung",
+    "file": "21-wh-kartierung.png",
+    "categoryParentIndex": 4,
+    "status": "ok"
+  },
+  {
+    "index": 21,
+    "label": "Trig-WH-Finder",
+    "normalizedLabel": "Trig-WH-Finder",
+    "file": "22-trig-wh-finder.png",
+    "categoryParentIndex": 4,
+    "status": "ok"
+  },
+  {
+    "index": 22,
+    "label": "Killboard",
+    "normalizedLabel": "Killboard",
+    "file": "23-killboard.png",
+    "categoryParentIndex": 5,
+    "status": "ok"
+  },
+  {
+    "index": 23,
+    "label": "Incursions",
+    "normalizedLabel": "Incursions",
+    "file": "24-incursions.png",
+    "categoryParentIndex": 5,
+    "status": "ok"
+  },
+  {
+    "index": 24,
+    "label": "Fitting",
+    "normalizedLabel": "Fitting",
+    "file": "25-fitting.png",
+    "categoryParentIndex": 5,
+    "status": "ok"
+  },
+  {
+    "index": 25,
+    "label": "Spieler-Fit-Historie",
+    "normalizedLabel": "Spieler-Fit-Historie",
+    "file": "26-spieler-fit-historie.png",
+    "categoryParentIndex": 5,
+    "status": "ok"
+  },
+  {
+    "index": 26,
+    "label": "Pochven-Flashpoint-Radar",
+    "normalizedLabel": "Pochven-Flashpoint-Radar",
+    "file": "27-pochven-flashpoint-radar.png",
+    "categoryParentIndex": 5,
+    "status": "ok"
+  },
+  {
+    "index": 27,
+    "label": "ESS-Raid-Rechner",
+    "normalizedLabel": "ESS-Raid-Rechner",
+    "file": "28-ess-raid-rechner.png",
+    "categoryParentIndex": 5,
+    "status": "ok"
+  },
+  {
+    "index": 28,
+    "label": "Gank-Effizienz-Optimierer",
+    "normalizedLabel": "Gank-Effizienz-Optimierer",
+    "file": "29-gank-effizienz-optimierer.png",
+    "categoryParentIndex": 5,
+    "status": "ok"
+  }
+]

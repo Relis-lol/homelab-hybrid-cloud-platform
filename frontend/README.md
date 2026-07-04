@@ -17,10 +17,12 @@ Provide practical gameplay analytics through lightweight, responsive, and data-d
 | `01-market-dashboard.md`        | Central analytics dashboard and market interface            |
 | `02-hauling-intelligence.md`    | Route evaluation and hauling risk analysis                  |
 | `03-logistics-calculator.md`    | Cargo planning and profitability calculations               |
-| `04-wormhole-mapping-system.md` | Interactive wormhole mapping and route management           |
+| `04-wh-mapper.md`              | Interactive wormhole mapping and route management           |
 | `05-webgl-rendering-system.md`  | Real-time WebGL rendering and performance optimization      |
 | `06-trade-looper.md`            | Hub-to-hub arbitrage analysis and trade opportunity ranking |
-| `07-ahn-news-network.md`        | Dynamic news feed and event aggregation system              |
+| `07-market-newsfeed.md`        | Dynamic news feed and event aggregation system              |
+| `08-credits-and-compliance.md` | Credits, contact information, and legal notices             |
+| `09-wiki-and-new-tools.md`     | Wiki growth, OmniScanner, and newer specialized tools       |
 
 ---
 
@@ -76,6 +78,12 @@ The frontend includes:
 * Wormhole Mapper
 * Logistics Calculator
 * AHN News Network
+* OmniScanner input classifier
+* Wiki navigation area
+* ESS Raid Calculator
+* Trig WH Finder
+* Pochven Flashpoint Radar
+* Gank Efficiency Optimizer
 * Historical Analytics
 * WebGL Environment
 

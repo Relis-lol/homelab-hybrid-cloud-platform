@@ -17,9 +17,11 @@ Reduce manual operations, improve operational consistency, and support reliable 
 ### Scheduling
 
 * Cron-based worker execution
+* `flock`-protected worker execution
 * Automated market imports
 * Scheduled snapshot generation
 * Automated newsfeed updates
+* Daily pruning for high-volume market tables
 * Controlled batch execution
 
 ### Deployment
@@ -39,6 +41,8 @@ Reduce manual operations, improve operational consistency, and support reliable 
 
 * GitHub-based source backup
 * Local SSD backup workflows
+* Backup storage pressure checks
+* Instant-restore backup copy outside the normal deletion rotation
 * Recovery-oriented deployment structure
 
 ---
@@ -47,6 +51,8 @@ Reduce manual operations, improve operational consistency, and support reliable 
 
 ```text
 Cron
+   ↓
+flock lock
    ↓
 Worker Execution
    ↓
@@ -93,6 +99,10 @@ Live Infrastructure Metrics
 
   * operational visibility remains part of normal platform operation
 
+* Production safety before feature speed
+
+  * retention, backup checks, internal-only ports and generic API errors reduce operational risk
+
 ---
 
 # ⚙️ Configuration Management
@@ -108,10 +118,30 @@ Examples include:
 
 ---
 
+# 🔧 Reliability Improvements
+
+After several weeks of stable production use, a focused architecture and operations review was performed. The goal was not to add new features, but to reduce long-term risk in the running platform.
+
+Key improvements:
+
+* Added retention and pruning for high-volume market tables
+* Added `flock` protection to prevent overlapping worker runs
+* Removed direct public exposure of API container ports
+* Moved database credentials toward environment-driven configuration
+* Replaced raw client-facing exception details with generic production errors
+* Added log rotation guidance for worker, DDNS, pruning and platform logs
+* Improved backup pressure checks and restore-oriented backup handling
+
+The largest operational cleanup removed more than 100 million unnecessary duplicate rows caused by overlapping scheduled workers. The worker pipeline now skips a run when the previous execution is still active instead of starting another importer in parallel.
+
+---
+
 # 🚀 Current Capabilities
 
 * Scheduled market imports
+* Worker concurrency protection
 * Automated snapshot generation
+* Automated retention and pruning
 * Automated newsfeed updates
 * Dockerized deployment workflow
 * Environment-based configuration
@@ -119,6 +149,7 @@ Examples include:
 * Azure monitoring integration
 * Hardware monitoring display
 * GitHub disaster-recovery backup
+* Local backup and restore workflow
 * Repeatable platform startup
 
 ---

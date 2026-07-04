@@ -32,6 +32,7 @@ Application Services
 | FastAPI    | Backend API               |
 | Worker     | Market ingestion pipeline |
 | Frontend   | Public web platform       |
+| Kill Feed Daemons | Live killmail signal processing |
 
 ---
 
@@ -66,7 +67,7 @@ Application Services
 
 * Internal service networking
 
-  * database remains inaccessible from public endpoints
+  * database and backend services remain inaccessible from public endpoints except through the reverse-proxied web layer
 
 * Environment-based configuration
 
@@ -111,6 +112,8 @@ Current automation includes:
 * Snapshot generation
 * Controlled execution timing
 * Manual execution support
+* `flock`-based worker concurrency protection
+* Daily database pruning for high-volume tables
 
 ---
 
@@ -124,9 +127,10 @@ Docker Compose provides isolated networking between services.
 Frontend → API
 API → PostgreSQL
 Worker → PostgreSQL
+Kill Feed Daemons → PostgreSQL
 ```
 
-Database traffic remains internal to the Docker network.
+Database and API traffic remain internal to the Docker network. Public users reach the platform through the HTTPS frontend and reverse proxy rather than direct container ports.
 
 ---
 
@@ -175,6 +179,8 @@ Examples include:
 * FastAPI backend services
 * Automated worker pipeline
 * Scheduled ingestion workflows
+* Worker overlap protection
+* Internal-only API/backend exposure
 * Public frontend deployment
 * Internal service networking
 
