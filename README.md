@@ -18,6 +18,7 @@ Built as a real-world infrastructure engineering portfolio project using Linux, 
 | Data Pipeline       | Automated ESI imports, paginated sync system, snapshot aggregation        |
 | Market Intelligence | Trade Looper, Route Risk Calculator, Wormhole Mapper, Cargo Analysis      |
 | Gameplay Tools      | OmniScanner, ESS Raid Calculator, Trig WH Finder, Pochven Radar, Gank Optimizer |
+| Region Maps         | SDE-based interactive region/galaxy maps, live sovereignty & activity overlays, capital jump planner |
 | Analytics           | Trade recommendations, ROI analysis, MAV15 liquidity scoring              |
 | Frontend            | Interactive dashboard, multi-chart analytics, modular tool ecosystem      |
 | News System         | AHN News Network, lore feed, event feed architecture                      |

@@ -23,6 +23,7 @@ Provide practical gameplay analytics through lightweight, responsive, and data-d
 | `07-market-newsfeed.md`        | Dynamic news feed and event aggregation system              |
 | `08-credits-and-compliance.md` | Credits, contact information, and legal notices             |
 | `09-wiki-and-new-tools.md`     | Wiki growth, OmniScanner, and newer specialized tools       |
+| `10-region-maps.md`            | Interactive SDE-based region maps, live overlays, jump planner, sovereignty ranking |
 
 ---
 
@@ -86,6 +87,7 @@ The frontend includes:
 * Gank Efficiency Optimizer
 * Historical Analytics
 * WebGL Environment
+* Region Maps & Sovereignty (SDE-based, live overlays, jump planner)
 
 All systems are integrated into a live production deployment and operate on real EVE Online market data.
 
