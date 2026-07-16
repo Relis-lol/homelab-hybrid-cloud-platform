@@ -24,6 +24,7 @@ Provide practical gameplay analytics through lightweight, responsive, and data-d
 | `08-credits-and-compliance.md` | Credits, contact information, and legal notices             |
 | `09-wiki-and-new-tools.md`     | Wiki growth, OmniScanner, and newer specialized tools       |
 | `10-region-maps.md`            | Interactive SDE-based region maps, live overlays, jump planner, sovereignty ranking |
+| `11-trade-computer.md`         | Per-hub mispricing radar and inter-hub arbitrage across the five trade hubs |
 
 ---
 
@@ -88,6 +89,7 @@ The frontend includes:
 * Historical Analytics
 * WebGL Environment
 * Region Maps & Sovereignty (SDE-based, live overlays, jump planner)
+* Trade Computer (per-hub mispricing radar, inter-hub arbitrage)
 
 All systems are integrated into a live production deployment and operate on real EVE Online market data.
 

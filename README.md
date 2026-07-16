@@ -16,7 +16,7 @@ Built as a real-world infrastructure engineering portfolio project using Linux, 
 | Backend             | FastAPI API layer, modular worker architecture, scheduled ingestion       |
 | Database            | PostgreSQL analytics database, historical market storage                  |
 | Data Pipeline       | Automated ESI imports, paginated sync system, snapshot aggregation        |
-| Market Intelligence | Trade Looper, Route Risk Calculator, Wormhole Mapper, Cargo Analysis      |
+| Market Intelligence | Trade Looper, Trade Computer (mispricing radar & hub arbitrage), Route Risk Calculator, Wormhole Mapper, Cargo Analysis |
 | Gameplay Tools      | OmniScanner, ESS Raid Calculator, Trig WH Finder, Pochven Radar, Gank Optimizer |
 | Region Maps         | SDE-based interactive region/galaxy maps, live sovereignty & activity overlays, capital jump planner |
 | Analytics           | Trade recommendations, ROI analysis, MAV15 liquidity scoring              |
