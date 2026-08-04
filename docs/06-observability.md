@@ -28,6 +28,8 @@ Detect failures early, monitor platform health, and provide visibility into auto
 | Public Reachability | External website availability checks |
 | Azure Monitoring | Cloud-based monitoring |
 | Cloudflare Analytics | Traffic visibility |
+| Visitor Statistics | Anonymous daily unique visitor counts |
+| Log Retention | Rotation and size limits for host and container logs |
 | CYD Display | Physical monitoring dashboard |
 
 ---
@@ -292,6 +294,31 @@ Daily pruning jobs keep volatile market and snapshot tables within an intended r
 * Azure-based monitoring
 * Cloudflare traffic visibility
 * Real-time hardware monitoring display
+
+---
+
+# 👥 Visitor Statistics
+
+Aggregate reach data for the public platform, collected from the reverse proxy
+access log rather than from any client-side tracker.
+
+**Design constraints**
+
+* No accounts, no cookies, no client-side script — consistent with the platform's no-login principle
+* No IP address is ever stored. The collector keeps only a salted hash per day
+* The day is part of the hash input, so the same visitor produces a different value on a different day and cannot be recognised across days, not even internally
+* Automated traffic is classified out: own health checks, crawlers, and requests that bypass the CDN
+
+**Behaviour**
+
+* The collector re-reads the full previous day on every run
+* Duplicate counting is prevented by the primary key rather than by bookkeeping, so an interrupted run repairs itself on the next pass
+* Daily counters never regress if a partial log window is re-read
+
+**Result**
+
+Daily unique visitor counts are available as an operational metric and are
+included in outgoing alert messages, without collecting personal data.
 
 ---
 

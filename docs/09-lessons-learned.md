@@ -290,6 +290,78 @@ Selected technical challenges encountered during development and the architectur
 
 ---
 
+## 🧭 Containers Do Not Cache DNS
+
+**Problem**
+
+* Background import runs began aborting with name-resolution errors
+* The failures were not specific to the market API — unrelated external hosts failed in the same moment, which ruled out an upstream API problem
+* Frequency grew from a handful per day to around ninety
+* Root cause: containers have no DNS cache of their own. Every single lookup is forwarded to the host resolver and from there to the home router, which intermittently stopped answering in time
+* The import worker made the load worse by opening a new connection per page, so one regional sync resolved the same hostname over a hundred times
+
+**Solution**
+
+* Added a local caching resolver on the host, with two independent upstream providers instead of the router alone
+* Enabled stale-answer serving, so a brief upstream outage returns a slightly outdated record instead of failing
+* Pointed the host resolver at it — containers follow automatically, because they already resolve through the host
+* Reused a single HTTP session in the worker, so a sync resolves the hostname once instead of once per page
+
+**Result**
+
+* Name-resolution failures stopped completely
+* Repeated lookups answer from memory instead of crossing the network
+* Connection reuse cut repeat request latency by more than half
+* No container restart and no downtime were required
+
+---
+
+## 🧪 Verify Infrastructure Assumptions Before The Maintenance Window
+
+**Problem**
+
+* The planned fix was to point the container runtime directly at the new resolver, which would have required restarting every service
+* A maintenance window had already been scheduled around that assumption
+* The assumption looked obvious and had never been tested
+
+**Solution**
+
+* Ran throwaway containers on the production network with the intended settings, without touching any running service
+* Both variants failed immediately: an explicitly configured resolver address is interpreted inside the container namespace, and the host bridge address is unreachable across isolated container networks
+* The existing setup only worked because a loopback resolver in the host configuration is a special case, served from the host namespace — which cannot be reproduced through explicit configuration
+* Chose the indirect path instead: change only the host resolver and let the containers follow
+
+**Result**
+
+* The restart of all services turned out to be unnecessary
+* The change landed with zero downtime
+* A flawed plan was caught in a five-minute test instead of during a maintenance window
+
+---
+
+## 🕵️ Behind A CDN, The Proxy Sees The CDN
+
+**Problem**
+
+* The reverse proxy was missing its real-IP directives, so every request appeared to come from a CDN edge address
+* Access logs were therefore useless for visitor statistics
+* More seriously, the API rate limit bucketed requests per CDN edge node instead of per visitor — visitors sharing an edge node silently shared one budget
+* Stored sender addresses for contact and wiki submissions pointed at the CDN as well
+* Nothing failed visibly, which is why it went unnoticed for months
+
+**Solution**
+
+* Added the CDN networks as trusted sources and switched the proxy to the CDN's client-address header
+* Verified afterwards that logged addresses were real client addresses
+
+**Result**
+
+* One change fixed logging, rate limiting and submission records at once
+* Rate limiting now applies per visitor as originally intended
+* Applied with a configuration reload — no restart, no downtime
+
+---
+
 ## 🎯 Key Takeaway
 
 The largest improvements came from architecture, data quality, observability, and operational reliability rather than adding new features.
