@@ -362,6 +362,55 @@ Selected technical challenges encountered during development and the architectur
 
 ---
 
+## 🔎 Content Behind URL Fragments Is Invisible To Search Engines
+
+**Problem**
+
+* The knowledge base held close to 2,000 articles, every one of them reachable
+  only through a URL fragment of the form 
+* Everything after the  belongs to the same URL as far as search engines are
+  concerned, so the entire knowledge base counted as a single page
+* The site had no sitemap, no meta description, no canonical and no social
+  preview data at all; the crawler had requested a robots.txt twice and
+  received a 404 both times
+* Nothing about this was visible as a fault. The site worked perfectly for
+  anyone who already knew it existed
+
+**Solution**
+
+* Added the basics first, because they cost nothing and one of them was
+  actively being asked for: robots.txt, sitemap, meta description, canonical,
+  Open Graph data and a generated preview image
+* Pre-rendered a pilot set of articles as fully static pages that need no
+  JavaScript at all, generated automatically from the same source data
+* Introduced a separate public-slug mapping. Internal identifiers ran up to
+  108 characters and some carried version fragments, neither of which belongs
+  in a permanent canonical URL. Internal identifiers and old shared links were
+  left untouched
+* Kept the existing genuine 404 handling instead of the common single-page
+  fallback that answers every unknown path with the start page. That pattern
+  produces soft 404s, which is worse than the problem it solves
+
+**Result**
+
+* Individual guides became addressable, linkable and indexable
+* Old shared links still work and now resolve to the new pages, and the
+  interactive application was left completely unchanged
+* Measured before rollout: full article text present without JavaScript,
+  unique metadata per page, all internal targets resolving, unknown paths
+  still returning a real 404
+
+**Also learned**
+
+Database-generated pages were checked separately before any of them were
+published. Word count alone looked healthy, but all of them shared a single
+section structure with text similarity between 0.90 and 1.00. They were kept
+out of the sitemap and out of the index pending a separate review of whether
+individual categories carry standalone value. Volume is not the same thing as
+substance, and measuring that took one query.
+
+---
+
 ## 🎯 Key Takeaway
 
 The largest improvements came from architecture, data quality, observability, and operational reliability rather than adding new features.
