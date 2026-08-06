@@ -7,6 +7,11 @@ The platform is intentionally designed around a self-hosted architecture, with s
 
 ---
 
+> **Status.** The Azure side described here is decommissioned; the resources
+> have been deleted. The self-hosted architecture this chapter is built around
+> continues to run unchanged. The chapter is kept as the record of the hybrid
+> setup that was implemented and evaluated.
+
 # 🎯 Purpose
 
 Gain hands-on cloud experience while keeping core infrastructure, applications, and data pipelines self-hosted.

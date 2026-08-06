@@ -6,6 +6,15 @@ Containerized market analytics and logistics intelligence platform for EVE Onlin
 
 Built as a real-world infrastructure engineering portfolio project using Linux, Docker, PostgreSQL, FastAPI, Python workers, observability tooling, and modular frontend systems.
 
+> **Component status.** Two components documented in this repository are no
+> longer running: the Azure Arc / Azure Monitor integration and the ESP32 CYD
+> status display. Both were built, operated, and then deliberately retired — the
+> Azure resources have since been deleted, the display was taken down. They stay
+> documented on purpose. Building and running them was the point, and deciding
+> to switch something off once it no longer earns its keep is part of operating
+> a system rather than only assembling one. Everything else described here is
+> live.
+
 ---
 
 # 🚀 Core Features

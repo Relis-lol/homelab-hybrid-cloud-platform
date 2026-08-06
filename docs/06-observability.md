@@ -26,11 +26,11 @@ Detect failures early, monitor platform health, and provide visibility into auto
 | Infrastructure | Host resource monitoring |
 | Retention | Database growth and pruning visibility |
 | Public Reachability | External website availability checks |
-| Azure Monitoring | Cloud-based monitoring |
+| Azure Monitoring | Cloud-based monitoring (decommissioned) |
 | Cloudflare Analytics | Traffic visibility |
 | Visitor Statistics | Anonymous daily unique visitor counts |
 | Log Retention | Rotation and size limits for host and container logs |
-| CYD Display | Physical monitoring dashboard |
+| CYD Display | Physical monitoring dashboard (decommissioned) |
 
 ---
 
@@ -129,6 +129,10 @@ Discord webhooks provide operational alerts.
 
 # ☁️ Azure Monitoring
 
+> **Status: decommissioned.** The Azure resources have been deleted and this
+> integration is no longer in use. What follows documents what was built and
+> operated, not the currently running system.
+
 Implemented through:
 
 * Azure Arc
@@ -184,6 +188,9 @@ Monitoring operates behind strict budget limits and alert thresholds to prevent 
 ---
 
 # 📟 CYD Monitoring Display
+
+> **Status: decommissioned.** The display has been taken down. Kept here as a
+> record of the implementation.
 
 A dedicated ESP32 CYD 2.8" display provides real-time infrastructure visibility.
 
