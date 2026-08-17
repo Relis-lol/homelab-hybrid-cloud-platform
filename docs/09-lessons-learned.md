@@ -314,6 +314,17 @@ Selected technical challenges encountered during development and the architectur
 * Connection reuse cut repeat request latency by more than half
 * No container restart and no downtime were required
 
+**Follow-up**
+
+* The resolver occasionally failed to start after a reboot, because it starts
+  before the container runtime's internal network interface exists and could
+  not bind to it yet
+* Fixed with an explicit systemd ordering override so the resolver always
+  starts after the container runtime is up
+* Found and fixed independently, without walking through the earlier
+  diagnostic steps again — the ownership of this piece of infrastructure has
+  shifted
+
 ---
 
 ## 🧪 Verify Infrastructure Assumptions Before The Maintenance Window
