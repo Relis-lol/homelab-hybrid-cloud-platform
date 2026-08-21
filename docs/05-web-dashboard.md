@@ -38,7 +38,7 @@ PostgreSQL
 | Logistics Calculator | Cargo and profit planning |
 | Hauling Intelligence | Route risk evaluation |
 | Wormhole Mapping | Chain visualization |
-| AHN News Network | Dynamic market news |
+| AHN News Network | Dynamic market news (paused) |
 | WebGL Environment | Real-time dashboard rendering |
 | Credits & Compliance | Legal notices and project information |
 | OmniScanner | Automatic pasted-input detection |

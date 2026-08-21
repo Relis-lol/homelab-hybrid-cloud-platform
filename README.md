@@ -6,14 +6,19 @@ Containerized market analytics and logistics intelligence platform for EVE Onlin
 
 Built as a real-world infrastructure engineering portfolio project using Linux, Docker, PostgreSQL, FastAPI, Python workers, observability tooling, and modular frontend systems.
 
-> **Component status.** Two components documented in this repository are no
-> longer running: the Azure Arc / Azure Monitor integration and the ESP32 CYD
-> status display. Both were built, operated, and then deliberately retired — the
-> Azure resources have since been deleted, the display was taken down. They stay
-> documented on purpose. Building and running them was the point, and deciding
-> to switch something off once it no longer earns its keep is part of operating
-> a system rather than only assembling one. Everything else described here is
-> live.
+> **Component status.** Three components documented in this repository are
+> not currently running: the Azure Arc / Azure Monitor integration, the ESP32
+> CYD status display, and the AHN News Network. The first two were built,
+> operated, and then deliberately retired — the Azure resources have since
+> been deleted, the display was taken down. The AHN News Network is paused
+> rather than retired: it shipped a full pipeline (multi-source news
+> generation, an AI rewriter, live killmail signals, a WebGL widget) but did
+> not draw meaningfully more traffic despite that investment, so the capacity
+> behind it is being redirected elsewhere for now — it can be switched back on
+> in minutes. All three stay documented on purpose. Building and running them
+> was the point, and deciding to switch something off once it no longer earns
+> its keep is part of operating a system rather than only assembling one.
+> Everything else described here is live.
 
 ---
 
@@ -30,7 +35,7 @@ Built as a real-world infrastructure engineering portfolio project using Linux, 
 | Region Maps         | SDE-based interactive region/galaxy maps, live sovereignty & activity overlays, capital jump planner |
 | Analytics           | Trade recommendations, ROI analysis, MAV15 liquidity scoring              |
 | Frontend            | Interactive dashboard, multi-chart analytics, modular tool ecosystem      |
-| News System         | AHN News Network, lore feed, event feed architecture                      |
+| News System         | AHN News Network, lore feed, event feed architecture (paused)              |
 | Observability       | Discord alerts, email alerts, Azure Monitor, CYD display, runtime metrics |
 | Privacy Design      | No user accounts, no login system, no personal user tracking              |
 | Localization        | Multilingual EVE item support                                             |

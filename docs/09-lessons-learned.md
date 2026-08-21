@@ -422,6 +422,41 @@ substance, and measuring that took one query.
 
 ---
 
+## 📰 A Feature Can Be Well-Built And Still Not Earn Its Keep
+
+**Problem**
+
+* A news system was built as a genuine production feature: multiple content
+  sources, an AI rewriter pass, live killmail signals, translation, and a
+  custom WebGL widget as its visual centerpiece
+* It ran in production for weeks on its own compute budget, competing for the
+  same CPU headroom as the market-data pipeline
+* Despite the investment and the lore-driven presentation, it did not
+  measurably grow visitor engagement over the tools that were already there
+
+**Solution**
+
+* Paused it deliberately rather than continuing to run it on inertia:
+  disabled the AI rewriter and the hourly feed pipeline, hid the news popup
+  and its toggle, and stopped the background killmail collector feeding it
+* Kept the purely decorative widget it introduced running on its own, since
+  it carries no pipeline cost and was never the part competing for resources
+* Every piece was disabled rather than deleted, each independently
+  reversible, so the decision costs nothing to revisit later
+
+**Result**
+
+* The compute budget the feature was consuming is now available for
+  something with a clearer return
+* Nothing about the decision is permanent or destructive — turning it back on
+  is a configuration change, not a rebuild
+* The lesson is the honest read of the data, not the build itself: shipping a
+  feature well is necessary but not sufficient, and recognizing that a
+  well-executed idea still isn't earning its keep is a separate skill from
+  building it in the first place
+
+---
+
 ## 🎯 Key Takeaway
 
 The largest improvements came from architecture, data quality, observability, and operational reliability rather than adding new features.
