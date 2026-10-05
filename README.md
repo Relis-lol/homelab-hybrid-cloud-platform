@@ -164,6 +164,25 @@ production source tree.
 
 # 🖼️ Platform Preview
 
+## Current Website — October 2026
+
+![Current EVE TradeLooper start page](assets/tab-screenshots-2026-10-05/01-start.jpg)
+
+![Current EVE Knowledgebase](assets/tab-screenshots-2026-10-05/02-wiki.jpg)
+
+![Current UI screenshot overview](assets/tab-screenshots-2026-10-05/contact-sheet.jpg)
+
+The representative October 2026 screenshot pass is available in:
+
+```text
+assets/tab-screenshots-2026-10-05/
+```
+
+The main-platform screenshots were captured at a 1440 × 900 browser viewport
+with the animated world background and AHN WebGL cube enabled. Browser chrome
+is not included. The Wiki is a separate interface and intentionally has no
+animated main-platform background.
+
 ## July 2026 Website Snapshot
 
 The following screenshots record the July 2026 interface. They are retained

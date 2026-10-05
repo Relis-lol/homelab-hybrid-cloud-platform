@@ -1,0 +1,109 @@
+{
+  "capturedAt": "2026-10-05T10:43:48.309Z",
+  "source": "https://eve-tradelooper.com/",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "browserChromeIncluded": false,
+  "animatedBackgroundEnabled": true,
+  "language": "en",
+  "screenshots": [
+    {
+      "file": "01-start.jpg",
+      "width": 1440,
+      "height": 900,
+      "title": "EVE TradeLooper - Free EVE Online Tools for Trading, Industry & Navigation",
+      "url": "https://eve-tradelooper.com/",
+      "bytes": 136841
+    },
+    {
+      "file": "02-wiki.jpg",
+      "width": 1440,
+      "height": 900,
+      "title": "EVE Online Knowledgebase | EVE TradeLooper",
+      "url": "https://eve-tradelooper.com/wiki/",
+      "bytes": 204934
+    },
+    {
+      "file": "03-cargo-value.jpg",
+      "width": 1440,
+      "height": 900,
+      "title": "EVE TradeLooper - Free EVE Online Tools for Trading, Industry & Navigation",
+      "url": "https://eve-tradelooper.com/#cargo-value",
+      "bytes": 133305
+    },
+    {
+      "file": "04-market-charts.jpg",
+      "width": 1440,
+      "height": 900,
+      "title": "EVE TradeLooper - Free EVE Online Tools for Trading, Industry & Navigation",
+      "url": "https://eve-tradelooper.com/#market-charts",
+      "bytes": 129976
+    },
+    {
+      "file": "05-trade-computer.jpg",
+      "width": 1440,
+      "height": 900,
+      "title": "EVE TradeLooper - Free EVE Online Tools for Trading, Industry & Navigation",
+      "url": "https://eve-tradelooper.com/#trade-computer",
+      "bytes": 193621
+    },
+    {
+      "file": "06-trade-looper.jpg",
+      "width": 1440,
+      "height": 900,
+      "title": "EVE TradeLooper - Free EVE Online Tools for Trading, Industry & Navigation",
+      "url": "https://eve-tradelooper.com/#trade-looper",
+      "bytes": 166739
+    },
+    {
+      "file": "07-industry-pipeline.jpg",
+      "width": 1440,
+      "height": 900,
+      "title": "EVE TradeLooper - Free EVE Online Tools for Trading, Industry & Navigation",
+      "url": "https://eve-tradelooper.com/#industry-pipeline",
+      "bytes": 128788
+    },
+    {
+      "file": "08-route-risk.jpg",
+      "width": 1440,
+      "height": 900,
+      "title": "EVE TradeLooper - Free EVE Online Tools for Trading, Industry & Navigation",
+      "url": "https://eve-tradelooper.com/#route-risk",
+      "bytes": 169613
+    },
+    {
+      "file": "09-wormhole-mapper.jpg",
+      "width": 1440,
+      "height": 900,
+      "title": "EVE TradeLooper - Free EVE Online Tools for Trading, Industry & Navigation",
+      "url": "https://eve-tradelooper.com/#wormhole-mapper",
+      "bytes": 175758
+    },
+    {
+      "file": "10-maps.jpg",
+      "width": 1440,
+      "height": 900,
+      "title": "EVE TradeLooper - Free EVE Online Tools for Trading, Industry & Navigation",
+      "url": "https://eve-tradelooper.com/#maps",
+      "bytes": 159812
+    },
+    {
+      "file": "11-fitting.jpg",
+      "width": 1440,
+      "height": 900,
+      "title": "EVE TradeLooper - Free EVE Online Tools for Trading, Industry & Navigation",
+      "url": "https://eve-tradelooper.com/#fitting",
+      "bytes": 150350
+    },
+    {
+      "file": "12-credits-and-clock.jpg",
+      "width": 1440,
+      "height": 900,
+      "title": "EVE TradeLooper - Free EVE Online Tools for Trading, Industry & Navigation",
+      "url": "https://eve-tradelooper.com/#credits",
+      "bytes": 174602
+    }
+  ]
+}
