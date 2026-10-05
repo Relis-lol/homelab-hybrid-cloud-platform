@@ -1,10 +1,15 @@
-# EVE Trade Intelligence Platform
+# EVE TradeLooper
 
 🌐 Live Platform: https://eve-tradelooper.com/
 
-Containerized market analytics and logistics intelligence platform for EVE Online.
+Self-hosted browser tools for EVE Online trading, industry, navigation, PvE, and player and combat intelligence.
 
 Built as a real-world infrastructure engineering portfolio project using Linux, Docker, PostgreSQL, FastAPI, Python workers, observability tooling, and modular frontend systems.
+
+> **Repository scope.** This is the public architecture and engineering
+> documentation for EVE TradeLooper. The production application source code,
+> operational configuration, and secrets are maintained privately. This
+> documentation was last synchronized with production in October 2026.
 
 > **Component status.** Three components documented in this repository are
 > not currently running: the Azure Arc / Azure Monitor integration, the ESP32
@@ -18,7 +23,8 @@ Built as a real-world infrastructure engineering portfolio project using Linux, 
 > in minutes. All three stay documented on purpose. Building and running them
 > was the point, and deciding to switch something off once it no longer earns
 > its keep is part of operating a system rather than only assembling one.
-> Everything else described here is live.
+> Unless a section is explicitly marked as historical, retired, or paused, it
+> describes the current production platform.
 
 ---
 
@@ -36,10 +42,10 @@ Built as a real-world infrastructure engineering portfolio project using Linux, 
 | Analytics           | Trade recommendations, ROI analysis, MAV15 liquidity scoring              |
 | Frontend            | Interactive dashboard, multi-chart analytics, modular tool ecosystem      |
 | News System         | AHN News Network, lore feed, event feed architecture (paused)              |
-| Observability       | Discord alerts, email alerts, Azure Monitor, CYD display, runtime metrics |
+| Observability       | Discord alerts, email alerts, runtime metrics, retention and operations reporting |
 | Privacy Design      | No user accounts, no login system, no personal user tracking              |
 | Localization        | Multilingual EVE item support                                             |
-| Architecture        | Self-hosted hybrid-cloud architecture with Azure Arc monitoring           |
+| Architecture        | Self-hosted Docker architecture behind Cloudflare                         |
 
 ---
 
@@ -71,7 +77,7 @@ Ubuntu Server
 ├── Market Ingestion Engine
 ├── Historical Analytics Engine
 ├── Trade Recommendation Engine
-├── AHN News System
+├── AHN News System (paused; visual cube retained)
 ├── Monitoring & Observability
 └── Interactive Web Dashboard
 ```
@@ -135,6 +141,9 @@ diagrams/   -> architecture, data-flow and schema diagrams
 assets/     -> screenshots and visual project assets
 ```
 
+This repository documents the system; it is not a public mirror of the
+production source tree.
+
 ---
 
 # 📚 Documentation
@@ -155,7 +164,11 @@ assets/     -> screenshots and visual project assets
 
 # 🖼️ Platform Preview
 
-## Current Website
+## July 2026 Website Snapshot
+
+The following screenshots record the July 2026 interface. They are retained
+as a dated visual snapshot and do not represent every later content,
+compliance, or metadata update.
 
 ![Live Dashboard](assets/live-dashboard-2026-07-04.png)
 
@@ -163,7 +176,7 @@ assets/     -> screenshots and visual project assets
 
 ![Current UI Screenshot Overview](assets/tab-screenshots-2026-07-04/contact-sheet.png)
 
-Full current UI screenshot pass:
+Full July 2026 UI screenshot pass:
 
 ```text
 assets/tab-screenshots-2026-07-04/
@@ -183,7 +196,27 @@ The original screenshot set is kept as a versioned visual archive of the earlier
 
 ---
 
-# 🛠️ Technology Stack
+# 🧾 Contact & Community Contributions
+
+The production platform includes a contact form and a moderated Wiki article
+submission flow. Neither requires an account. Voluntary submissions are kept
+in protected moderation queues and are never published automatically. See
+`frontend/08-credits-and-compliance.md` for the data-handling summary.
+
+---
+
+# 🔄 Recent Production Updates
+
+* Updated the platform for the September 2026 EVE/SDE data release
+* Expanded the knowledgebase, OmniScanner, and Cradle of War content
+* Hardened Cloudflare-only origin access and service startup behavior
+* Improved database pruning reliability and operational error handling
+* Added operations reporting, backup-capacity visibility, and DDNS health checks
+* Updated the public entity metadata and CCP/DLA compliance notices
+
+---
+
+# 🛠️ Current Production Stack
 
 ```text
 Ubuntu Server
@@ -195,9 +228,17 @@ JavaScript
 Chart.js
 Discord Webhooks
 Email Alerts
-Azure Arc
-Azure Monitor
 Cloudflare
-ESP32 CYD
-Mermaid
 ```
+
+## Previously Operated Components
+
+* Azure Arc and Azure Monitor — decommissioned; resources deleted
+* ESP32 CYD status display — retired
+
+## Paused Components
+
+* AHN News Network feed pipeline, AI rewriter, and news popup — paused
+* AHN WebGL cube — still active because it has no feed-pipeline cost
+
+Mermaid is used for diagrams in this documentation repository.

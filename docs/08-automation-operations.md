@@ -1,6 +1,6 @@
 # 08 – Automation & Operations
 
-Operational automation systems supporting the EVE Trade Intelligence Platform.
+Operational automation systems supporting EVE TradeLooper.
 
 The platform relies on lightweight automation focused on reliability, repeatability, monitoring, and unattended operation rather than full CI/CD pipelines.
 

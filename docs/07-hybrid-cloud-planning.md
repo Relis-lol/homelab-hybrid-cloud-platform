@@ -1,7 +1,7 @@
 
 # 07 – Hybrid Cloud Planning
 
-Hybrid-cloud integration layer for the EVE Trade Intelligence Platform.
+Historical hybrid-cloud integration layer built for EVE TradeLooper.
 
 The platform is intentionally designed around a self-hosted architecture, with selected cloud services used where they provide practical operational value.
 
@@ -60,7 +60,7 @@ The local platform continues handling:
 * Market analytics
 * Data storage
 
-Azure currently provides:
+Azure previously provided:
 
 * Monitoring
 * Resource visibility
@@ -90,7 +90,7 @@ Azure currently provides:
 
 ---
 
-# 📊 Current Cloud Footprint
+# 📊 Historical Cloud Footprint
 
 Implemented:
 
@@ -111,11 +111,11 @@ Not implemented:
 
 # 📈 Current Status
 
-**Operational Hybrid-Cloud Environment**
+**Decommissioned Azure integration; self-hosted platform remains operational**
 
 The platform remains fully functional without Azure.
 
-Azure currently enhances:
+While operated, Azure provided:
 
 * Infrastructure visibility
 * Operational monitoring

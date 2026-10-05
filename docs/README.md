@@ -1,6 +1,6 @@
 # Documentation
 
-Technical documentation for the EVE Trade Intelligence Platform.
+Technical documentation for EVE TradeLooper.
 
 This documentation covers the infrastructure, architecture, analytics systems, data pipelines, observability, and frontend components that power the live platform.
 
@@ -51,7 +51,7 @@ Implemented systems include:
 * Trade Looper intelligence engine
 * Route Risk analysis
 * Wormhole Mapping system
-* AHN News Network
+* AHN News Network (paused; retained as an operated-system case study)
 * OmniScanner input detection
 * ESS Raid Calculator
 * Trig WH Finder

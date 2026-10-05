@@ -1,6 +1,6 @@
 # Frontend Systems
 
-Browser-based analytics tools, visualization systems, and market intelligence applications developed for the EVE Trade Intelligence Platform.
+Browser-based analytics tools, visualization systems, and market intelligence applications developed for EVE TradeLooper.
 
 ---
 
@@ -79,7 +79,7 @@ The frontend includes:
 * Route Intelligence
 * Wormhole Mapper
 * Logistics Calculator
-* AHN News Network
+* AHN News Network (feed and popup paused; WebGL cube retained)
 * OmniScanner input classifier
 * Wiki navigation area
 * ESS Raid Calculator
@@ -90,6 +90,10 @@ The frontend includes:
 * WebGL Environment
 * Region Maps & Sovereignty (SDE-based, live overlays, jump planner)
 * Trade Computer (per-hub mispricing radar, inter-hub arbitrage)
+* Contact form with a protected moderation queue
+* Moderated Wiki article submissions
 
-All systems are integrated into a live production deployment and operate on real EVE Online market data.
+The systems listed above are integrated into the production platform unless
+explicitly marked as paused. The AHN implementation remains documented as an
+operated engineering system even though its feed pipeline is currently off.
 

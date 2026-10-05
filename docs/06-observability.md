@@ -1,6 +1,6 @@
 # 06 – Observability & Logging
 
-Operational visibility layer for the EVE Trade Intelligence Platform.
+Operational visibility layer for EVE TradeLooper.
 
 Provides monitoring, execution tracking, logging, alerting, and infrastructure visibility across backend services, worker pipelines, cloud monitoring systems, and physical monitoring hardware.
 
@@ -140,7 +140,7 @@ Implemented through:
 * Log Analytics Workspace
 * OpenTelemetry
 
-### Current Capabilities
+### Capabilities While Operated
 
 * Hybrid-cloud monitoring
 * Arc machine connection status
@@ -155,9 +155,9 @@ Implemented through:
 * Resource visibility
 * Alerting support
 
-### Current Azure Arc Status
+### Recorded Azure Arc Status
 
-The self-hosted Linux server is connected to Azure Arc and monitored through Azure Monitor.
+The self-hosted Linux server was connected to Azure Arc and monitored through Azure Monitor.
 
 The 30-day Azure Monitor view shows one setup-related health event from the initial Azure Arc onboarding phase. No recurring health issues are visible after setup.
 
@@ -183,7 +183,7 @@ The 24-hour CPU utilization view shows recurring workload spikes caused by sched
 
 ### Cost Control
 
-Monitoring operates behind strict budget limits and alert thresholds to prevent unexpected cloud costs.
+Monitoring operated behind strict budget limits and alert thresholds to prevent unexpected cloud costs.
 
 ---
 

@@ -1,6 +1,6 @@
 # 05 – Public Web Dashboard
 
-Browser-based interface for the EVE Trade Intelligence Platform.
+Browser-based interface for EVE TradeLooper.
 
 The dashboard combines market analytics, historical data, trading tools, route intelligence, visualization systems, and platform services into a unified user-facing application.
 
@@ -110,7 +110,7 @@ PostgreSQL
 * Persistent sessions
 * Responsive interface
 * WebGL environment
-* AHN News Network
+* AHN News Network (paused; WebGL cube retained)
 * Public HTTPS deployment
 
 ---
@@ -181,7 +181,7 @@ Deployment components include:
 * Trade Looper
 * Hauling Intelligence
 * Wormhole Mapping
-* AHN News Network
+* AHN News Network (paused; WebGL cube retained)
 * OmniScanner
 * Static Wiki area
 * Trig WH Finder

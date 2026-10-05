@@ -1,6 +1,6 @@
 # Credits & Compliance
 
-Credits, contact information, and legal notices for the EVE Trade Intelligence Platform.
+Credits, contact information, and legal notices for EVE TradeLooper.
 
 ---
 
@@ -32,17 +32,18 @@ Provide transparent attribution, project contact information, and required legal
 
   * tools can be used without registration or identity tracking
 
-* No personal data collection
+* Data minimization
 
-  * no account database or user profiling
+  * no account database, login system, or user profiling
+  * voluntary contact and Wiki submissions are processed only for the requested interaction and moderation
 
 * Legal information separated from gameplay tools
 
   * keeps the main interface focused and uncluttered
 
-* CCP ownership clearly acknowledged
+* CCP rights clearly acknowledged
 
-  * EVE intellectual property remains with CCP Games
+  * the published CCP rights notice is reproduced in its required wording
 
 * Public data sources only
 
@@ -56,9 +57,11 @@ Provide transparent attribution, project contact information, and required legal
 
 # ⚖️ Legal Disclaimer
 
-EVE Online®, EVE logos, character names, item names, system names, images and related assets are the property of CCP Games.
+© 2014 CCP hf. All rights reserved. "EVE", "EVE Online", "CCP", and all related logos and images are trademarks or registered trademarks of CCP hf.
 
-This is an unofficial fan-made project and is not affiliated with, endorsed by, or connected to CCP Games.
+This application has been created under the EVE Developer License Agreement.
+
+This is an unofficial fan-made project and is not affiliated with, endorsed by, or connected to Fenris Creations (formerly CCP Games).
 
 Market prices, cargo estimates, route calculations, trade suggestions, safety ratings and other generated information may be delayed, incomplete or inaccurate. Use at your own risk.
 
@@ -75,10 +78,24 @@ The platform is intentionally designed to minimize personal data handling.
 * No user accounts
 * No registration requirements
 * No profile system
-* No user-generated databases
 * No gameplay tracking
 
-Users can access platform features without creating an account or providing personal information.
+The core tools can be used without creating an account or submitting personal
+information. The following optional features process user-provided data:
+
+* Contact submissions can contain a message, optional name and email address,
+  and an optional image. The sender IP address is stored for anti-spam and
+  per-sender rate limiting.
+* Wiki submissions can contain an article title and text, an optional in-game
+  character name, and optional images. The sender IP address is stored for
+  anti-spam and per-sender rate limiting.
+* Contact and Wiki submissions enter protected moderation queues. Wiki content
+  is reviewed manually and is never published automatically.
+* Operational visitor counts use day-scoped salted hashes so visitors cannot
+  be recognized across different days.
+
+No fixed retention period is claimed here; storage and deletion rules should
+be reviewed as part of the platform's operational data-retention policy.
 
 ---
 

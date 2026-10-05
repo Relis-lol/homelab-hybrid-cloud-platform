@@ -1,6 +1,6 @@
 # 02 – Docker Platform
 
-Container platform powering the EVE Trade Intelligence Platform.
+Container platform powering EVE TradeLooper.
 
 Docker Compose is used to provide service isolation, reproducible deployments, and simplified platform operations.
 

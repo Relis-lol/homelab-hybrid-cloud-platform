@@ -1,6 +1,11 @@
 # AHN News Network
 
-Dynamic news aggregation and presentation system for the EVE Trade Intelligence Platform.
+Dynamic news aggregation and presentation system built for EVE TradeLooper.
+
+> **Production status: paused.** The AI rewriter, hourly feed pipeline, news
+> popup, and user toggle are disabled. The WebGL cube remains active because
+> it does not consume the feed-generation capacity. This page documents the
+> implemented and previously operated system.
 
 Designed to transform public EVE Online updates, CCP announcements, patch notes, logistics-loss intelligence, and in-universe lore into short market-oriented news broadcasts for dashboard presentation.
 
@@ -139,17 +144,24 @@ Implemented functionality:
 
 # 📈 Current Status
 
-**Live Production Feature**
+**Paused in production**
 
-* Dashboard-integrated news feed
+Currently active:
+
+* WebGL cube visual
+* Complete historical implementation and documentation
+
+Currently paused:
+
+* Dashboard news popup and user toggle
 * AI-assisted content generation
 * Public source aggregation
-* Automated hourly updates
-* User-controlled visibility
-* Failure-tolerant feed pipeline
-* Frontend presentation system
+* Automated hourly feed updates
 
-Used as an optional contextual information layer within:
+The news system can be restored without affecting the market-analysis tools,
+which remain fully data-driven and operational.
+
+Originally operated as an optional contextual information layer within:
 
 https://eve-tradelooper.com/
 

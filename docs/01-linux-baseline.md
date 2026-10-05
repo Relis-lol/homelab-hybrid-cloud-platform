@@ -1,7 +1,7 @@
 
 # 01 – Linux Baseline
 
-Linux infrastructure foundation for the EVE Trade Intelligence Platform.
+Linux infrastructure foundation for EVE TradeLooper.
 
 The system hosts the production environment, databases, backend services, automation workflows, and public web platform.
 

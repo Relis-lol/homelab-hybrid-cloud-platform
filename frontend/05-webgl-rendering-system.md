@@ -1,6 +1,6 @@
 # WebGL Rendering System
 
-Real-time WebGL environment developed for the EVE Trade Intelligence Platform.
+Real-time WebGL environment developed for EVE TradeLooper.
 
 Built to create a cinematic sci-fi atmosphere while maintaining low browser resource consumption and stable long-session performance.
 
