@@ -261,3 +261,12 @@ Cloudflare
 * AHN WebGL cube — still active because it has no feed-pipeline cost
 
 Mermaid is used for diagrams in this documentation repository.
+
+---
+
+# ©️ Rights and Reuse
+
+Unless otherwise stated, original documentation and project-specific media in
+this repository are © 2026 Björn Boldt. All rights reserved. EVE Online and
+related trademarks, logos, images, and game assets remain the property of
+their respective rights holders and are not licensed by this repository.
